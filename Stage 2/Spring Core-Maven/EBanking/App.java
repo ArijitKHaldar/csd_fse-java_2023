@@ -3,6 +3,7 @@ package com.cts.EBanking;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -28,7 +29,7 @@ public class App {
 		Scanner scanner = new Scanner(System.in);
 
 		// Instantiating the SmartBankAccount bean
-		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		SmartBankAccount smartBankAccount = (SmartBankAccount) context.getBean("smartBankAccount");
 
 		// Prompting the user to enter the account type
@@ -95,7 +96,7 @@ public class App {
 			System.out.println("Wrong Choice");
 		}
 
-		context.close();
+		((ConfigurableApplicationContext)context).close();
 		scanner.close();
 
 	}
