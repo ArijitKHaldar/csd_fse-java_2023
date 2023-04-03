@@ -1,0 +1,7 @@
+21:17:27.423 [restartedMain] INFO  com.cts.TraineeManagerApplication - Starting TraineeManagerApplication using Java 15.0.2 on DESKTOP-R5S80JU with PID 11580 (C:\Users\user\Desktop\traineeManager\target\classes started by user in C:\Users\user\Desktop\traineeManager)
+21:17:27.427 [restartedMain] INFO  com.cts.TraineeManagerApplication - No active profile set, falling back to default profiles: default
+21:17:29.007 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:17:29.722 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:17:34.527 [restartedMain] INFO  com.cts.TraineeManagerApplication - Started TraineeManagerApplication in 8.027 seconds (JVM running for 9.158)
+21:17:34.544 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:17:34.557 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -1,0 +1,5 @@
+com\cts\entity\Flight.class
+com\cts\repository\IFlightRepository.class
+com\cts\entity\Passenger.class
+com\cts\FlightManagement2Application.class
+com\cts\service\FlightService.class
