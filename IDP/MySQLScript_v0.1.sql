@@ -35,3 +35,9 @@ expenditure_tag ENUM ('food', 'utilities', 'housing', 'transportation', 'educati
 expenditure_id INT,
 FOREIGN KEY(expenditure_id) REFERENCES expenditure(expenditure_id)
 );
+
+-- Select Statements
+
+SELECT * FROM login;
+
+DESC LOGIN;
