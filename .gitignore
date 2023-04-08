@@ -1,3 +1,5 @@
 HelpRepositories/
 .idea/
 .softwares/
+*.class
+pom.properties

@@ -1,3 +1,6 @@
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -26,17 +29,72 @@ public class App {
 		ExpenditureDAO expenditure = ctx.getBean("expenditureDAO", ExpenditureDAO.class);
 		CategoryDAO category = ctx.getBean("categoryDAO", CategoryDAO.class);
 
-		//userLogin.setEmail_id("abc@domain.com");
-		//userLogin.setPassword("SuperSecretPassword");
+		/*
+		 * Login Table
+		 */
+
+		// userLogin.setEmail_id("abc@domain.com");
+		// userLogin.setPassword("SuperSecretPassword");
 
 		// Create
-		//login.insert(userLogin);
+		// login.insert(userLogin);
 
 		// Retrieve
-		Login user_login = login.getByEmailId("abc@domain.com");
-		if (user_login == null) {
-			System.out.println("No users registered");
-		}
+//		Login user_login = login.getByEmailId("abc@domain.com");
+//		if (user_login == null) {
+//			System.out.println("No users registered");
+//		}
+
+		
+		
+		
+		
+		
+		/*
+		 * Income Table
+		 */
+//		income_POJO.setUser_id("abc@domain.in");
+		//////ps.setDate(2, java.sql.Date.valueOf("2013-09-04"));
+		//////ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
+//		income_POJO.setIncome_date(Date.valueOf("2023-04-07"));
+//		income_POJO.setIncome_amount(300);
+
+		// Create
+//		income.insert(income_POJO);
+
+		//Retrieve
+//		List<Income> userIncomeByUserId = income.getByUserId("abc@domain.in");
+//		if (userIncomeByUserId.isEmpty()) {
+//			System.out.println("No income details available for selected user");
+//		}
+//		else {
+//			for(Income i : userIncomeByUserId) {
+//				System.out.println(i);
+//			}
+//		}
+		
+		
+//		List<Income> userIncomeByUserIdAndMonthOfIncome = income.getByUserIdAndMonth("abc@domain.in", 4);
+//		if (userIncomeByUserIdAndMonthOfIncome.isEmpty()) {
+//			System.out.println("No income details available for selected user on the given date");
+//		}
+//		else {
+//			for(Income i : userIncomeByUserIdAndMonthOfIncome) {
+//				System.out.println(i);
+//			}
+//		}
+		
+		
+		// Update
+//		income_POJO.setUser_id("abc@domain.com");
+//		income_POJO.setIncome_amount(10);
+//		income_POJO.setIncome_date(Date.valueOf("2023-04-07"));
+//		income.updateByIncomeId(income_POJO, 2);
+		
+		
+		// Delete
+//		income.deleteByIncomeId(4);
+
 		((AbstractApplicationContext) ctx).close();
 	}
 

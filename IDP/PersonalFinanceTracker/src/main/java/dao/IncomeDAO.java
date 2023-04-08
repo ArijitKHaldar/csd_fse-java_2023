@@ -9,14 +9,12 @@ public interface IncomeDAO {
 	public void insert(Income income);
 
 	// Retrieve
-	public Income getByUserId(int user_id);
+	public List<Income> getByUserId(String user_id);
+	public List<Income> getByUserIdAndMonth(String user_id, int month);
 
 	// Update
-	public void update(Income income);
+	public void updateByIncomeId(Income income, int income_id);
 
 	// Delete
-	public void deleteByIncomeId(int id);
-
-	// Get All
-	public List<Income> getAll();
+	public void deleteByIncomeId(int income_id);
 }

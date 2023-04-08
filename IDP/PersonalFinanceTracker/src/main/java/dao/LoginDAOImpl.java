@@ -17,7 +17,6 @@ public class LoginDAOImpl implements LoginDAO {
 
 	@Override
 	public void insert(Login user) {
-		// TODO Auto-generated method stub
 	    String query = "insert into login (email_id, password) values (?,?)";
 	    Connection con = null;
 	    PreparedStatement ps = null;
@@ -45,7 +44,6 @@ public class LoginDAOImpl implements LoginDAO {
 
 	@Override
 	public Login getByEmailId(String email_id) {
-		// TODO Auto-generated method stub
 	    String query = "select password from login where email_id = ?";
 	    Login usr = null;
 	    Connection con = null;

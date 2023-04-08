@@ -3,6 +3,7 @@ package model;
 import java.sql.Date;
 
 public class Income {
+	private int income_id;
 	private String user_id;
 	private Date income_date;
 	private double income_amount;
@@ -19,11 +20,26 @@ public class Income {
 	 * @param income_date
 	 * @param income_amount
 	 */
-	public Income(String user_id, Date income_date, double income_amount) {
+	public Income(int income_id, String user_id, Date income_date, double income_amount) {
 		super();
+		this.income_id = income_id;
 		this.user_id = user_id;
 		this.income_date = income_date;
 		this.income_amount = income_amount;
+	}
+
+	/**
+	 * @return the income_id
+	 */
+	public int getIncome_id() {
+		return income_id;
+	}
+
+	/**
+	 * @param income_id the income_id to set
+	 */
+	public void setIncome_id(int income_id) {
+		this.income_id = income_id;
 	}
 
 	/**
@@ -70,7 +86,8 @@ public class Income {
 
 	@Override
 	public String toString() {
-		return "Income [user_id=" + user_id + ", income_date=" + income_date + ", income_amount=" + income_amount + "]";
+		return "Income [income_id=" + income_id + ", user_id=" + user_id + ", income_date=" + income_date
+				+ ", income_amount=" + income_amount + "]";
 	}
 
 }

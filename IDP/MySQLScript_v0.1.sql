@@ -37,7 +37,7 @@ FOREIGN KEY(expenditure_id) REFERENCES expenditure(expenditure_id)
 );
 
 -- Select Statements
-
 SELECT * FROM login;
+SELECT * FROM income;
 
 DESC LOGIN;
