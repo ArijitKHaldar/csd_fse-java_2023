@@ -10,7 +10,8 @@
 	<bean id="incomeDAO" class="com.arijit.dao.IncomeDAOImpl">
 		<property name="dataSource" ref="ds" />
 	</bean>
-	<bean id="expenditureDAO" class="com.arijit.dao.ExpenditureDAOImpl">
+	<bean id="expenditureDAO"
+		class="com.arijit.dao.ExpenditureDAOImpl">
 		<property name="dataSource" ref="ds" />
 	</bean>
 	<bean id="categoryDAO" class="com.arijit.dao.CategoryDAOImpl">
