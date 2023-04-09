@@ -1,6 +1,7 @@
 package model;
 
 public class Category {
+	private int category_id;
 	private String user_id;
 	private String expenditure_tag;
 	private int expenditure_id;
@@ -17,11 +18,26 @@ public class Category {
 	 * @param expenditure_tag
 	 * @param expenditure_id
 	 */
-	public Category(String user_id, String expenditure_tag, int expenditure_id) {
+	public Category(int category_id, String user_id, String expenditure_tag, int expenditure_id) {
 		super();
+		this.category_id = category_id;
 		this.user_id = user_id;
 		this.expenditure_tag = expenditure_tag;
 		this.expenditure_id = expenditure_id;
+	}
+
+	/**
+	 * @return the category_id
+	 */
+	public int getCategory_id() {
+		return category_id;
+	}
+
+	/**
+	 * @param category_id the category_id to set
+	 */
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
 	}
 
 	/**
@@ -68,7 +84,8 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [user_id=" + user_id + ", expenditure_tag=" + expenditure_tag + ", expenditure_id="
-				+ expenditure_id + "]";
+		return "Category [category_id=" + category_id + ", user_id=" + user_id + ", expenditure_tag=" + expenditure_tag
+				+ ", expenditure_id=" + expenditure_id + "]";
 	}
+
 }

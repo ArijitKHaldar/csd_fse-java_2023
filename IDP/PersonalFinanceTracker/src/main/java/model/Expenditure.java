@@ -3,6 +3,7 @@ package model;
 import java.sql.Date;
 
 public class Expenditure {
+	private int expenditure_id;
 	private String user_id;
 	private Date expenditure_date;
 	private double expenditure_amount;
@@ -21,12 +22,27 @@ public class Expenditure {
 	 * @param expenditure_amount
 	 * @param expenditure_tag
 	 */
-	public Expenditure(String user_id, Date expenditure_date, double expenditure_amount, String expenditure_tag) {
+	public Expenditure(int expenditure_id, String user_id, Date expenditure_date, double expenditure_amount, String expenditure_tag) {
 		super();
+		this.expenditure_id = expenditure_id;
 		this.user_id = user_id;
 		this.expenditure_date = expenditure_date;
 		this.expenditure_amount = expenditure_amount;
 		this.expenditure_tag = expenditure_tag;
+	}
+
+	/**
+	 * @return the expenditure_id
+	 */
+	public int getExpenditure_id() {
+		return expenditure_id;
+	}
+
+	/**
+	 * @param expenditure_id the expenditure_id to set
+	 */
+	public void setExpenditure_id(int expenditure_id) {
+		this.expenditure_id = expenditure_id;
 	}
 
 	/**
@@ -87,7 +103,9 @@ public class Expenditure {
 
 	@Override
 	public String toString() {
-		return "Expenditure [user_id=" + user_id + ", expenditure_date=" + expenditure_date + ", expenditure_amount="
-				+ expenditure_amount + ", expenditure_tag=" + expenditure_tag + "]";
+		return "Expenditure [expenditure_id=" + expenditure_id + ", user_id=" + user_id + ", expenditure_date="
+				+ expenditure_date + ", expenditure_amount=" + expenditure_amount + ", expenditure_tag="
+				+ expenditure_tag + "]";
 	}
+
 }
