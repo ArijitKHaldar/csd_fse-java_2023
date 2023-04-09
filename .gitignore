@@ -3,3 +3,5 @@ HelpRepositories/
 .softwares/
 *.class
 pom.properties
+IDP/PersonalFinanceTracker/target
+.settings/
