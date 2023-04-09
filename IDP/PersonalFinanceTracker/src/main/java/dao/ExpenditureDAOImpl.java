@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -49,26 +51,145 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 
 	@Override
 	public List<Expenditure> getByUserId(String user_id) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "select expenditure_id, expenditure_date, expenditure_amount, expenditure_tag from expenditure where user_id = ?";
+		List<Expenditure> expenditureList = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, user_id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Expenditure usr = new Expenditure();
+				usr.setExpenditure_id(rs.getInt("expenditure_id"));
+				usr.setUser_id(user_id);
+				usr.setExpenditure_date(rs.getDate("expenditure_date"));
+				usr.setExpenditure_amount(rs.getDouble("expenditure_amount"));
+				usr.setExpenditure_tag(rs.getString("expenditure_tag"));
+				expenditureList.add(usr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return expenditureList;
 	}
 
 	@Override
 	public List<Expenditure> getByUserIdAndMonth(String user_id, int month) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "select expenditure_id, expenditure_date, expenditure_amount, expenditure_tag from expenditure where user_id = ? and MONTH(expenditure_date)=?";
+		List<Expenditure> expenditureList = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, user_id);
+			ps.setInt(2, month);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Expenditure usr = new Expenditure();
+				usr.setExpenditure_id(rs.getInt("expenditure_id"));
+				usr.setUser_id(user_id);
+				usr.setExpenditure_date(rs.getDate("expenditure_date"));
+				usr.setExpenditure_amount(rs.getDouble("expenditure_amount"));
+				usr.setExpenditure_tag(rs.getString("expenditure_tag"));
+				expenditureList.add(usr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return expenditureList;
 	}
 
 	@Override
 	public List<Expenditure> getByUserIdAndYear(String user_id, int year) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "select expenditure_id, expenditure_date, expenditure_amount, expenditure_tag from expenditure where user_id = ? and YEAR(expenditure_date)=?";
+		List<Expenditure> expenditureList = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, user_id);
+			ps.setInt(2, year);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Expenditure usr = new Expenditure();
+				usr.setExpenditure_id(rs.getInt("expenditure_id"));
+				usr.setUser_id(user_id);
+				usr.setExpenditure_date(rs.getDate("expenditure_date"));
+				usr.setExpenditure_amount(rs.getDouble("expenditure_amount"));
+				usr.setExpenditure_tag(rs.getString("expenditure_tag"));
+				expenditureList.add(usr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return expenditureList;
 	}
 
 	@Override
 	public List<Expenditure> getByUserIdAndTag(String user_id, String expenditure_tag) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "select expenditure_id, expenditure_date, expenditure_amount, expenditure_tag from expenditure where user_id = ? and expenditure_tag = ?";
+		List<Expenditure> expenditureList = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, user_id);
+			ps.setString(2, expenditure_tag);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Expenditure usr = new Expenditure();
+				usr.setExpenditure_id(rs.getInt("expenditure_id"));
+				usr.setUser_id(user_id);
+				usr.setExpenditure_date(rs.getDate("expenditure_date"));
+				usr.setExpenditure_amount(rs.getDouble("expenditure_amount"));
+				usr.setExpenditure_tag(rs.getString("expenditure_tag"));
+				expenditureList.add(usr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return expenditureList;
 	}
 
 	@Override
