@@ -1,5 +1,7 @@
 package com.arijit.dao;
 
+import java.util.List;
+
 import com.arijit.model.Category;
 
 public interface CategoryDAO {
@@ -7,9 +9,12 @@ public interface CategoryDAO {
 	public void insert(Category category);
 
 	// Retrieve
-	public Category getByExpenditureId(int expenditure_id);
+	public List<Category> getByExpenditureId(int expenditureId);
 
 	// Update
-	public void updateByCategoryId(Category category_id);
+	public void updateByExpenditureId(Category category, int expenditureId);
+	
+	// Delete
+	public void deleteByExpenditureId(int expenditure_id);
 
 }
