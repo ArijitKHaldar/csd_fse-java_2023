@@ -21,22 +21,21 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 
 	@Override
 	public void insert(Expenditure expenditure) {
-		String query = "insert into expenditure (user_id, expenditure_date, expenditure_amount, expenditure_tag) values (?,?,?,?)";
+		String query = "insert into expenditure (user_id, expenditure_date, expenditure_amount) values (?,?,?)";
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
 			con = dataSource.getConnection();
 			System.out.println(con);
 			ps = con.prepareStatement(query);
-			ps.setString(1, expenditure.getUser_id());
-			ps.setDate(2, expenditure.getExpenditure_date());
-			ps.setDouble(3, expenditure.getExpenditure_amount());
-			ps.setString(4, expenditure.getExpenditure_tag());
+			ps.setString(1, expenditure.getUserId());
+			ps.setDate(2, expenditure.getExpenditureDate());
+			ps.setDouble(3, expenditure.getExpenditureAmount());
 			int out = ps.executeUpdate();
 			if (out != 0) {
-				System.out.println("expenditure saved for user_id=" + expenditure.getUser_id());
+				System.out.println("expenditure saved for user_id=" + expenditure.getUserId());
 			} else
-				System.out.println("invalid user_id=" + expenditure.getUser_id());
+				System.out.println("invalid user_id=" + expenditure.getUserId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -50,8 +49,8 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 	}
 
 	@Override
-	public List<Expenditure> getByUserId(String user_id) {
-		String query = "select expenditure_id, expenditure_date, expenditure_amount, expenditure_tag from expenditure where user_id = ?";
+	public List<Expenditure> getByUserId(String userId) {
+		String query = "select expenditure_id, expenditure_date, expenditure_amount from expenditure where user_id = ?";
 		List<Expenditure> expenditureList = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -59,15 +58,14 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 		try {
 			con = dataSource.getConnection();
 			ps = con.prepareStatement(query);
-			ps.setString(1, user_id);
+			ps.setString(1, userId);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Expenditure usr = new Expenditure();
-				usr.setExpenditure_id(rs.getInt("expenditure_id"));
-				usr.setUser_id(user_id);
-				usr.setExpenditure_date(rs.getDate("expenditure_date"));
-				usr.setExpenditure_amount(rs.getDouble("expenditure_amount"));
-				usr.setExpenditure_tag(rs.getString("expenditure_tag"));
+				usr.setExpenditureId(rs.getInt("expenditure_id"));
+				usr.setUserId(userId);
+				usr.setExpenditureDate(rs.getDate("expenditure_date"));
+				usr.setExpenditureAmount(rs.getDouble("expenditure_amount"));
 				expenditureList.add(usr);
 			}
 		} catch (SQLException e) {
@@ -85,8 +83,8 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 	}
 
 	@Override
-	public List<Expenditure> getByUserIdAndMonth(String user_id, int month) {
-		String query = "select expenditure_id, expenditure_date, expenditure_amount, expenditure_tag from expenditure where user_id = ? and MONTH(expenditure_date)=?";
+	public List<Expenditure> getByUserIdAndMonth(String userId, int month) {
+		String query = "select expenditure_id, expenditure_date, expenditure_amount from expenditure where user_id = ? and MONTH(expenditure_date)=?";
 		List<Expenditure> expenditureList = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -94,16 +92,15 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 		try {
 			con = dataSource.getConnection();
 			ps = con.prepareStatement(query);
-			ps.setString(1, user_id);
+			ps.setString(1, userId);
 			ps.setInt(2, month);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Expenditure usr = new Expenditure();
-				usr.setExpenditure_id(rs.getInt("expenditure_id"));
-				usr.setUser_id(user_id);
-				usr.setExpenditure_date(rs.getDate("expenditure_date"));
-				usr.setExpenditure_amount(rs.getDouble("expenditure_amount"));
-				usr.setExpenditure_tag(rs.getString("expenditure_tag"));
+				usr.setExpenditureId(rs.getInt("expenditure_id"));
+				usr.setUserId(userId);
+				usr.setExpenditureDate(rs.getDate("expenditure_date"));
+				usr.setExpenditureAmount(rs.getDouble("expenditure_amount"));
 				expenditureList.add(usr);
 			}
 		} catch (SQLException e) {
@@ -121,8 +118,8 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 	}
 
 	@Override
-	public List<Expenditure> getByUserIdAndYear(String user_id, int year) {
-		String query = "select expenditure_id, expenditure_date, expenditure_amount, expenditure_tag from expenditure where user_id = ? and YEAR(expenditure_date)=?";
+	public List<Expenditure> getByUserIdAndYear(String userId, int year) {
+		String query = "select expenditure_id, expenditure_date, expenditure_amount from expenditure where user_id = ? and YEAR(expenditure_date)=?";
 		List<Expenditure> expenditureList = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -130,16 +127,15 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 		try {
 			con = dataSource.getConnection();
 			ps = con.prepareStatement(query);
-			ps.setString(1, user_id);
+			ps.setString(1, userId);
 			ps.setInt(2, year);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Expenditure usr = new Expenditure();
-				usr.setExpenditure_id(rs.getInt("expenditure_id"));
-				usr.setUser_id(user_id);
-				usr.setExpenditure_date(rs.getDate("expenditure_date"));
-				usr.setExpenditure_amount(rs.getDouble("expenditure_amount"));
-				usr.setExpenditure_tag(rs.getString("expenditure_tag"));
+				usr.setExpenditureId(rs.getInt("expenditure_id"));
+				usr.setUserId(userId);
+				usr.setExpenditureDate(rs.getDate("expenditure_date"));
+				usr.setExpenditureAmount(rs.getDouble("expenditure_amount"));
 				expenditureList.add(usr);
 			}
 		} catch (SQLException e) {
@@ -157,57 +153,20 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 	}
 
 	@Override
-	public List<Expenditure> getByUserIdAndTag(String user_id, String expenditure_tag) {
-		String query = "select expenditure_id, expenditure_date, expenditure_amount, expenditure_tag from expenditure where user_id = ? and expenditure_tag = ?";
-		List<Expenditure> expenditureList = new ArrayList<>();
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			ps = con.prepareStatement(query);
-			ps.setString(1, user_id);
-			ps.setString(2, expenditure_tag);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				Expenditure usr = new Expenditure();
-				usr.setExpenditure_id(rs.getInt("expenditure_id"));
-				usr.setUser_id(user_id);
-				usr.setExpenditure_date(rs.getDate("expenditure_date"));
-				usr.setExpenditure_amount(rs.getDouble("expenditure_amount"));
-				usr.setExpenditure_tag(rs.getString("expenditure_tag"));
-				expenditureList.add(usr);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return expenditureList;
-	}
-
-	@Override
-	public void updateByExpenditureId(Expenditure expenditure, int expenditure_id) {
-		String query = "update expenditure set user_id=?, expenditure_date=?, expenditure_amount=?, expenditure_tag=? where expenditure_id=?";
+	public void updateByExpenditureId(Expenditure expenditure, int expenditureId) {
+		String query = "update expenditure set user_id=?, expenditure_date=?, expenditure_amount=? where expenditure_id=?";
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
 			con = dataSource.getConnection();
 			ps = con.prepareStatement(query);
-			ps.setString(1, expenditure.getUser_id());
-			ps.setDate(2, expenditure.getExpenditure_date());
-			ps.setDouble(3, expenditure.getExpenditure_amount());
-			ps.setString(4, expenditure.getExpenditure_tag());
-			ps.setInt(5, expenditure_id);
+			ps.setString(1, expenditure.getUserId());
+			ps.setDate(2, expenditure.getExpenditureDate());
+			ps.setDouble(3, expenditure.getExpenditureAmount());
+			ps.setInt(4, expenditureId);
 			int out = ps.executeUpdate();
 			if (out != 0) {
-				System.out.println("expenditure updated for expenditure id " + expenditure_id);
+				System.out.println("expenditure updated for expenditure id " + expenditureId);
 			} else
 				System.out.println("Invalid expenditure id!!");
 		} catch (SQLException e) {
@@ -223,9 +182,29 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 	}
 
 	@Override
-	public void deleteByExpenditureId(int expenditure_id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteByExpenditureId(int expenditureId) {
+		String query = "delete from expenditure where expenditure_id=?";
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setInt(1, expenditureId);
+			int out = ps.executeUpdate();
+			if (out != 0) {
+				System.out.println("expenditure deleted with expenditure id: " + expenditureId);
+			} else
+				System.out.println("Invalid expenditure id!!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

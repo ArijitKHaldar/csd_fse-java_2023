@@ -33,17 +33,23 @@ public class App {
 		/*
 		 * Login Table
 		 */
-
-		// userLogin.setEmail_id("abc@domain.com");
-		// userLogin.setPassword("SuperSecretPassword");
+//		 String emailId = "abc@domain.com";
+//		 userLogin.setEmailId(emailId);
+//		 userLogin.setPassword("SuperSecretPassword");
 
 		// Create
-		// login.insert(userLogin);
+//		 login.insert(userLogin,emailId);
 
 		// Retrieve
-//		Login user_login = login.getByEmailId("abc@domain.com");
-//		if (user_login == null) {
-//			System.out.println("No users registered");
+//		Login loginDetailsByEmailId = login.getByEmailId("abc@domain.com");
+//		if (loginDetailsByEmailId == null) {
+//			System.out.println("No users registered with given email id");
+//		}
+		
+		
+//		Login loginDetailsByUserId = login.getByUserId("a2r0i2j3i0409200325");
+//		if (loginDetailsByUserId == null) {
+//			System.out.println("No users registered with given user id");
 //		}
 
 		
@@ -54,17 +60,17 @@ public class App {
 		/*
 		 * Income Table
 		 */
-//		income_POJO.setUser_id("abc@domain.in");
+//		income_POJO.setUserId("a2b0c20300409200526");
 		//////ps.setDate(2, java.sql.Date.valueOf("2013-09-04"));
 		//////ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
-//		income_POJO.setIncome_date(Date.valueOf("2023-04-07"));
-//		income_POJO.setIncome_amount(300);
+//		income_POJO.setIncomeDate(Date.valueOf("2023-04-01"));
+//		income_POJO.setIncomeAmount(30);
 
 		// Create
 //		income.insert(income_POJO);
 
 		//Retrieve
-//		List<Income> userIncomeByUserId = income.getByUserId("abc@domain.com");
+//		List<Income> userIncomeByUserId = income.getByUserId("a2b0c20300409200526");
 //		if (userIncomeByUserId.isEmpty()) {
 //			System.out.println("No income details available for selected user");
 //		}
@@ -75,9 +81,9 @@ public class App {
 //		}
 		
 		
-//		List<Income> userIncomeByUserIdAndMonthOfIncome = income.getByUserIdAndMonth("abc@domain.in", 4);
+//		List<Income> userIncomeByUserIdAndMonthOfIncome = income.getByUserIdAndMonth("a2b0c20300409200526", 4);
 //		if (userIncomeByUserIdAndMonthOfIncome.isEmpty()) {
-//			System.out.println("No income details available for selected user on the given date");
+//			System.out.println("No income details available for selected user on the given month");
 //		}
 //		else {
 //			for(Income i : userIncomeByUserIdAndMonthOfIncome) {
@@ -85,11 +91,22 @@ public class App {
 //			}
 //		}
 		
+
+//		List<Income> userIncomeByUserIdAndYearOfIncome = income.getByUserIdAndYear("a2b0c20300409200526", 2023);
+//		if (userIncomeByUserIdAndYearOfIncome.isEmpty()) {
+//			System.out.println("No income details available for selected user on the given year");
+//		}
+//		else {
+//			for(Income i : userIncomeByUserIdAndYearOfIncome) {
+//				System.out.println(i);
+//			}
+//		}
+		
 		
 		// Update
-//		income_POJO.setUser_id("abc@domain.com");
-//		income_POJO.setIncome_amount(10);
-//		income_POJO.setIncome_date(Date.valueOf("2023-04-07"));
+//		income_POJO.setUserId("a2b0c20300409200526");
+//		income_POJO.setIncomeAmount(10);
+//		income_POJO.setIncomeDate(Date.valueOf("2023-04-07"));
 //		income.updateByIncomeId(income_POJO, 2);
 		
 		

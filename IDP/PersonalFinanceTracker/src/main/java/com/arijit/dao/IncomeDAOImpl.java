@@ -28,14 +28,14 @@ public class IncomeDAOImpl implements IncomeDAO {
 			con = dataSource.getConnection();
 			System.out.println(con);
 			ps = con.prepareStatement(query);
-			ps.setString(1, income.getUser_id());
-			ps.setDate(2, income.getIncome_date());
-			ps.setDouble(3, income.getIncome_amount());
+			ps.setString(1, income.getUserId());
+			ps.setDate(2, income.getIncomeDate());
+			ps.setDouble(3, income.getIncomeAmount());
 			int out = ps.executeUpdate();
 			if (out != 0) {
-				System.out.println("income saved with user_id=" + income.getUser_id());
+				System.out.println("income saved with user_id=" + income.getUserId());
 			} else
-				System.out.println("invalid user_id=" + income.getUser_id());
+				System.out.println("invalid user_id=" + income.getUserId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -62,10 +62,10 @@ public class IncomeDAOImpl implements IncomeDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Income usr = new Income();
-				usr.setIncome_id(rs.getInt("income_id"));
-				usr.setUser_id(user_id);
-				usr.setIncome_date(rs.getDate("income_date"));
-				usr.setIncome_amount(rs.getDouble("income_amount"));
+				usr.setIncomeId(rs.getInt("income_id"));
+				usr.setUserId(user_id);
+				usr.setIncomeDate(rs.getDate("income_date"));
+				usr.setIncomeAmount(rs.getDouble("income_amount"));
 				incomeList.add(usr);
 			}
 		} catch (SQLException e) {
@@ -97,10 +97,10 @@ public class IncomeDAOImpl implements IncomeDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Income usr = new Income();
-				usr.setIncome_id(rs.getInt("income_id"));
-				usr.setUser_id(user_id);
-				usr.setIncome_date(rs.getDate("income_date"));
-				usr.setIncome_amount(rs.getDouble("income_amount"));
+				usr.setIncomeId(rs.getInt("income_id"));
+				usr.setUserId(user_id);
+				usr.setIncomeDate(rs.getDate("income_date"));
+				usr.setIncomeAmount(rs.getDouble("income_amount"));
 				incomeList.add(usr);
 			}
 		} catch (SQLException e) {
@@ -132,10 +132,10 @@ public class IncomeDAOImpl implements IncomeDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Income usr = new Income();
-				usr.setIncome_id(rs.getInt("income_id"));
-				usr.setUser_id(user_id);
-				usr.setIncome_date(rs.getDate("income_date"));
-				usr.setIncome_amount(rs.getDouble("income_amount"));
+				usr.setIncomeId(rs.getInt("income_id"));
+				usr.setUserId(user_id);
+				usr.setIncomeDate(rs.getDate("income_date"));
+				usr.setIncomeAmount(rs.getDouble("income_amount"));
 				incomeList.add(usr);
 			}
 		} catch (SQLException e) {
@@ -160,9 +160,9 @@ public class IncomeDAOImpl implements IncomeDAO {
 		try {
 			con = dataSource.getConnection();
 			ps = con.prepareStatement(query);
-			ps.setString(1, income.getUser_id());
-			ps.setDate(2, income.getIncome_date());
-			ps.setDouble(3, income.getIncome_amount());
+			ps.setString(1, income.getUserId());
+			ps.setDate(2, income.getIncomeDate());
+			ps.setDouble(3, income.getIncomeAmount());
 			ps.setInt(4, income_id);
 			int out = ps.executeUpdate();
 			if (out != 0) {

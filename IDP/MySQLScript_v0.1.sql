@@ -41,9 +41,12 @@ Drop Table expenditure;
 Drop table income;
 Drop table login;
 
+-- Delete rows from table
+DELETE FROM login WHERE user_id = 'random';
 
 -- Select Statements
 SELECT * FROM login;
 SELECT * FROM income;
 
+-- Describe Table
 DESC LOGIN;

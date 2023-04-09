@@ -12,7 +12,6 @@ public interface ExpenditureDAO {
 	public List<Expenditure> getByUserId(String user_id);
 	public List<Expenditure> getByUserIdAndMonth(String user_id, int month);
 	public List<Expenditure> getByUserIdAndYear(String user_id, int year);
-	public List<Expenditure> getByUserIdAndTag(String user_id, String expenditure_tag);
 
 	// Update
 	public void updateByExpenditureId(Expenditure expenditure, int expenditure_id);
