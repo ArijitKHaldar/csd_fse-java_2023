@@ -3,91 +3,59 @@ package com.arijit.model;
 import java.sql.Date;
 
 public class Income {
-	private int income_id;
-	private String user_id;
-	private Date income_date;
-	private double income_amount;
+	private int incomeId;
+	private String userId;
+	private Date incomeDate;
+	private double incomeAmount;
 
-	/**
-	 * 
-	 */
 	public Income() {
 		super();
 	}
 
-	/**
-	 * @param user_id
-	 * @param income_date
-	 * @param income_amount
-	 */
-	public Income(int income_id, String user_id, Date income_date, double income_amount) {
+	public Income(int incomeId, String userId, Date incomeDate, double incomeAmount) {
 		super();
-		this.income_id = income_id;
-		this.user_id = user_id;
-		this.income_date = income_date;
-		this.income_amount = income_amount;
+		this.incomeId = incomeId;
+		this.userId = userId;
+		this.incomeDate = incomeDate;
+		this.incomeAmount = incomeAmount;
 	}
 
-	/**
-	 * @return the income_id
-	 */
-	public int getIncome_id() {
-		return income_id;
+	public int getIncomeId() {
+		return incomeId;
 	}
 
-	/**
-	 * @param income_id the income_id to set
-	 */
-	public void setIncome_id(int income_id) {
-		this.income_id = income_id;
+	public void setIncomeId(int incomeId) {
+		this.incomeId = incomeId;
 	}
 
-	/**
-	 * @return the user_id
-	 */
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
 
-	/**
-	 * @param user_id the user_id to set
-	 */
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	/**
-	 * @return the income_date
-	 */
-	public Date getIncome_date() {
-		return income_date;
+	public Date getIncomeDate() {
+		return incomeDate;
 	}
 
-	/**
-	 * @param income_date the income_date to set
-	 */
-	public void setIncome_date(Date income_date) {
-		this.income_date = income_date;
+	public void setIncomeDate(Date incomeDate) {
+		this.incomeDate = incomeDate;
 	}
 
-	/**
-	 * @return the income_amount
-	 */
-	public double getIncome_amount() {
-		return income_amount;
+	public double getIncomeAmount() {
+		return incomeAmount;
 	}
 
-	/**
-	 * @param income_amount the income_amount to set
-	 */
-	public void setIncome_amount(double income_amount) {
-		this.income_amount = income_amount;
+	public void setIncomeAmount(double incomeAmount) {
+		this.incomeAmount = incomeAmount;
 	}
 
 	@Override
 	public String toString() {
-		return "Income [income_id=" + income_id + ", user_id=" + user_id + ", income_date=" + income_date
-				+ ", income_amount=" + income_amount + "]";
+		return "Income [incomeId=" + incomeId + ", userId=" + userId + ", incomeDate=" + incomeDate + ", incomeAmount="
+				+ incomeAmount + "]";
 	}
 
 }

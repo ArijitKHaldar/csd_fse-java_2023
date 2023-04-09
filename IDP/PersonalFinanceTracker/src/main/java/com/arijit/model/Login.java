@@ -1,57 +1,47 @@
 package com.arijit.model;
 
 public class Login {
-	private String email_id;
+	private String userId;
+	private String emailId;
 	private String password;
 
-	/**
-	 * @param email_id
-	 * @param password
-	 */
-	public Login(String email_id, String password) {
-		super();
-		this.email_id = email_id;
-		this.password = password;
-	}
-
-	/**
-	 * 
-	 */
 	public Login() {
 		super();
 	}
 
-	/**
-	 * @return the email_id
-	 */
-	public String getEmail_id() {
-		return email_id;
+	public Login(String userId, String emailId, String password) {
+		super();
+		this.userId = userId;
+		this.emailId = emailId;
+		this.password = password;
 	}
 
-	/**
-	 * @param email_id the email_id to set
-	 */
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+	public String getUserId() {
+		return userId;
 	}
 
-	/**
-	 * @return the password
-	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
 	public String getPassword() {
 		return password;
 	}
 
-	/**
-	 * @param password the password to set
-	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	@Override
 	public String toString() {
-		return "Income [email_id=" + email_id + ", password=" + password + "]";
+		return "Login [userId=" + userId + ", emailId=" + emailId + ", password=" + password + "]";
 	}
-
 }

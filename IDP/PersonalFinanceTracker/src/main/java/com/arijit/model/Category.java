@@ -1,91 +1,49 @@
 package com.arijit.model;
 
 public class Category {
-	private int category_id;
-	private String user_id;
-	private String expenditure_tag;
-	private int expenditure_id;
+	private int categoryId;
+	private String expenditureTag;
+	private int expenditureId;
 
-	/**
-	 * 
-	 */
 	public Category() {
 		super();
 	}
 
-	/**
-	 * @param user_id
-	 * @param expenditure_tag
-	 * @param expenditure_id
-	 */
-	public Category(int category_id, String user_id, String expenditure_tag, int expenditure_id) {
+	public Category(int categoryId, String expenditureTag, int expenditureId) {
 		super();
-		this.category_id = category_id;
-		this.user_id = user_id;
-		this.expenditure_tag = expenditure_tag;
-		this.expenditure_id = expenditure_id;
+		this.categoryId = categoryId;
+		this.expenditureTag = expenditureTag;
+		this.expenditureId = expenditureId;
 	}
 
-	/**
-	 * @return the category_id
-	 */
-	public int getCategory_id() {
-		return category_id;
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	/**
-	 * @param category_id the category_id to set
-	 */
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
-	/**
-	 * @return the user_id
-	 */
-	public String getUser_id() {
-		return user_id;
+	public String getExpenditureTag() {
+		return expenditureTag;
 	}
 
-	/**
-	 * @param user_id the user_id to set
-	 */
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setExpenditureTag(String expenditureTag) {
+		this.expenditureTag = expenditureTag;
 	}
 
-	/**
-	 * @return the expenditure_tag
-	 */
-	public String getExpenditure_tag() {
-		return expenditure_tag;
+	public int getExpenditureId() {
+		return expenditureId;
 	}
 
-	/**
-	 * @param expenditure_tag the expenditure_tag to set
-	 */
-	public void setExpenditure_tag(String expenditure_tag) {
-		this.expenditure_tag = expenditure_tag;
-	}
-
-	/**
-	 * @return the expenditure_id
-	 */
-	public int getExpenditure_id() {
-		return expenditure_id;
-	}
-
-	/**
-	 * @param expenditure_id the expenditure_id to set
-	 */
-	public void setExpenditure_id(int expenditure_id) {
-		this.expenditure_id = expenditure_id;
+	public void setExpenditureId(int expenditureId) {
+		this.expenditureId = expenditureId;
 	}
 
 	@Override
 	public String toString() {
-		return "Category [category_id=" + category_id + ", user_id=" + user_id + ", expenditure_tag=" + expenditure_tag
-				+ ", expenditure_id=" + expenditure_id + "]";
+		return "Category [categoryId=" + categoryId + ", expenditureTag=" + expenditureTag + ", expenditureId="
+				+ expenditureId + "]";
 	}
-
+	
 }
