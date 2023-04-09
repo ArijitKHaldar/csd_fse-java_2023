@@ -4,7 +4,8 @@ import com.arijit.model.Login;
 
 public interface LoginDAO {
 	//Create
-	public void insert(Login user);
+	public void insert(Login user, String emailId);
 	//Retrieve
-	public Login getByEmailId(String email_id);
+	public Login getByEmailId(String emailId);
+	public Login getByUserId(String userId);
 }
