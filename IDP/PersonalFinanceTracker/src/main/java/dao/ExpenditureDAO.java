@@ -9,7 +9,7 @@ public interface ExpenditureDAO {
 	public void insert(Expenditure expenditure);
 
 	// Retrieve
-	public Expenditure getByUserId(int user_id);
+	public Expenditure getByUserId(String user_id);
 
 	// Update
 	public void update(Expenditure expenditure);
