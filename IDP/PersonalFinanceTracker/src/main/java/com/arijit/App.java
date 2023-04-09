@@ -1,3 +1,5 @@
+package com.arijit;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -5,15 +7,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import model.Login;
-import model.Income;
-import model.Expenditure;
-import model.Category;
-
-import dao.LoginDAO;
-import dao.IncomeDAO;
-import dao.ExpenditureDAO;
-import dao.CategoryDAO;
+import com.arijit.dao.CategoryDAO;
+import com.arijit.dao.ExpenditureDAO;
+import com.arijit.dao.IncomeDAO;
+import com.arijit.dao.LoginDAO;
+import com.arijit.model.Category;
+import com.arijit.model.Expenditure;
+import com.arijit.model.Income;
+import com.arijit.model.Login;
 
 public class App {
 	public static void main(String[] args) {
@@ -63,7 +64,7 @@ public class App {
 //		income.insert(income_POJO);
 
 		//Retrieve
-//		List<Income> userIncomeByUserId = income.getByUserId("abc@domain.in");
+//		List<Income> userIncomeByUserId = income.getByUserId("abc@domain.com");
 //		if (userIncomeByUserId.isEmpty()) {
 //			System.out.println("No income details available for selected user");
 //		}

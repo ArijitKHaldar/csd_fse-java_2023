@@ -1,8 +1,8 @@
-package dao;
+package com.arijit.dao;
 
 import java.util.List;
 
-import model.Expenditure;
+import com.arijit.model.Expenditure;
 
 public interface ExpenditureDAO {
 	// Create

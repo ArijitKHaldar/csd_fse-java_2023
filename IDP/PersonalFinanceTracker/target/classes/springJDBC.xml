@@ -4,16 +4,16 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="loginDAO" class="dao.LoginDAOImpl">
+	<bean id="loginDAO" class="com.arijit.dao.LoginDAOImpl">
 		<property name="dataSource" ref="ds" />
 	</bean>
-	<bean id="incomeDAO" class="dao.IncomeDAOImpl">
+	<bean id="incomeDAO" class="com.arijit.dao.IncomeDAOImpl">
 		<property name="dataSource" ref="ds" />
 	</bean>
-	<bean id="expenditureDAO" class="dao.ExpenditureDAOImpl">
+	<bean id="expenditureDAO" class="com.arijit.dao.ExpenditureDAOImpl">
 		<property name="dataSource" ref="ds" />
 	</bean>
-	<bean id="categoryDAO" class="dao.CategoryDAOImpl">
+	<bean id="categoryDAO" class="com.arijit.dao.CategoryDAOImpl">
 		<property name="dataSource" ref="ds" />
 	</bean>
 	<bean id="ds"

@@ -1,8 +1,8 @@
-package dao;
+package com.arijit.dao;
 
 import javax.sql.DataSource;
 
-import model.Category;
+import com.arijit.model.Category;
 
 public class CategoryDAOImpl implements CategoryDAO {
 	private DataSource dataSource;

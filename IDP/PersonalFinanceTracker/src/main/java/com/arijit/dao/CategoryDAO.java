@@ -1,6 +1,6 @@
-package dao;
+package com.arijit.dao;
 
-import model.Category;
+import com.arijit.model.Category;
 
 public interface CategoryDAO {
 	// Create

@@ -1,4 +1,4 @@
-package model;
+package com.arijit.model;
 
 public class Category {
 	private int category_id;

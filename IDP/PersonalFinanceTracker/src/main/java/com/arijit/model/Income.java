@@ -1,4 +1,4 @@
-package model;
+package com.arijit.model;
 
 import java.sql.Date;
 

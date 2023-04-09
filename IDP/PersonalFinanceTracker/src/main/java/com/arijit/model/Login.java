@@ -1,4 +1,4 @@
-package model;
+package com.arijit.model;
 
 public class Login {
 	private String email_id;

@@ -1,4 +1,4 @@
-package dao;
+package com.arijit.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import model.Income;
+import com.arijit.model.Income;
 
 public class IncomeDAOImpl implements IncomeDAO {
 

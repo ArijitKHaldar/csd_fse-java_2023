@@ -1,6 +1,6 @@
-package dao;
+package com.arijit.dao;
 
-import model.Login;
+import com.arijit.model.Login;
 
 public interface LoginDAO {
 	//Create

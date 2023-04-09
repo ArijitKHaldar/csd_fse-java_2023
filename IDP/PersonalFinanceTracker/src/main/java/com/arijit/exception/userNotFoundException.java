@@ -1,4 +1,4 @@
-package exception;
+package com.arijit.exception;
 
 public class userNotFoundException extends RuntimeException {
 	/**

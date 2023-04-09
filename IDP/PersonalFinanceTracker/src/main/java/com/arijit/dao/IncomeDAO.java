@@ -1,8 +1,8 @@
-package dao;
+package com.arijit.dao;
 
 import java.util.List;
 
-import model.Income;
+import com.arijit.model.Income;
 
 public interface IncomeDAO {
 	// Create
