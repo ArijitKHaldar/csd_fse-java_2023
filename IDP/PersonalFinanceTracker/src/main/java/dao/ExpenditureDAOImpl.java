@@ -1,5 +1,8 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -16,8 +19,32 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 
 	@Override
 	public void insert(Expenditure expenditure) {
-		// TODO Auto-generated method stub
-		
+		String query = "insert into expenditure (user_id, expenditure_date, expenditure_amount, expenditure_tag) values (?,?,?,?)";
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = dataSource.getConnection();
+			System.out.println(con);
+			ps = con.prepareStatement(query);
+			ps.setString(1, expenditure.getUser_id());
+			ps.setDate(2, expenditure.getExpenditure_date());
+			ps.setDouble(3, expenditure.getExpenditure_amount());
+			ps.setString(4, expenditure.getExpenditure_tag());
+			int out = ps.executeUpdate();
+			if (out != 0) {
+				System.out.println("expenditure saved for user_id=" + expenditure.getUser_id());
+			} else
+				System.out.println("invalid user_id=" + expenditure.getUser_id());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
