@@ -119,6 +119,41 @@ public class IncomeDAOImpl implements IncomeDAO {
 	}
 	
 	@Override
+	public List<Income> getByUserIdAndYear(String user_id, int year) {
+		String query = "select income_id, income_date, income_amount from income where user_id = ? and YEAR(income_date) = ?";
+		List<Income> incomeList = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, user_id);
+			ps.setInt(2, year);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Income usr = new Income();
+				usr.setIncome_id(rs.getInt("income_id"));
+				usr.setUser_id(user_id);
+				usr.setIncome_date(rs.getDate("income_date"));
+				usr.setIncome_amount(rs.getDouble("income_amount"));
+				incomeList.add(usr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return incomeList;
+	}
+	
+	@Override
 	public void updateByIncomeId(Income income, int income_id) {
 		String query = "update income set user_id=?, income_date=?, income_amount=? where income_id=?";
 		Connection con = null;

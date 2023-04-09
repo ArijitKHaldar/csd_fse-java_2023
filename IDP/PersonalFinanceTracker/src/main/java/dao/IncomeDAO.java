@@ -11,6 +11,7 @@ public interface IncomeDAO {
 	// Retrieve
 	public List<Income> getByUserId(String user_id);
 	public List<Income> getByUserIdAndMonth(String user_id, int month);
+	public List<Income> getByUserIdAndYear(String user_id, int year);
 
 	// Update
 	public void updateByIncomeId(Income income, int income_id);
