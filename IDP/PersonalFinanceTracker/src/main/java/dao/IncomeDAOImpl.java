@@ -50,7 +50,6 @@ public class IncomeDAOImpl implements IncomeDAO {
 
 	@Override
 	public List<Income> getByUserId(String user_id) {
-
 		String query = "select income_id, income_date, income_amount from income where user_id = ?";
 		List<Income> incomeList = new ArrayList<>();
 		Connection con = null;
@@ -117,7 +116,7 @@ public class IncomeDAOImpl implements IncomeDAO {
 		}
 		return incomeList;
 	}
-	
+
 	@Override
 	public List<Income> getByUserIdAndYear(String user_id, int year) {
 		String query = "select income_id, income_date, income_amount from income where user_id = ? and YEAR(income_date) = ?";
@@ -152,7 +151,7 @@ public class IncomeDAOImpl implements IncomeDAO {
 		}
 		return incomeList;
 	}
-	
+
 	@Override
 	public void updateByIncomeId(Income income, int income_id) {
 		String query = "update income set user_id=?, income_date=?, income_amount=? where income_id=?";
@@ -167,7 +166,7 @@ public class IncomeDAOImpl implements IncomeDAO {
 			ps.setInt(4, income_id);
 			int out = ps.executeUpdate();
 			if (out != 0) {
-				System.out.println("income updated for income id "+income_id);
+				System.out.println("income updated for income id " + income_id);
 			} else
 				System.out.println("Invalid income id!!");
 		} catch (SQLException e) {
@@ -193,7 +192,7 @@ public class IncomeDAOImpl implements IncomeDAO {
 			ps.setInt(1, income_id);
 			int out = ps.executeUpdate();
 			if (out != 0) {
-				System.out.println("income deleted with income id: "+income_id);
+				System.out.println("income deleted with income id: " + income_id);
 			} else
 				System.out.println("Invalid income id!!");
 		} catch (SQLException e) {
