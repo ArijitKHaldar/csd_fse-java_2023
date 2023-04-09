@@ -194,8 +194,32 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 
 	@Override
 	public void updateByExpenditureId(Expenditure expenditure, int expenditure_id) {
-		// TODO Auto-generated method stub
-		
+		String query = "update expenditure set user_id=?, expenditure_date=?, expenditure_amount=?, expenditure_tag=? where expenditure_id=?";
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, expenditure.getUser_id());
+			ps.setDate(2, expenditure.getExpenditure_date());
+			ps.setDouble(3, expenditure.getExpenditure_amount());
+			ps.setString(4, expenditure.getExpenditure_tag());
+			ps.setInt(5, expenditure_id);
+			int out = ps.executeUpdate();
+			if (out != 0) {
+				System.out.println("expenditure updated for expenditure id " + expenditure_id);
+			} else
+				System.out.println("Invalid expenditure id!!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
