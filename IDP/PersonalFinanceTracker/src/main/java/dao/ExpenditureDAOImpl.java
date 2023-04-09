@@ -21,13 +21,31 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 	}
 
 	@Override
-	public Expenditure getByUserId(int user_id) {
+	public List<Expenditure> getByUserId(String user_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(Expenditure expenditure) {
+	public List<Expenditure> getByUserIdAndMonth(String user_id, int month) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Expenditure> getByUserIdAndYear(String user_id, int year) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Expenditure> getByUserIdAndTag(String user_id, String expenditure_tag) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateByExpenditureId(Expenditure expenditure, int expenditure_id) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -36,12 +54,6 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 	public void deleteByExpenditureId(int expenditure_id) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public List<Expenditure> getAll() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
