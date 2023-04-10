@@ -43,10 +43,16 @@ Drop table login;
 
 -- Delete rows from table
 DELETE FROM login WHERE user_id = 'random';
+DELETE FROM income WHERE income_id = 'random';
+DELETE FROM expenditure WHERE expenditure_id > 1;
+DELETE FROM category WHERE expenditure_id = 1;
 
 -- Select Statements
 SELECT * FROM login;
 SELECT * FROM income;
+SELECT * FROM expenditure;
+SELECT * FROM category;
 
 -- Describe Table
-DESC LOGIN;
+DESCRIBE LOGIN;
+DESCRIBE CATEGORY; 
