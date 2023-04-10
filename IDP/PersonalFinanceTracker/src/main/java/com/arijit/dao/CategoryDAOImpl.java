@@ -20,19 +20,18 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public void insert(Category category) {
-		String query = "insert into category (category_id, expenditure_tag, expenditure_id) values (?,?,?)";
+		String query = "insert into category (expenditure_tag, expenditure_id) values (?,?)";
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
 			con = dataSource.getConnection();
 			System.out.println(con);
 			ps = con.prepareStatement(query);
-			ps.setInt(1, category.getCategoryId());
-			ps.setString(2, category.getExpenditureTag());
-			ps.setInt(3, category.getExpenditureId());
+			ps.setString(1, category.getExpenditureTag());
+			ps.setInt(2, category.getExpenditureId());
 			int out = ps.executeUpdate();
 			if (out != 0) {
-				System.out.println("expenditure saved for category id=" + category.getCategoryId());
+				System.out.println("category saved for expenditure id=" + category.getExpenditureId());
 			} else
 				System.out.println("invalid expenditure id=" + category.getExpenditureId());
 		} catch (SQLException e) {
@@ -48,9 +47,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public List<Category> getByExpenditureId(int expenditureId) {
+	public Category getByExpenditureId(int expenditureId) {
 		String query = "select category_id, expenditure_tag from category where expenditure_id = ?";
-		List<Category> categoryList = new ArrayList<>();
+		Category categoryList = null;
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -59,12 +58,11 @@ public class CategoryDAOImpl implements CategoryDAO {
 			ps = con.prepareStatement(query);
 			ps.setInt(1, expenditureId);
 			rs = ps.executeQuery();
-			while (rs.next()) {
-				Category usr = new Category();
-				usr.setCategoryId(rs.getInt("category_id"));
-				usr.setExpenditureTag(rs.getString("expenditure_tag"));
-				usr.setExpenditureId(expenditureId);
-				categoryList.add(usr);
+			if(rs.next()) {
+				categoryList = new Category();
+				categoryList.setCategoryId(rs.getInt("category_id"));
+				categoryList.setExpenditureTag(rs.getString("expenditure_tag"));
+				categoryList.setExpenditureId(expenditureId);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
