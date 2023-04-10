@@ -112,6 +112,66 @@ public class App {
 		
 		// Delete
 //		income.deleteByIncomeId(4);
+		
+		
+
+		/*
+		 * Expenditure Table & Category
+		 */
+//		expenditure_POJO.setUserId("a2b0c20300409200526");
+		//////ps.setDate(2, java.sql.Date.valueOf("2013-09-04"));
+		//////ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
+//		expenditure_POJO.setExpenditureDate(Date.valueOf("2023-04-01"));
+//		expenditure_POJO.setExpenditureAmount(30);
+
+		// Create
+//		expenditure.insert(expenditure_POJO);
+		int a = expenditure.getLastExpenditureId();
+		System.out.println(a);
+		
+		//Retrieve
+//		List<Income> userIncomeByUserId = expenditure.getByUserId("a2b0c20300409200526");
+//		if (userIncomeByUserId.isEmpty()) {
+//			System.out.println("No income details available for selected user");
+//		}
+//		else {
+//			for(Income i : userIncomeByUserId) {
+//				System.out.println(i);
+//			}
+//		}
+		
+		
+//		List<Income> userIncomeByUserIdAndMonthOfIncome = income.getByUserIdAndMonth("a2b0c20300409200526", 4);
+//		if (userIncomeByUserIdAndMonthOfIncome.isEmpty()) {
+//			System.out.println("No income details available for selected user on the given month");
+//		}
+//		else {
+//			for(Income i : userIncomeByUserIdAndMonthOfIncome) {
+//				System.out.println(i);
+//			}
+//		}
+		
+
+//		List<Income> userIncomeByUserIdAndYearOfIncome = income.getByUserIdAndYear("a2b0c20300409200526", 2023);
+//		if (userIncomeByUserIdAndYearOfIncome.isEmpty()) {
+//			System.out.println("No income details available for selected user on the given year");
+//		}
+//		else {
+//			for(Income i : userIncomeByUserIdAndYearOfIncome) {
+//				System.out.println(i);
+//			}
+//		}
+		
+		
+		// Update
+//		income_POJO.setUserId("a2b0c20300409200526");
+//		income_POJO.setIncomeAmount(10);
+//		income_POJO.setIncomeDate(Date.valueOf("2023-04-07"));
+//		income.updateByIncomeId(income_POJO, 2);
+		
+		
+		// Delete
+//		income.deleteByIncomeId(4);
 
 		((AbstractApplicationContext) ctx).close();
 	}

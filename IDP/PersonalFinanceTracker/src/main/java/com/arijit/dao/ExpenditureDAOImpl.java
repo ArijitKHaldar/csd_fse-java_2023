@@ -21,7 +21,7 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 
 	@Override
 	public void insert(Expenditure expenditure) {
-		String query = "insert into expenditure (user_id, expenditure_date, expenditure_amount) values (?,?,?)";
+		String query = "insert into expenditure (user_id, expenditure_date, expenditure_amount) values (?,?,?);";
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
@@ -46,6 +46,34 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	@Override
+	public int getLastExpenditureId() {
+		String query = "select max(expenditure_id) from expenditure;";
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int expenditureId = 0;
+		try {
+			con = dataSource.getConnection();
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				expenditureId = rs.getInt("max(expenditure_id)");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return expenditureId;
 	}
 
 	@Override
@@ -151,7 +179,7 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 		}
 		return expenditureList;
 	}
-
+	
 	@Override
 	public void updateByExpenditureId(Expenditure expenditure, int expenditureId) {
 		String query = "update expenditure set user_id=?, expenditure_date=?, expenditure_amount=? where expenditure_id=?";
@@ -206,5 +234,4 @@ public class ExpenditureDAOImpl implements ExpenditureDAO {
 			}
 		}
 	}
-
 }

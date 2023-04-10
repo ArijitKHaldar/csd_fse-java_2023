@@ -9,6 +9,7 @@ public interface ExpenditureDAO {
 	public void insert(Expenditure expenditure);
 
 	// Retrieve
+	public int getLastExpenditureId();
 	public List<Expenditure> getByUserId(String user_id);
 	public List<Expenditure> getByUserIdAndMonth(String user_id, int month);
 	public List<Expenditure> getByUserIdAndYear(String user_id, int year);
