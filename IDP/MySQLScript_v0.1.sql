@@ -42,7 +42,7 @@ Drop table income;
 Drop table login;
 
 -- Delete rows from table
-DELETE FROM login WHERE user_id = 'a2b0c20300414182835';
+DELETE FROM login WHERE user_id = 'a2b0c20300414183344';
 DELETE FROM income WHERE income_id = '2';
 DELETE FROM expenditure WHERE expenditure_id > 1;
 DELETE FROM category WHERE expenditure_id = 1;

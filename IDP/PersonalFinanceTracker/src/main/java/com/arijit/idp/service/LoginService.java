@@ -3,8 +3,8 @@ package com.arijit.idp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.arijit.idp.dao.LoginRepository;
 import com.arijit.idp.entity.Login;
+import com.arijit.idp.repository.LoginRepository;
 
 @Service
 public class LoginService {
