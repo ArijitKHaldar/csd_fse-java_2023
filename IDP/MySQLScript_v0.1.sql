@@ -11,7 +11,7 @@ password VARCHAR(25) NOT NULL
 
 CREATE TABLE income
 (
-income_id INT PRIMARY KEY AUTO_INCREMENT,
+income_id INT PRIMARY KEY,
 user_id VARCHAR(40) NOT NULL,
 FOREIGN KEY(user_id) REFERENCES login(user_id),
 income_date DATE,
@@ -20,7 +20,7 @@ income_amount DECIMAL(10,2)
 
 CREATE TABLE expenditure
 (
-expenditure_id INT PRIMARY KEY AUTO_INCREMENT,
+expenditure_id INT PRIMARY KEY,
 user_id VARCHAR(40) NOT NULL,
 FOREIGN KEY(user_id) REFERENCES login(user_id),
 expenditure_date DATE,
@@ -29,7 +29,7 @@ expenditure_amount DECIMAL(10,2)
 
 CREATE TABLE category
 (
-category_id INT PRIMARY KEY AUTO_INCREMENT,
+category_id INT PRIMARY KEY,
 expenditure_tag ENUM ('food', 'utilities', 'housing', 'transportation', 'education', 'clothing', 'medical', 'insurance', 'household', 'personal', 'debt', 'donation', 'entertainment'),
 expenditure_id INT NOT NULL,
 FOREIGN KEY(expenditure_id) REFERENCES expenditure(expenditure_id)
@@ -42,8 +42,8 @@ Drop table income;
 Drop table login;
 
 -- Delete rows from table
-DELETE FROM login WHERE user_id = 'random';
-DELETE FROM income WHERE income_id = 'random';
+DELETE FROM login WHERE user_id = 'a2b0c20300414182835';
+DELETE FROM income WHERE income_id = '2';
 DELETE FROM expenditure WHERE expenditure_id > 1;
 DELETE FROM category WHERE expenditure_id = 1;
 
