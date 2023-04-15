@@ -11,18 +11,18 @@ public class LoginService {
 
 	@Autowired
 	private LoginRepository loginRepository;
-	
-	public void insert(Login login) {
+
+	public void signup(Login login) {
 		loginRepository.save(login);
 	}
-	
+
 	public Login findLoginByUserId(String userId) {
-		Login login = loginRepository.findLoginByUserId(userId);
+		Login login = loginRepository.findById(userId).orElse(null);
 		return login;
 	}
-	
+
 	public Login findLoginByEmailId(String emailId) {
-		Login login = loginRepository.findLoginByEmailId(emailId);
+		Login login = loginRepository.findByEmailId(emailId);
 		return login;
 	}
 }

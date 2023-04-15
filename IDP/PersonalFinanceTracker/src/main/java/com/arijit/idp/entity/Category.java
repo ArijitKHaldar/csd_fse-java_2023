@@ -35,10 +35,20 @@ public class Category {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "expenditure_tag")
-	private String expenditureTag;
+	private ExpenditureTag expenditureTag;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "expenditure_id", nullable = false)
 	@JsonIgnore
 	private Expenditure expenditure;
+
+	public Category(ExpenditureTag expenditureTag, Expenditure expenditure) {
+		this.expenditureTag = expenditureTag;
+		this.expenditure = expenditure;
+	}
+
+	public enum ExpenditureTag {
+		FOOD, UTILITIES, HOUSING, TRANSPORTATION, EDUCATION, CLOTHING, MEDICAL, INSURANCE, HOUSEHOLD, PERSONAL, DEBT,
+		DONATION, ENTERTAINMENT
+	}
 }

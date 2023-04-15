@@ -1,5 +1,7 @@
 package com.arijit.idp;
 
+import java.sql.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.arijit.idp.entity.Income;
 import com.arijit.idp.entity.Login;
 import com.arijit.idp.helpermodules.UserIdGenerator;
+import com.arijit.idp.service.IncomeService;
 import com.arijit.idp.service.LoginService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +23,9 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private IncomeService incomeService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PersonalFinanceTrackerApplication.class, args);
@@ -28,7 +35,12 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		log.info("START");
-		
+		/*
+		 * Login Table
+		 */
+		//
+		// Create
+		//
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("## New Registration Details ##");
 //		System.out.println("Enter email id: ");
@@ -38,16 +50,19 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //		sc.close();
 //		UserIdGenerator uig = new UserIdGenerator();
 //		String userId = uig.generateUserId(emailId);
-//		loginService.insert(new Login(userId, emailId, password));
+//		loginService.signup(new Login(userId, emailId, password));
+		//
+		// Retrieve
+		//
+//		Login loginDetailsByUserId = loginService.findLoginByUserId("a2b0c20300415085757");
+//		if(loginDetailsByUserId == null) {
+//			System.out.println("No users registered with given user id");
+//		}
+//		else {
+//			System.out.println(loginDetailsByUserId);
+//		}
 		
-		Login loginDetailsByUserId = loginService.findLoginByUserId("abc");
-		if(loginDetailsByUserId == null) {
-			System.out.println("No users registered with given user id");
-		}
-		else {
-			System.out.println(loginDetailsByUserId);
-		}
-//		Login loginDetailsByEmailId = loginService.findLoginByEmailId("arijit.haldar@gmail.com");		
+//		Login loginDetailsByEmailId = loginService.findLoginByEmailId("abc@domain.com");		
 //		if(loginDetailsByEmailId == null) {
 //			System.out.println("No users registered with given email id");
 //		}
@@ -55,8 +70,59 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //			System.out.println(loginDetailsByEmailId);
 //		}
 		
-		log.debug("Login Service", loginService);
+//		log.debug("Login Service", loginService);
 		
+		
+		/*
+		 * Income Table
+		 */
+		
+		//
+		//Create
+		//
+		String emailId = "arijit.haldar88@gmail.com";
+		Login loginTmp = loginService.findLoginByEmailId(emailId);
+//		Income incomeTmp = new Income();
+//		incomeTmp.setLogin(loginTmp);
+//		incomeTmp.setIncomeDate(Date.valueOf("2023-05-12"));
+//		incomeTmp.setIncomeAmount(30000.00);
+//		incomeService.insertIncome(incomeTmp);
+		
+		//
+		//Retrieve
+		//
+//		List<Income> incomeDetailsByUserId = incomeService.findByUserId(loginTmp.getUserId());
+//		if(incomeDetailsByUserId == null) {
+//			System.out.println("No users registered with given user id");
+//		}
+//		else {
+//			for(Income i : incomeDetailsByUserId) {
+//				System.out.println("Income Id: " + i.getIncomeId());
+//				System.out.println("User Id: " + i.getLogin().getUserId()); //To Solve Lazy Loading Issue
+//		        System.out.println("Income Date: " + i.getIncomeDate());
+//		        System.out.println("Income Amount: " + i.getIncomeAmount());
+//			}
+//		}
+		
+//		List<Income> incomeDetailsByUserIdAndMonth = incomeService.findByUserIdAndMonth(loginTmp.getUserId(),5);
+//		if(incomeDetailsByUserIdAndMonth.isEmpty()) {
+//			System.out.println("No users registered with given user id");
+//		}
+//		else {
+//			for(Income i : incomeDetailsByUserIdAndMonth) {
+//				System.out.println("Income Id: " + i.getIncomeId());
+//				System.out.println("User Id: " + i.getLogin().getUserId()); //To Solve Lazy Loading Issue
+//		        System.out.println("Income Date: " + i.getIncomeDate());
+//		        System.out.println("Income Amount: " + i.getIncomeAmount());
+//			}
+//		}
+		
+		
+		//
+		// Update
+		//
+//		System.out.println(incomeService.updateByIncomeId(new Income(1,Date.valueOf("2023-04-01"),780)));
+		log.debug("Income Service", incomeService);
 		log.info("END");
 	}
 }
