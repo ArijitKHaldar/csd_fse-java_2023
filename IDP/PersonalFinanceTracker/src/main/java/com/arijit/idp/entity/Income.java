@@ -1,5 +1,6 @@
 package com.arijit.idp.entity;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -47,21 +48,11 @@ public class Income {
 
 	@Getter
 	@Setter
-	@Column(name = "income_amount")
-	private double incomeAmount;
+	@Column(name = "income_amount", precision = 10, scale = 2)
+	private BigDecimal incomeAmount;
 
-	// For user specific queries
-	public Income(String userId, Date incomeDate, double incomeAmount) {
-		super();
-		this.userId = userId;
-		this.incomeDate = incomeDate;
-		this.incomeAmount = incomeAmount;
-	}
-
-	// For individual entry specific queries
-	public Income(int incomeId, Date incomeDate, double incomeAmount) {
-		super();
-		this.incomeId = incomeId;
+	public Income(Login login, Date incomeDate, BigDecimal incomeAmount) {
+		this.login = login;
 		this.incomeDate = incomeDate;
 		this.incomeAmount = incomeAmount;
 	}

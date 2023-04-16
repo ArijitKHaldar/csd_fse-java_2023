@@ -30,7 +30,8 @@ expenditure_amount DECIMAL(10,2)
 CREATE TABLE category
 (
 category_id INT PRIMARY KEY,
-expenditure_tag ENUM ('food', 'utilities', 'housing', 'transportation', 'education', 'clothing', 'medical', 'insurance', 'household', 'personal', 'debt', 'donation', 'entertainment'),
+expenditure_tag ENUM ('FOOD', 'UTILITIES', 'HOUSING', 'TRANSPORTATION', 'EDUCATION', 'CLOTHING', 'MEDICAL', 'INSURANCE', 'HOUSEHOLD', 'PERSONAL', 'DEBT', 'DONATION', 'ENTERTAINMENT'),
+-- expenditure_tag VARCHAR(20),
 expenditure_id INT NOT NULL,
 FOREIGN KEY(expenditure_id) REFERENCES expenditure(expenditure_id)
 );
@@ -55,4 +56,5 @@ SELECT * FROM category;
 
 -- Describe Table
 DESCRIBE LOGIN;
+DESCRIBE income;
 DESCRIBE CATEGORY; 

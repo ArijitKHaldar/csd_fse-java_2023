@@ -5,3 +5,5 @@ HelpRepositories/
 pom.properties
 IDP/PersonalFinanceTracker/target
 .settings/
+*.gz
+*.log

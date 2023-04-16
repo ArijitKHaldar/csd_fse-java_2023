@@ -1,5 +1,6 @@
 package com.arijit.idp;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.arijit.idp.entity.Income;
 import com.arijit.idp.entity.Login;
 import com.arijit.idp.helpermodules.UserIdGenerator;
+import com.arijit.idp.service.CategoryService;
+import com.arijit.idp.service.ExpenditureService;
 import com.arijit.idp.service.IncomeService;
 import com.arijit.idp.service.LoginService;
 
@@ -26,6 +29,12 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IncomeService incomeService;
+	
+//	@Autowired
+//	private ExpenditureService expenditureService;
+//	
+//	@Autowired
+//	private CategoryService categoryService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PersonalFinanceTrackerApplication.class, args);
@@ -80,12 +89,13 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 		//
 		//Create
 		//
-		String emailId = "arijit.haldar88@gmail.com";
+		String emailId = "abc@domain.com";
 		Login loginTmp = loginService.findLoginByEmailId(emailId);
 //		Income incomeTmp = new Income();
 //		incomeTmp.setLogin(loginTmp);
+//		incomeTmp.setUserId(loginTmp.getUserId());
 //		incomeTmp.setIncomeDate(Date.valueOf("2023-05-12"));
-//		incomeTmp.setIncomeAmount(30000.00);
+//		incomeTmp.setIncomeAmount(new BigDecimal(30000.00));
 //		incomeService.insertIncome(incomeTmp);
 		
 		//
@@ -121,8 +131,21 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 		//
 		// Update
 		//
-//		System.out.println(incomeService.updateByIncomeId(new Income(1,Date.valueOf("2023-04-01"),780)));
-		log.debug("Income Service", incomeService);
+//		System.out.println(incomeService.updateByIncomeId(1, new Income(loginTmp,Date.valueOf("2023-04-03"),new BigDecimal(700))));
+		
+		//
+		// Delete
+		//
+//		System.out.println(incomeService.deleteByIncomeId(3));
+//		log.debug("Income Service", incomeService);
+		
+		
+		
+		/*
+		 * Expenditure and Category Table
+		 */
+//		log.debug("Expenditure Service", expenditureService);
+//		log.debug("Category Service", categoryService);
 		log.info("END");
 	}
 }

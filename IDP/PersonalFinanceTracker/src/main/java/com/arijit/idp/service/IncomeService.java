@@ -1,6 +1,7 @@
 package com.arijit.idp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,22 +37,34 @@ public class IncomeService {
 	}
 
 	// Update
-	public String updateByIncomeId(Income income) {
-		Income existingIncome = incomeRepository.findById(income.getIncomeId()).orElse(null);
-		String status = "Income could not be found";
-		if (existingIncome != null) {
-			existingIncome.setIncomeAmount(income.getIncomeAmount());
-			existingIncome.setIncomeDate(income.getIncomeDate());
-			incomeRepository.save(existingIncome);
+	public String updateByIncomeId(int incomeId, Income updatedIncome) {
+		Optional<Income> existingIncome = incomeRepository.findById(incomeId);
+		String status;
+		if (existingIncome.isPresent()) {
+			Income newIncome = existingIncome.get();
+			newIncome.setIncomeDate(updatedIncome.getIncomeDate());
+			newIncome.setIncomeAmount(updatedIncome.getIncomeAmount());
+			incomeRepository.save(newIncome);
 			status = "Income updated successfully";
+		}
+		else {
+			status = "Income not found";
 		}
 		return status;
 	}
 
 	// Delete
 	public String deleteByIncomeId(int incomeId) {
-		incomeRepository.deleteById(incomeId);
-		return ("Income removed for Income Id: " + incomeId);
+		String status;
+		Optional<Income> existingIncome = incomeRepository.findById(incomeId);
+		if(existingIncome.isPresent()) {
+			incomeRepository.deleteById(incomeId);
+			status = "Income removed for Income Id: " + incomeId;
+		}
+		else {
+			status = "Income not found";
+		}
+		return status;
 	}
 
 }
