@@ -28,4 +28,10 @@ public class Login {
 
 	@Column(name = "password", nullable = false)
 	private String password;
+
+	public Login(String emailId, String password) {
+		super();
+		this.emailId = emailId;
+		this.password = password;
+	}
 }
