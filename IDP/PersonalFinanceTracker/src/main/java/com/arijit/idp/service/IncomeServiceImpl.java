@@ -10,7 +10,7 @@ import com.arijit.idp.entity.Income;
 import com.arijit.idp.repository.IncomeRepository;
 
 @Service
-public class IncomeService {
+public class IncomeServiceImpl {
 
 	@Autowired
 	private IncomeRepository incomeRepository;

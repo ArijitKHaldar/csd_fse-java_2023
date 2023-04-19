@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserIdGenerator {
 	private String userId;
 
