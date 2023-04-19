@@ -13,10 +13,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.arijit.idp.entity.Income;
 import com.arijit.idp.entity.Login;
 import com.arijit.idp.helpermodules.UserIdGenerator;
-import com.arijit.idp.service.CategoryService;
-import com.arijit.idp.service.ExpenditureService;
-import com.arijit.idp.service.IncomeService;
-import com.arijit.idp.service.LoginService;
+import com.arijit.idp.service.CategoryServiceImpl;
+import com.arijit.idp.service.ExpenditureServiceImpl;
+import com.arijit.idp.service.IncomeServiceImpl;
+import com.arijit.idp.service.LoginServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,10 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 
 	@Autowired
-	private LoginService loginService;
+	private LoginServiceImpl loginServiceImpl;
 	
 	@Autowired
-	private IncomeService incomeService;
+	private IncomeServiceImpl incomeServiceImpl;
 	
 //	@Autowired
 //	private ExpenditureService expenditureService;
@@ -43,7 +43,7 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		log.info("START");
+//		log.info("START");
 		/*
 		 * Login Table
 		 */
@@ -57,13 +57,11 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //		System.out.println("Enter password: ");
 //		String password = sc.next();
 //		sc.close();
-//		UserIdGenerator uig = new UserIdGenerator();
-//		String userId = uig.generateUserId(emailId);
-//		loginService.signup(new Login(userId, emailId, password));
+//		loginService.signup(new Login(emailId, password));
 		//
 		// Retrieve
 		//
-//		Login loginDetailsByUserId = loginService.findLoginByUserId("a2b0c20300415085757");
+//		Login loginDetailsByUserId = loginServiceImpl.findLoginByUserId("a2b0c20300415085757");
 //		if(loginDetailsByUserId == null) {
 //			System.out.println("No users registered with given user id");
 //		}
@@ -79,7 +77,7 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //			System.out.println(loginDetailsByEmailId);
 //		}
 		
-//		log.debug("Login Service", loginService);
+//		log.debug("Login Service", loginServiceImpl);
 		
 		
 		/*
@@ -89,8 +87,8 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 		//
 		//Create
 		//
-		String emailId = "abc@domain.com";
-		Login loginTmp = loginService.findLoginByEmailId(emailId);
+//		String emailId = "abc@domain.com";
+//		Login loginTmp = loginServiceImpl.findLoginByEmailId(emailId);
 //		Income incomeTmp = new Income();
 //		incomeTmp.setLogin(loginTmp);
 //		incomeTmp.setUserId(loginTmp.getUserId());
@@ -146,6 +144,6 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 		 */
 //		log.debug("Expenditure Service", expenditureService);
 //		log.debug("Category Service", categoryService);
-		log.info("END");
+//		log.info("END");
 	}
 }
