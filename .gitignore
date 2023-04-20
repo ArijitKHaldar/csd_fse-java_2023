@@ -6,3 +6,4 @@ pom.properties
 IDP/PersonalFinanceTracker/target
 .settings/
 .log/
+*.log
