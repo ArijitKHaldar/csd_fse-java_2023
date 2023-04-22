@@ -1,20 +1,17 @@
 package com.arijit.idp;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.List;
-import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.arijit.idp.entity.Income;
-import com.arijit.idp.entity.Login;
-import com.arijit.idp.helpermodules.UserIdGenerator;
-import com.arijit.idp.service.CategoryServiceImpl;
-import com.arijit.idp.service.ExpenditureServiceImpl;
+import com.arijit.idp.entity.Category;
+import com.arijit.idp.entity.Category.ExpenditureTag;
+import com.arijit.idp.entity.Expenditure;
+import com.arijit.idp.service.CategoryService;
+import com.arijit.idp.service.ExpenditureService;
 import com.arijit.idp.service.IncomeServiceImpl;
 import com.arijit.idp.service.LoginServiceImpl;
 
@@ -30,11 +27,11 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 	@Autowired
 	private IncomeServiceImpl incomeServiceImpl;
 	
-//	@Autowired
-//	private ExpenditureService expenditureService;
-//	
-//	@Autowired
-//	private CategoryService categoryService;
+	@Autowired
+	private ExpenditureService expenditureService;
+	
+	@Autowired
+	private CategoryService categoryService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PersonalFinanceTrackerApplication.class, args);
@@ -43,7 +40,8 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-//		log.info("START");
+		
+		log.info("~~~~~~ APPLICATION STARTED SUCCESSFULLY ~~~~~~");
 		/*
 		 * Login Table
 		 */
@@ -144,6 +142,13 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 		 */
 //		log.debug("Expenditure Service", expenditureService);
 //		log.debug("Category Service", categoryService);
-//		log.info("END");
+		
+		
+//		Expenditure exp = new Expenditure("a2b0c20300415085757",java.sql.Date.valueOf("2023-05-10"),new BigDecimal(500));
+//		Category cat = new Category(ExpenditureTag.valueOf("FOOD"));
+//		expenditureService.create(exp, cat);
+//		System.out.println(categoryService.findByExpenditureId(9).getExpenditureTag());
+//		expenditureService.update(9, exp, "TRANSPORTATION");
+//		expenditureService.deleteByExpenditureId(9);
 	}
 }

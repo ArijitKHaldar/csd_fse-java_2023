@@ -49,10 +49,10 @@ DELETE FROM expenditure WHERE expenditure_id > 1;
 DELETE FROM category WHERE expenditure_id = 1;
 
 -- Select Statements
-SELECT * FROM login;
-SELECT * FROM income;
-SELECT * FROM expenditure;
-SELECT * FROM category;
+SELECT * FROM finance_tracker.login;
+SELECT * FROM finance_tracker.income;
+SELECT * FROM finance_tracker.expenditure;
+SELECT * FROM finance_tracker.category;
 
 -- Describe Table
 DESCRIBE LOGIN;

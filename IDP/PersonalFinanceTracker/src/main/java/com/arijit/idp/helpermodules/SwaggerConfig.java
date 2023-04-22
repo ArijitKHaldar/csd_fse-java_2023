@@ -19,8 +19,8 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.arijit.idp.controller"))
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.ant("/api/**"))
+                .apis(RequestHandlerSelectors.basePackage("com.arijit.idp"))
                 .build()
                 .apiInfo(apiInfo());
     }
@@ -28,7 +28,8 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Personal Finance Tracker")
-                .description("REST API documentation for IDP application made by Arijit Kumar Haldar")
+				.description("IDP project for tracking income, expenditure and savings of user. "
+						+ "\nMade by Arijit Kumar Haldar")
                 .version("1.0.2")
                 .build();
     }

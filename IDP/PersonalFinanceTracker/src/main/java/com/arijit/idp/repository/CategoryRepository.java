@@ -6,4 +6,6 @@ import com.arijit.idp.entity.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer>{
 
+	public Category findByExpenditureId(int expenditureId);
+
 }

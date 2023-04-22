@@ -14,27 +14,27 @@ import com.arijit.idp.service.LoginService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/api/login")
 public class LoginController {
 
 	@Autowired
-	private LoginService loginService;
+	private LoginService service;
 
 	@ApiOperation(value = "Signup with user id and password")
-	@PostMapping("/signup")
+	@PostMapping("/v1")
 	public void signup(@RequestBody Login login) {
-		loginService.signup(login);
+		service.signup(login);
 	}
 
 	@ApiOperation(value = "Retrieve data based on entered user id")
-	@GetMapping("/findloginbyuserid/{userId}")
+	@GetMapping("/v1/userid/{userId}")
 	public Login findLoginByUserId(@PathVariable String userId) {
-		return loginService.findLoginByUserId(userId);
+		return service.findLoginByUserId(userId);
 	}
 
 	@ApiOperation(value = "Retrieve data based on entered user id")
-	@GetMapping("/findloginbyemailid/{emailId}")
+	@GetMapping("/v1/email/{emailId}")
 	public Login findLoginByEmailId(@PathVariable String emailId) {
-		return loginService.findLoginByEmailId(emailId);
+		return service.findLoginByEmailId(emailId);
 	}
 }

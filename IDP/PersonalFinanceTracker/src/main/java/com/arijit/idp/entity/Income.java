@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +40,7 @@ public class Income {
 	@Setter
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+	@JsonIgnore
 	private Login login;
 
 	// @Temporal(TemporalType.DATE) can only be used for java.util.Date
@@ -51,8 +54,7 @@ public class Income {
 	@Column(name = "income_amount", precision = 10, scale = 2)
 	private BigDecimal incomeAmount;
 
-	public Income(Login login, Date incomeDate, BigDecimal incomeAmount) {
-		this.login = login;
+	public Income(Date incomeDate, BigDecimal incomeAmount) {
 		this.incomeDate = incomeDate;
 		this.incomeAmount = incomeAmount;
 	}

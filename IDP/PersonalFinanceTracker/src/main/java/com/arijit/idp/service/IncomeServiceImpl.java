@@ -10,14 +10,23 @@ import com.arijit.idp.entity.Income;
 import com.arijit.idp.repository.IncomeRepository;
 
 @Service
-public class IncomeServiceImpl {
+public class IncomeServiceImpl implements IncomeService {
 
 	@Autowired
 	private IncomeRepository incomeRepository;
 
 	// Create
-	public void insertIncome(Income income) {
-		incomeRepository.save(income);
+	public String insertIncome(Income income) {
+		Income newIncome = null;
+		String status = null;
+		newIncome = incomeRepository.save(income);
+		if(newIncome.equals(income)) {
+			status = "Income added successfully";
+		}
+		else {
+			status = "Income could not be inserted";
+		}
+		return status;
 	}
 
 //	// Retrieve
