@@ -1,15 +1,10 @@
 package com.arijit.idp;
 
-import java.math.BigDecimal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.arijit.idp.entity.Category;
-import com.arijit.idp.entity.Category.ExpenditureTag;
-import com.arijit.idp.entity.Expenditure;
 import com.arijit.idp.service.CategoryService;
 import com.arijit.idp.service.ExpenditureService;
 import com.arijit.idp.service.IncomeServiceImpl;
@@ -23,13 +18,13 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 
 	@Autowired
 	private LoginServiceImpl loginServiceImpl;
-	
+
 	@Autowired
 	private IncomeServiceImpl incomeServiceImpl;
-	
+
 	@Autowired
 	private ExpenditureService expenditureService;
-	
+
 	@Autowired
 	private CategoryService categoryService;
 
@@ -39,8 +34,7 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
+
 		log.info("~~~~~~ APPLICATION STARTED SUCCESSFULLY ~~~~~~");
 		/*
 		 * Login Table
@@ -66,7 +60,7 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //		else {
 //			System.out.println(loginDetailsByUserId);
 //		}
-		
+
 //		Login loginDetailsByEmailId = loginService.findLoginByEmailId("abc@domain.com");		
 //		if(loginDetailsByEmailId == null) {
 //			System.out.println("No users registered with given email id");
@@ -74,16 +68,15 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //		else {
 //			System.out.println(loginDetailsByEmailId);
 //		}
-		
+
 //		log.debug("Login Service", loginServiceImpl);
-		
-		
+
 		/*
 		 * Income Table
 		 */
-		
+
 		//
-		//Create
+		// Create
 		//
 //		String emailId = "abc@domain.com";
 //		Login loginTmp = loginServiceImpl.findLoginByEmailId(emailId);
@@ -93,9 +86,9 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //		incomeTmp.setIncomeDate(Date.valueOf("2023-05-12"));
 //		incomeTmp.setIncomeAmount(new BigDecimal(30000.00));
 //		incomeService.insertIncome(incomeTmp);
-		
+
 		//
-		//Retrieve
+		// Retrieve
 		//
 //		List<Income> incomeDetailsByUserId = incomeService.findByUserId(loginTmp.getUserId());
 //		if(incomeDetailsByUserId == null) {
@@ -109,7 +102,7 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //		        System.out.println("Income Amount: " + i.getIncomeAmount());
 //			}
 //		}
-		
+
 //		List<Income> incomeDetailsByUserIdAndMonth = incomeService.findByUserIdAndMonth(loginTmp.getUserId(),5);
 //		if(incomeDetailsByUserIdAndMonth.isEmpty()) {
 //			System.out.println("No users registered with given user id");
@@ -122,30 +115,26 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 //		        System.out.println("Income Amount: " + i.getIncomeAmount());
 //			}
 //		}
-		
-		
+
 		//
 		// Update
 		//
 //		System.out.println(incomeService.updateByIncomeId(1, new Income(loginTmp,Date.valueOf("2023-04-03"),new BigDecimal(700))));
-		
+
 		//
 		// Delete
 		//
 //		System.out.println(incomeService.deleteByIncomeId(3));
 //		log.debug("Income Service", incomeService);
-		
-		
-		
+
 		/*
 		 * Expenditure and Category Table
 		 */
 //		log.debug("Expenditure Service", expenditureService);
 //		log.debug("Category Service", categoryService);
-		
-		
-//		Expenditure exp = new Expenditure("a2b0c20300415085757",java.sql.Date.valueOf("2023-05-10"),new BigDecimal(500));
-//		Category cat = new Category(ExpenditureTag.valueOf("FOOD"));
+
+//		Expenditure exp = new Expenditure("a2b0c20300423142801",java.sql.Date.valueOf("2023-05-10"),new BigDecimal(500));
+//		Category cat = new Category(ExpenditureTag.FOOD);
 //		expenditureService.create(exp, cat);
 //		System.out.println(categoryService.findByExpenditureId(9).getExpenditureTag());
 //		expenditureService.update(9, exp, "TRANSPORTATION");
