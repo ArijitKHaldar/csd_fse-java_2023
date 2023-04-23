@@ -4,7 +4,7 @@ import com.arijit.idp.entity.Login;
 
 public interface LoginService {
 
-	public void signup(Login loginWithoutUserId);
+	public Login signup(Login loginWithoutUserId);
 
 	public Login findLoginByUserId(String userId);
 

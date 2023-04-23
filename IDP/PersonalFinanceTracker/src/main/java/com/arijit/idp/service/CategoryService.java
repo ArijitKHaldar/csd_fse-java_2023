@@ -1,19 +1,17 @@
 package com.arijit.idp.service;
 
+import java.util.List;
+
 import com.arijit.idp.entity.Category;
-import com.arijit.idp.exception.CategoryNotFoundException;
 
 public interface CategoryService {
 
-	//Create
+	// Create
 	public Category create(Category category);
-	
-	//Retrieve
-	public Category findByExpenditureId(int expenditureId);
-	
-	//Update
-	public void updateCategory(Category category) throws CategoryNotFoundException;
-	
-	//Delete
-	public void deleteByExpenditureId(int expenditureId);
+
+	// Retrieve
+	public List<Category> findAllExpenditureTags();
+
+	// Delete
+	public void deleteByExpenditureTag(String expenditureTag);
 }

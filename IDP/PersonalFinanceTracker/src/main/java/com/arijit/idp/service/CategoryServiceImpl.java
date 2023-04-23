@@ -1,6 +1,6 @@
 package com.arijit.idp.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.arijit.idp.entity.Category;
-import com.arijit.idp.exception.CategoryNotFoundException;
 import com.arijit.idp.repository.CategoryRepository;
 
 @Service
@@ -17,33 +16,26 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	// Create
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Category create(Category category) {
-		return categoryRepository.save(category);
+		Category newCategory = categoryRepository.save(category);
+		return newCategory;
 	}
 
+	// Retrieve
 	@Override
-	public Category findByExpenditureId(int expenditureId) {
-		return categoryRepository.findByExpenditureId(expenditureId);
+	public List<Category> findAllExpenditureTags() {
+		List<Category> category = categoryRepository.findAll();
+		return category;
 	}
 
-	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void updateCategory(Category category) throws CategoryNotFoundException {
-		Optional<Category> existingCategory = categoryRepository.findById(category.getCategoryId());
-		if(!existingCategory.isPresent()) {
-			throw new CategoryNotFoundException("Category not found with id: " + category.getCategoryId());
-		}
-		Category updatedCategory = existingCategory.get();
-		updatedCategory.setExpenditureTag(category.getExpenditureTag());
-		categoryRepository.save(updatedCategory);
-	}
-
+	// Delete
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void deleteByExpenditureId(int expenditureId) {
-		Category category = categoryRepository.findByExpenditureId(expenditureId);
+	public void deleteByExpenditureTag(String expenditureTag) {
+		Category category = categoryRepository.findByExpenditureTagIgnoreCase(expenditureTag);
 		categoryRepository.delete(category);
 	}
 }

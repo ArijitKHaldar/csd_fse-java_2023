@@ -16,17 +16,8 @@ public class IncomeServiceImpl implements IncomeService {
 	private IncomeRepository incomeRepository;
 
 	// Create
-	public String insertIncome(Income income) {
-		Income newIncome = null;
-		String status = null;
-		newIncome = incomeRepository.save(income);
-		if(newIncome.equals(income)) {
-			status = "Income added successfully";
-		}
-		else {
-			status = "Income could not be inserted";
-		}
-		return status;
+	public Income insertIncome(Income income) {
+		return incomeRepository.save(income);
 	}
 
 //	// Retrieve
@@ -46,20 +37,16 @@ public class IncomeServiceImpl implements IncomeService {
 	}
 
 	// Update
-	public String updateByIncomeId(int incomeId, Income updatedIncome) {
+	public Income updateByIncomeId(int incomeId, Income updatedIncome) {
 		Optional<Income> existingIncome = incomeRepository.findById(incomeId);
-		String status;
+		Income newIncome = null;
 		if (existingIncome.isPresent()) {
-			Income newIncome = existingIncome.get();
+			newIncome = existingIncome.get();
 			newIncome.setIncomeDate(updatedIncome.getIncomeDate());
 			newIncome.setIncomeAmount(updatedIncome.getIncomeAmount());
 			incomeRepository.save(newIncome);
-			status = "Income updated successfully";
 		}
-		else {
-			status = "Income not found";
-		}
-		return status;
+		return newIncome;
 	}
 
 	// Delete

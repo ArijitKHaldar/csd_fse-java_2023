@@ -27,7 +27,7 @@ public class IncomeController {
 	
 	@ApiOperation(value = "Insert new Income credit for a user")
 	@PostMapping("/v1")
-	public String insertIncome(@RequestBody Income income) {
+	public Income insertIncome(@RequestBody Income income) {
 		return service.insertIncome(income);
 	}
 	
@@ -51,13 +51,13 @@ public class IncomeController {
 	
 	@ApiOperation(value = "Update entered income for a particular income id")
 	@PutMapping("/v1/update")
-	public String updateByIncomeId(@RequestParam int incomeId,  Income updatedIncome) {
+	public Income updateByIncomeId(@RequestParam int incomeId,  Income updatedIncome) {
 		return service.updateByIncomeId(incomeId, updatedIncome);
 	}
 	
 	@ApiOperation(value = "Delete entered income for a particular income id")
 	@DeleteMapping("/v1/delete/id/{incomeId}")
-	public String deleteByIncomeId(int incomeId) {
+	public String deleteByIncomeId(@PathVariable int incomeId) {
 		return service.deleteByIncomeId(incomeId);
 	}
 }

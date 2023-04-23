@@ -65,26 +65,26 @@ public class IncomeServiceImplTest {
         assertEquals(expectedIncomes, actualIncomes);
     }
     
-    @Test
-    @Disabled
-    public void testUpdateByIncomeId() {
-        Income updatedIncome = new Income();
-        updatedIncome = incomeRepository.findById(1).get();
-        updatedIncome.setIncomeAmount(new BigDecimal("80000"));
-        updatedIncome.setIncomeDate(Date.valueOf("2022-02-15"));
-
-        String status = incomeServiceImpl.updateByIncomeId(1, updatedIncome);
-
-        assertEquals("Income updated successfully", status);
-
-        List<Income> incomeList = incomeServiceImpl.findByUserIdAndMonth("user123", 2);
-
-        assertEquals(1, incomeList.size());
-
-        Income income = incomeList.get(0);
-        assertEquals(new BigDecimal("80000"), income.getIncomeAmount());
-        assertEquals(Date.valueOf("2022-02-15"), income.getIncomeDate());
-    }
+//    @Test
+//    @Disabled
+//    public void testUpdateByIncomeId() {
+//        Income updatedIncome = new Income();
+//        updatedIncome = incomeRepository.findById(1).get();
+//        updatedIncome.setIncomeAmount(new BigDecimal("80000"));
+//        updatedIncome.setIncomeDate(Date.valueOf("2022-02-15"));
+//
+//        String status = incomeServiceImpl.updateByIncomeId(1, updatedIncome);
+//
+//        assertEquals("Income updated successfully", status);
+//
+//        List<Income> incomeList = incomeServiceImpl.findByUserIdAndMonth("user123", 2);
+//
+//        assertEquals(1, incomeList.size());
+//
+//        Income income = incomeList.get(0);
+//        assertEquals(new BigDecimal("80000"), income.getIncomeAmount());
+//        assertEquals(Date.valueOf("2022-02-15"), income.getIncomeDate());
+//    }
 
     @Test
     public void testDeleteByIncomeId() {

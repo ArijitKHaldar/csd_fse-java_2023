@@ -22,8 +22,8 @@ public class LoginController {
 
 	@ApiOperation(value = "Signup with user id and password")
 	@PostMapping("/v1")
-	public void signup(@RequestBody Login login) {
-		service.signup(login);
+	public Login signup(@RequestBody Login login) {
+		return service.signup(login);
 	}
 
 	@ApiOperation(value = "Retrieve data based on entered user id")

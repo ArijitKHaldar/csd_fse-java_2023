@@ -12,23 +12,23 @@ public interface ExpenditureService {
 
 	
 	//Create
-	public Expenditure create(Expenditure expenditure, Category category);
+	public Expenditure create(Expenditure expenditure);
 	
-//	//Retrieve
-//	public List<Expenditure> findByUserId(String userId);
-//	 
-//	public List<Expenditure> findByUserIdAndExpenditureDate(String userId, Date expenditureDate);
-//	
-//	public List<Expenditure> findByUserIdAndMonth(String userId, int month);
-//	 
-//	public List<Expenditure> findByUserIdAndYear(String userId, int year);
-//	
-//	public List<Expenditure> findByUserIdAndExpenditureTag(String userId, String expenditureTag);
+	//Retrieve
+	public List<Expenditure> findByUserId(String userId);
+	 
+	public List<Expenditure> findByUserIdAndExpenditureDate(String userId, Date expenditureDate);
+	
+	public List<Expenditure> findByUserIdAndMonth(String userId, int month);
+	 
+	public List<Expenditure> findByUserIdAndYear(String userId, int year);
+	
+	public List<Expenditure> findByUserIdAndExpenditureType(String userId, String expenditureTag);
 	
 	//Update
-	public Expenditure update(int expenditureId, Expenditure expenditure, String categoryTag) throws ExpenditureNotFoundException, CategoryNotFoundException;
+	public Expenditure update(int expenditureId, Expenditure expenditure) throws ExpenditureNotFoundException;
 	
 	//Delete
-	public void deleteByExpenditureId(int expenditureId);
+	public void delete(int expenditureId);
 	
 }

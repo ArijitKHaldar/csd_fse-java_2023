@@ -16,10 +16,10 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private UserIdGenerator uig;
 
-	public void signup(Login loginWithoutUserId) {
+	public Login signup(Login loginWithoutUserId) {
 		Login login = loginWithoutUserId;
 		login.setUserId(uig.generateUserId(loginWithoutUserId.getEmailId()));
-		loginRepository.save(login);
+		return loginRepository.save(login);
 	}
 
 	public Login findLoginByUserId(String userId) {
