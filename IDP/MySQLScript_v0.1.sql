@@ -1,39 +1,56 @@
+-- -----------------------------------------------------
+-- Database finance_tracker
+-- -----------------------------------------------------
 CREATE DATABASE finance_tracker;
 USE finance_tracker;
 
-CREATE TABLE login
-(
-user_id VARCHAR(40) PRIMARY KEY,
-email_id VARCHAR(40) NOT NULL,
-UNIQUE(email_id),
-password VARCHAR(25) NOT NULL
+-- -----------------------------------------------------
+-- Table finance_tracker.login
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS finance_tracker.login (
+    user_id VARCHAR(255) NOT NULL,
+    email_id VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY (user_id),
+    UNIQUE (email_id)
 );
 
-CREATE TABLE income
-(
-income_id INT PRIMARY KEY,
-user_id VARCHAR(40) NOT NULL,
-FOREIGN KEY(user_id) REFERENCES login(user_id),
-income_date DATE,
-income_amount DECIMAL(10,2)
+-- -----------------------------------------------------
+-- Table finance_tracker.income
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS finance_tracker.income (
+    income_id INT NOT NULL AUTO_INCREMENT,
+    income_amount DECIMAL(10 , 2 ),
+    income_date DATE,
+    user_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (income_id),
+    FOREIGN KEY (user_id)
+        REFERENCES finance_tracker.login (user_id)
 );
 
-CREATE TABLE expenditure
-(
-expenditure_id INT PRIMARY KEY,
-user_id VARCHAR(40) NOT NULL,
-FOREIGN KEY(user_id) REFERENCES login(user_id),
-expenditure_date DATE,
-expenditure_amount DECIMAL(10,2)
+-- -----------------------------------------------------
+-- Table finance_tracker.expenditure
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS finance_tracker.expenditure (
+    expenditure_id INT NOT NULL AUTO_INCREMENT,
+    category_id INT,
+    expenditure_amount DECIMAL(10 , 2 ),
+    expenditure_date DATE,
+    user_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (expenditure_id),
+    FOREIGN KEY (user_id)
+        REFERENCES finance_tracker.login (user_id),
+    FOREIGN KEY (category_id)
+        REFERENCES finance_tracker.category (category_id)
 );
 
-CREATE TABLE category
-(
-category_id INT PRIMARY KEY,
-expenditure_tag ENUM ('FOOD', 'UTILITIES', 'HOUSING', 'TRANSPORTATION', 'EDUCATION', 'CLOTHING', 'MEDICAL', 'INSURANCE', 'HOUSEHOLD', 'PERSONAL', 'DEBT', 'DONATION', 'ENTERTAINMENT'),
--- expenditure_tag VARCHAR(20),
-expenditure_id INT NOT NULL,
-FOREIGN KEY(expenditure_id) REFERENCES expenditure(expenditure_id)
+-- -----------------------------------------------------
+-- Table finance_tracker.category
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS finance_tracker.category (
+    category_id INT NOT NULL AUTO_INCREMENT,
+    expenditure_tag VARCHAR(255),
+    PRIMARY KEY (category_id)
 );
 
 -- Drop Table
@@ -57,4 +74,5 @@ SELECT * FROM finance_tracker.category;
 -- Describe Table
 DESCRIBE LOGIN;
 DESCRIBE income;
+DESCRIBE expenditure;
 DESCRIBE CATEGORY; 
