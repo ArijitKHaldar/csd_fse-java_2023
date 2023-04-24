@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	// Create
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Transactional(propagation = Propagation.REQUIRES_NEW) //Remove it and test
 	public Category create(Category category) {
 		Category newCategory = categoryRepository.save(category);
 		return newCategory;

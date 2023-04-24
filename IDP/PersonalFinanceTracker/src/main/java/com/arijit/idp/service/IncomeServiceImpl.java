@@ -58,7 +58,7 @@ public class IncomeServiceImpl implements IncomeService {
 			status = "Income removed for Income Id: " + incomeId;
 		}
 		else {
-			status = "Income not found";
+			status = "Income not found"; //Add exception handling
 		}
 		return status;
 	}

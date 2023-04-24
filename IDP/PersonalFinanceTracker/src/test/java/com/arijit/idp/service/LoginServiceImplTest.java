@@ -63,7 +63,8 @@ public class LoginServiceImplTest {
 	@Test
 	public void testFindLoginByUserId() {
 
-		Login expectedLogin = new Login("testuser", "test@example.com", "testpass");
+		Login expectedLogin = new Login("test@example.com", "testpass");
+		expectedLogin.setUserId("testuser");
 		when(mockLoginRepository.findById("testuser")).thenReturn(Optional.of(expectedLogin));
 		Login actualLogin = loginServiceImpl.findLoginByUserId("testuser");
 		assertEquals(expectedLogin, actualLogin);
@@ -72,7 +73,8 @@ public class LoginServiceImplTest {
 	@Test
 	public void testFindLoginByEmailId() {
 
-		Login expectedLogin = new Login("testuser", "test@example.com", "testpass");
+		Login expectedLogin = new Login("test@example.com", "testpass");
+		expectedLogin.setUserId("testuser");
 		when(mockLoginRepository.findByEmailId("test@example.com")).thenReturn(expectedLogin);
 		Login actualLogin = loginServiceImpl.findLoginByEmailId("test@example.com");
 		assertEquals(expectedLogin, actualLogin);
