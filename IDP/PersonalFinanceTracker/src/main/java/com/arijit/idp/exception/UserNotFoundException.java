@@ -1,12 +1,12 @@
 package com.arijit.idp.exception;
 
-public class userNotFoundException extends RuntimeException {
+public class UserNotFoundException extends RuntimeException {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public userNotFoundException(String message) {
+	public UserNotFoundException(String message) {
 		super(message);
 		
 	}
