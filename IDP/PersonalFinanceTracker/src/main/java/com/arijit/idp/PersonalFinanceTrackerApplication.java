@@ -17,6 +17,6 @@ public class PersonalFinanceTrackerApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		log.info("~~~~~~ APPLICATION STARTED SUCCESSFULLY ~~~~~~");
+		log.info("~~.~~ APPLICATION STARTED SUCCESSFULLY ~~.~~");
 	}
 }

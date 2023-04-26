@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.arijit.idp.entity.Category;
+import com.arijit.idp.exception.CategoryAlreadyPresentException;
+import com.arijit.idp.exception.CategoryNotFoundException;
 import com.arijit.idp.repository.CategoryRepository;
 
 @Service
@@ -18,23 +18,29 @@ public class CategoryServiceImpl implements CategoryService {
 
 	// Create
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW) //Remove it and test
-	public Category create(Category category) {
+	public Category create(Category category) throws CategoryAlreadyPresentException {
+		
+		List<Category> categories = categoryRepository.findAll();
+	    for (Category existingCategory : categories) {
+	        if (existingCategory.getExpenditureTag().equals(category.getExpenditureTag())) {
+	            throw new CategoryAlreadyPresentException("Category with name " + category.getExpenditureTag() + " already exists");
+	        }
+	    }
+		
 		Category newCategory = categoryRepository.save(category);
 		return newCategory;
 	}
 
 	// Retrieve
 	@Override
-	public List<Category> findAllExpenditureTags() {
+	public List<Category> findAllExpenditureTags() throws CategoryNotFoundException {
 		List<Category> category = categoryRepository.findAll();
 		return category;
 	}
 
 	// Delete
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void deleteByExpenditureTag(String expenditureTag) {
+	public void deleteByExpenditureTag(String expenditureTag) throws CategoryNotFoundException {
 		Category category = categoryRepository.findByExpenditureTagIgnoreCase(expenditureTag);
 		categoryRepository.delete(category);
 	}

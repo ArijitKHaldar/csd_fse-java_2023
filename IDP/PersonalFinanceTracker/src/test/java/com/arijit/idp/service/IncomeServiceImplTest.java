@@ -1,6 +1,7 @@
 package com.arijit.idp.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
@@ -183,14 +184,26 @@ public class IncomeServiceImplTest {
 		when(mockIncomeRepository.findByUserId("testuser")).thenReturn(incomeList);
 		List<Income> testIncomeTrue = incomeServiceImpl.findByUserId("testuser");
 		assertEquals(mockIncome, testIncomeTrue.get(0));
+
+		Income mockIncomeUpdate = new Income("testuser", Date.valueOf("2023-01-01"), new BigDecimal(200));
+		try {
+			field = mockIncomeUpdate.getClass().getDeclaredField("incomeId");
+		} catch (NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
+		}
+		field.setAccessible(true);
+		try {
+			field.set(mockIncomeUpdate, 1);
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
 		
-		Income mockIncomeUpdate = mockIncome;
-		mockIncomeUpdate.setIncomeAmount( new BigDecimal(200));
 		when(mockIncomeRepository.findById(1)).thenReturn(Optional.of(mockIncomeUpdate));
 		when(mockIncomeRepository.save(mockIncomeUpdate)).thenReturn(mockIncomeUpdate);
 		Income updatedIncome = incomeServiceImpl.updateByIncomeId(1, mockIncomeUpdate);
 		verify(mockIncomeRepository, times(1)).save(mockIncomeUpdate);
 		assertEquals(mockIncomeUpdate, updatedIncome);
+		assertNotEquals(mockIncomeUpdate, mockIncome);
 	}
 
 	@Test
@@ -217,7 +230,7 @@ public class IncomeServiceImplTest {
 		List<Income> testIncomeTrue = incomeServiceImpl.findByUserId("testuser");
 		assertEquals(1, testIncomeTrue.size());
 		assertEquals(mockIncome, testIncomeTrue.get(0));
-		
+
 		when(mockIncomeRepository.findById(1)).thenReturn(Optional.of(mockIncome));
 		String status = incomeServiceImpl.deleteByIncomeId(incomeId);
 

@@ -51,7 +51,7 @@ public class IncomeController {
 	
 	@ApiOperation(value = "Update entered income for a particular income id")
 	@PutMapping("/v1/update")
-	public Income updateByIncomeId(@RequestParam int incomeId,  Income updatedIncome) {
+	public Income updateByIncomeId(@RequestParam int incomeId, @RequestBody  Income updatedIncome) {
 		return service.updateByIncomeId(incomeId, updatedIncome);
 	}
 	

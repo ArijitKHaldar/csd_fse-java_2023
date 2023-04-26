@@ -15,6 +15,8 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.arijit.idp.entity.Login;
+import com.arijit.idp.exception.LoginAlreadyPresentException;
+import com.arijit.idp.exception.LoginNotFoundException;
 import com.arijit.idp.helpermodules.UserIdGenerator;
 import com.arijit.idp.repository.LoginRepository;
 
@@ -36,7 +38,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testSignup() {
+	public void testSignup() throws LoginAlreadyPresentException, LoginNotFoundException {
 		// Mock the Login object
 		Login mockLogin = new Login();
 		mockLogin.setEmailId("test@example.com");
@@ -61,7 +63,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByUserId() {
+	public void testFindLoginByUserId() throws LoginNotFoundException {
 
 		Login expectedLogin = new Login("test@example.com", "testpass");
 		expectedLogin.setUserId("testuser");
@@ -71,7 +73,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByEmailId() {
+	public void testFindLoginByEmailId() throws LoginNotFoundException {
 
 		Login expectedLogin = new Login("test@example.com", "testpass");
 		expectedLogin.setUserId("testuser");

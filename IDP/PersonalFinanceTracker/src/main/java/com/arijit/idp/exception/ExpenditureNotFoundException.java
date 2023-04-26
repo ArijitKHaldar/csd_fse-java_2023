@@ -2,8 +2,21 @@ package com.arijit.idp.exception;
 
 public class ExpenditureNotFoundException extends Exception {
 
-	public ExpenditureNotFoundException(String string) {
-		// TODO Auto-generated constructor stub
+	private String message;
+	
+	private static final long serialVersionUID = 3352775979640385562L;
+
+	public ExpenditureNotFoundException() {
+		super();
+	}
+	
+	public ExpenditureNotFoundException(String message) {
+		super();
+		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
 	}
 
 }

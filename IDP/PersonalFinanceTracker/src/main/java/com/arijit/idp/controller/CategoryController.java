@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arijit.idp.entity.Category;
+import com.arijit.idp.exception.CategoryAlreadyPresentException;
+import com.arijit.idp.exception.CategoryNotFoundException;
 import com.arijit.idp.service.CategoryService;
 
 import io.swagger.annotations.ApiOperation;
@@ -25,20 +27,20 @@ public class CategoryController {
 	
 	@ApiOperation(value = "Insert new Category of Expenditure")
 	@PostMapping("/v1")
-	public Category create(@RequestBody Category category) {
+	public Category create(@RequestBody Category category) throws CategoryAlreadyPresentException {
 		return service.create(category);
 	}
 	
 	@ApiOperation(value = "View All Available Expenditure Categories")
 	@GetMapping("/v1/view")
-	public List<Category> findAllExpenditureTags() {
+	public List<Category> findAllExpenditureTags() throws CategoryNotFoundException {
 		List<Category> categories = service.findAllExpenditureTags();
 		return categories;
 	}
 	
 	@ApiOperation(value = "Delete a particular expenditure category")
 	@DeleteMapping("/v1/delete/{expenditureTag}")
-	public void deleteByExpenditureTag(@PathVariable String expenditureTag) {
+	public void deleteByExpenditureTag(@PathVariable String expenditureTag) throws CategoryNotFoundException {
 		service.deleteByExpenditureTag(expenditureTag);
 	}
 }

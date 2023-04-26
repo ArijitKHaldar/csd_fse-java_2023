@@ -7,7 +7,7 @@ USE finance_tracker;
 -- -----------------------------------------------------
 -- Table finance_tracker.login
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS finance_tracker.login (
+CREATE TABLE finance_tracker.login (
     user_id VARCHAR(255) NOT NULL,
     email_id VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS finance_tracker.login (
 -- -----------------------------------------------------
 -- Table finance_tracker.income
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS finance_tracker.income (
+CREATE TABLE finance_tracker.income (
     income_id INT NOT NULL AUTO_INCREMENT,
     income_amount DECIMAL(10 , 2 ),
     income_date DATE,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS finance_tracker.income (
 -- -----------------------------------------------------
 -- Table finance_tracker.expenditure
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS finance_tracker.expenditure (
+CREATE TABLE finance_tracker.expenditure (
     expenditure_id INT NOT NULL AUTO_INCREMENT,
     category_id INT,
     expenditure_amount DECIMAL(10 , 2 ),
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS finance_tracker.expenditure (
 -- -----------------------------------------------------
 -- Table finance_tracker.category
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS finance_tracker.category (
+CREATE TABLE finance_tracker.category (
     category_id INT NOT NULL AUTO_INCREMENT,
     expenditure_tag VARCHAR(255),
     PRIMARY KEY (category_id)
