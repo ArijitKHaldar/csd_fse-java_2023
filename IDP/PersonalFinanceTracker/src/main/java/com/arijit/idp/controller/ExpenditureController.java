@@ -20,6 +20,9 @@ import com.arijit.idp.entity.Expenditure;
 import com.arijit.idp.exception.CategoryNotFoundException;
 import com.arijit.idp.exception.ExpenditureAlreadyPresentException;
 import com.arijit.idp.exception.ExpenditureNotFoundException;
+import com.arijit.idp.exception.InvalidDataFormatException;
+import com.arijit.idp.exception.NotAStringException;
+import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.ExpenditureService;
 
 import io.swagger.annotations.ApiOperation;
@@ -40,48 +43,50 @@ public class ExpenditureController {
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user")
 	@GetMapping("/v1/userid/{userId}")
-	public ResponseEntity<List<Expenditure>> findByUserId(@PathVariable String userId) throws ExpenditureNotFoundException {
+	public ResponseEntity<List<Expenditure>> findByUserId(@PathVariable String userId) throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException {
 		return new ResponseEntity<>(this.service.findByUserId(userId), HttpStatus.FOUND);
 	}
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user on a particular date")
 	@GetMapping("/v1/userid/{userId}/date/{expenditureDate}")
 	public ResponseEntity<List<Expenditure>> findByUserIdAndExpenditureDate(@PathVariable String userId,
-			@PathVariable Date expenditureDate) throws ExpenditureNotFoundException {
+			@PathVariable Date expenditureDate) throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException, InvalidDataFormatException {
 		return new ResponseEntity<>(this.service.findByUserIdAndExpenditureDate(userId, expenditureDate), HttpStatus.FOUND);
 	}
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user on a particular month")
 	@GetMapping("/v1/userid/{userId}/month/{month}")
 	public ResponseEntity<List<Expenditure>> findByUserIdAndMonth(@PathVariable String userId, @PathVariable int month)
-			throws ExpenditureNotFoundException {
+			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException, InvalidDataFormatException {
 		return new ResponseEntity<>(this.service.findByUserIdAndMonth(userId, month), HttpStatus.FOUND);
 	}
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user on a particular year")
 	@GetMapping("/v1/userid/{userId}/year/{year}")
-	public List<Expenditure> findByUserIdAndYear(@PathVariable String userId, @PathVariable int year)
-			throws ExpenditureNotFoundException {
-		return service.findByUserIdAndYear(userId, year);
+	public ResponseEntity<List<Expenditure>> findByUserIdAndYear(@PathVariable String userId, @PathVariable int year)
+			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException, InvalidDataFormatException {
+		return new ResponseEntity<>(this.service.findByUserIdAndYear(userId, year), HttpStatus.FOUND);
 	}
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user for a category")
 	@GetMapping("/v1/userid/{userId}/category/{expenditureTag}")
-	public List<Expenditure> findByUserIdAndExpenditureType(@PathVariable String userId,
+	public ResponseEntity<List<Expenditure>> findByUserIdAndExpenditureType(@PathVariable String userId,
 			@PathVariable String expenditureTag) throws ExpenditureNotFoundException, CategoryNotFoundException {
-		return service.findByUserIdAndExpenditureType(userId, expenditureTag);
+		return new ResponseEntity<>(this.service.findByUserIdAndExpenditureType(userId, expenditureTag), HttpStatus.FOUND);
 	}
 
 	@ApiOperation(value = "Update Expenditure data by expenditure id")
 	@PutMapping("/v1/update")
-	public Expenditure update(@RequestParam int expenditureId, @RequestBody Expenditure expenditure)
-			throws ExpenditureNotFoundException {
-		return service.update(expenditureId, expenditure);
+	public ResponseEntity<Expenditure> update(@RequestParam int expenditureId, @RequestBody Expenditure expenditure)
+			throws ExpenditureNotFoundException, NullValueEnteredException, InvalidDataFormatException {
+		return new ResponseEntity<>(this.service.update(expenditureId, expenditure), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Delete entered expenditure for a particular expenditure id")
 	@DeleteMapping("/v1/delete/id/{expenditureId}")
-	public void delete(@PathVariable int expenditureId) throws ExpenditureNotFoundException {
+	public ResponseEntity<Object> delete(@PathVariable int expenditureId)
+			throws ExpenditureNotFoundException, NullValueEnteredException, InvalidDataFormatException {
 		service.delete(expenditureId);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

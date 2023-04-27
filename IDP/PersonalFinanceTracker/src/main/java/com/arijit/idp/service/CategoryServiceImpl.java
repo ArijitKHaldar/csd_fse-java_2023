@@ -22,10 +22,11 @@ public class CategoryServiceImpl implements CategoryService {
 		
 		List<Category> categories = categoryRepository.findAll();
 	    for (Category existingCategory : categories) {
-	        if (existingCategory.getExpenditureTag().equals(category.getExpenditureTag())) {
+	        if (existingCategory.getExpenditureTag().equalsIgnoreCase(category.getExpenditureTag())) {
 	            throw new CategoryAlreadyPresentException("Category with name " + category.getExpenditureTag() + " already exists");
 	        }
 	    }
+	    category.setExpenditureTag(category.getExpenditureTag().toUpperCase());
 		
 		Category newCategory = categoryRepository.save(category);
 		return newCategory;
@@ -42,6 +43,9 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void deleteByExpenditureTag(String expenditureTag) throws CategoryNotFoundException {
 		Category category = categoryRepository.findByExpenditureTagIgnoreCase(expenditureTag);
+		if(category == null) {
+			throw new CategoryNotFoundException();
+		}
 		categoryRepository.delete(category);
 	}
 }

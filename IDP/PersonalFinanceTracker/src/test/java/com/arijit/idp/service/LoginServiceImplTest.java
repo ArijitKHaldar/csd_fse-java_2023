@@ -15,8 +15,11 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.arijit.idp.entity.Login;
+import com.arijit.idp.exception.InvalidDataFormatException;
 import com.arijit.idp.exception.LoginAlreadyPresentException;
 import com.arijit.idp.exception.LoginNotFoundException;
+import com.arijit.idp.exception.NotAStringException;
+import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.helpermodules.UserIdGenerator;
 import com.arijit.idp.repository.LoginRepository;
 
@@ -38,7 +41,8 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testSignup() throws LoginAlreadyPresentException, LoginNotFoundException {
+	public void testSignup() throws LoginAlreadyPresentException, LoginNotFoundException, NotAStringException,
+			InvalidDataFormatException, NullValueEnteredException {
 		// Mock the Login object
 		Login mockLogin = new Login();
 		mockLogin.setEmailId("test@example.com");
@@ -50,7 +54,7 @@ public class LoginServiceImplTest {
 		// Call the LoginService method
 		loginServiceImpl.signup(mockLogin);
 		assertEquals(mockLogin.getUserId(), "testuser");
-		
+
 		// Verify that the repository method was called with the correct argument
 		verify(mockLoginRepository).save(mockLogin);
 
@@ -63,7 +67,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByUserId() throws LoginNotFoundException {
+	public void testFindLoginByUserId() throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
 
 		Login expectedLogin = new Login("test@example.com", "testpass");
 		expectedLogin.setUserId("testuser");
@@ -73,7 +77,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByEmailId() throws LoginNotFoundException {
+	public void testFindLoginByEmailId() throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
 
 		Login expectedLogin = new Login("test@example.com", "testpass");
 		expectedLogin.setUserId("testuser");

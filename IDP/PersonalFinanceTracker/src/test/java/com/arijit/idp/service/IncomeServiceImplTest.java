@@ -25,6 +25,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.arijit.idp.entity.Income;
 import com.arijit.idp.entity.Login;
+import com.arijit.idp.exception.IncomeAlreadyPresentException;
+import com.arijit.idp.exception.IncomeNotFoundException;
+import com.arijit.idp.exception.InvalidDataFormatException;
+import com.arijit.idp.exception.NotAStringException;
+import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.repository.IncomeRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,7 +47,8 @@ public class IncomeServiceImplTest {
 	}
 
 	@Test
-	public void testInsertIncome() {
+	public void testInsertIncome() throws IncomeAlreadyPresentException, IncomeNotFoundException,
+			NullValueEnteredException, NotAStringException {
 
 		Login mockLogin = new Login();
 		mockLogin.setEmailId("test@example.com");
@@ -74,7 +80,7 @@ public class IncomeServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserId() {
+	public void testFindByUserId() throws IncomeNotFoundException, NullValueEnteredException, NotAStringException {
 
 		String userId = "testuser";
 		Income mockIncome = new Income(userId, Date.valueOf("2023-01-01"), new BigDecimal(20000));
@@ -102,7 +108,8 @@ public class IncomeServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndMonth() {
+	public void testFindByUserIdAndMonth()
+			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {
 		String userId = "testuser";
 		int month = 2;
 		Income mockIncome = new Income(userId, Date.valueOf("2023-02-01"), new BigDecimal(20000));
@@ -133,7 +140,8 @@ public class IncomeServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndYear() {
+	public void testFindByUserIdAndYear()
+			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {
 		String userId = "testuser";
 		int year = 2023;
 		Income mockIncome = new Income(userId, Date.valueOf("2023-02-01"), new BigDecimal(20000));
@@ -164,7 +172,8 @@ public class IncomeServiceImplTest {
 	}
 
 	@Test
-	public void testUpdateByIncomeId() {
+	public void testUpdateByIncomeId()
+			throws NullValueEnteredException, InvalidDataFormatException, IncomeNotFoundException, NotAStringException {
 		Income mockIncome = new Income("testuser", Date.valueOf("2023-01-01"), new BigDecimal(20000));
 		Field field = null;
 		try {
@@ -197,7 +206,7 @@ public class IncomeServiceImplTest {
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		
+
 		when(mockIncomeRepository.findById(1)).thenReturn(Optional.of(mockIncomeUpdate));
 		when(mockIncomeRepository.save(mockIncomeUpdate)).thenReturn(mockIncomeUpdate);
 		Income updatedIncome = incomeServiceImpl.updateByIncomeId(1, mockIncomeUpdate);
@@ -207,7 +216,8 @@ public class IncomeServiceImplTest {
 	}
 
 	@Test
-	public void testDeleteByIncomeId() {
+	public void testDeleteByIncomeId()
+			throws IncomeNotFoundException, NullValueEnteredException, NotAStringException, InvalidDataFormatException {
 
 		int incomeId = 1;
 
@@ -232,13 +242,12 @@ public class IncomeServiceImplTest {
 		assertEquals(mockIncome, testIncomeTrue.get(0));
 
 		when(mockIncomeRepository.findById(1)).thenReturn(Optional.of(mockIncome));
-		String status = incomeServiceImpl.deleteByIncomeId(incomeId);
+		incomeServiceImpl.deleteByIncomeId(incomeId);
 
 		when(mockIncomeRepository.findByUserId("testuser")).thenReturn(new ArrayList<Income>());
 		List<Income> result = incomeServiceImpl.findByUserId("testuser");
 		assertTrue(result.isEmpty());
 		verify(mockIncomeRepository, times(1)).deleteById(1);
 		verify(mockIncomeRepository, times(1)).findById(1);
-		assertEquals("Income removed for Income Id: " + incomeId, status);
 	}
 }
