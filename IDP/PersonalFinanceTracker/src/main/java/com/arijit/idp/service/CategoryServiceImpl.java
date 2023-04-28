@@ -19,15 +19,16 @@ public class CategoryServiceImpl implements CategoryService {
 	// Create
 	@Override
 	public Category create(Category category) throws CategoryAlreadyPresentException {
-		
+
 		List<Category> categories = categoryRepository.findAll();
-	    for (Category existingCategory : categories) {
-	        if (existingCategory.getExpenditureTag().equalsIgnoreCase(category.getExpenditureTag())) {
-	            throw new CategoryAlreadyPresentException("Category with name " + category.getExpenditureTag() + " already exists");
-	        }
-	    }
-	    category.setExpenditureTag(category.getExpenditureTag().toUpperCase());
-		
+		for (Category existingCategory : categories) {
+			if (existingCategory.getExpenditureTag().equalsIgnoreCase(category.getExpenditureTag())) {
+				throw new CategoryAlreadyPresentException(
+						"Category with name " + category.getExpenditureTag() + " already exists");
+			}
+		}
+		category.setExpenditureTag(category.getExpenditureTag().toUpperCase());
+
 		Category newCategory = categoryRepository.save(category);
 		return newCategory;
 	}
@@ -36,6 +37,9 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<Category> findAllExpenditureTags() throws CategoryNotFoundException {
 		List<Category> category = categoryRepository.findAll();
+		if (category.isEmpty()) {
+			throw new CategoryNotFoundException();
+		}
 		return category;
 	}
 
@@ -43,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void deleteByExpenditureTag(String expenditureTag) throws CategoryNotFoundException {
 		Category category = categoryRepository.findByExpenditureTagIgnoreCase(expenditureTag);
-		if(category == null) {
+		if (category == null) {
 			throw new CategoryNotFoundException();
 		}
 		categoryRepository.delete(category);

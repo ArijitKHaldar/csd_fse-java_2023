@@ -62,7 +62,7 @@ public class IncomeServiceImpl implements IncomeService {
 			throw new InvalidDataFormatException("Month should be between 1 to 12");
 		}
 		List<Income> incomeByUserIdAndMonth = incomeRepository.findByUserIdAndMonth(userId, month);
-		if (incomeByUserIdAndMonth == null) {
+		if (incomeByUserIdAndMonth.isEmpty()) {
 			throw new IncomeNotFoundException();
 		}
 		return incomeByUserIdAndMonth;
@@ -83,7 +83,7 @@ public class IncomeServiceImpl implements IncomeService {
 		}
 
 		List<Income> incomeByUserIdAndYear = incomeRepository.findByUserIdAndYear(userId, year);
-		if (incomeByUserIdAndYear == null) {
+		if (incomeByUserIdAndYear.isEmpty()) {
 			throw new IncomeNotFoundException();
 		}
 		return incomeByUserIdAndYear;
