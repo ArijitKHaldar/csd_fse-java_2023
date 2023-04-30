@@ -14,23 +14,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .paths(PathSelectors.ant("/api/**"))
-                .apis(RequestHandlerSelectors.basePackage("com.arijit.idp"))
-                .build()
-                .apiInfo(apiInfo());
-    }
-    
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Personal Finance Tracker")
-				.description("IDP project for tracking income, expenditure and savings of user. "
-						+ "\nMade by Arijit Kumar Haldar")
-                .version("1.0.2")
-                .build();
-    }
+
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).select().paths(PathSelectors.ant("/api/**"))
+				.apis(RequestHandlerSelectors.basePackage("com.arijit.idp")).build().apiInfo(apiInfo());
+	}
+
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder().title("Personal Finance Tracker").description(
+				"IDP project for tracking income, expenditure and savings of user. " + "\nMade by Arijit Kumar Haldar")
+				.version("1.2.8").build();
+	}
 }

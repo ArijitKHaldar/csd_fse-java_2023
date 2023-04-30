@@ -25,7 +25,7 @@ public class SavingsCalculationController {
 	private SavingsCalculation savingsCalculation;
 
 	@ApiOperation(value = "Calculate Monthly Percentage of Savings")
-	@GetMapping("/calculation/user/{userId}/savings/month/{month}")
+	@GetMapping("/savings/calculation/user/{userId}/savings/month/{month}")
 	public ResponseEntity<?> calculateMonthlySavingsPercentage(@PathVariable String userId, @PathVariable int month) {
 		try {
 			double savingsPercentage = savingsCalculation.calculateMonthlySavingsPercentage(userId, month);

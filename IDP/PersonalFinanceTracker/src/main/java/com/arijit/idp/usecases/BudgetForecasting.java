@@ -1,6 +1,7 @@
 package com.arijit.idp.usecases;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -80,7 +81,8 @@ public class BudgetForecasting {
 			throw new InvalidDataFormatException("Cannot predict. Some error occured");
 		}
 
-		return predictedMonthlySavings;
-
+		DecimalFormat df = new DecimalFormat("#.##");
+		double result = Double.parseDouble(df.format(predictedMonthlySavings));
+		return result;
 	}
 }

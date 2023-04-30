@@ -1,5 +1,6 @@
 package com.arijit.idp.usecases;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +121,9 @@ public class SavingsCalculation {
 			throw new InvalidDataFormatException("Some error occured during calculations!");
 		}
 
-		return savingsPercentage;
+		DecimalFormat df = new DecimalFormat("#.##");
+		double result = Double.parseDouble(df.format(savingsPercentage));
+		return result;
 
 	}
 }
