@@ -54,7 +54,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testCreateExpenditure_Success() throws ExpenditureAlreadyPresentException {
+	public void testCreateExpenditure_Success() throws ExpenditureAlreadyPresentException, InvalidDataFormatException {
 		Expenditure expenditure = new Expenditure("rent", 1, Date.valueOf("2023-04-03"), new BigDecimal("1000"));
 		when(mockRepository.existsById(expenditure.getExpenditureId())).thenReturn(false);
 		when(mockRepository.save(expenditure)).thenReturn(expenditure);
@@ -354,7 +354,6 @@ public class ExpenditureServiceImplTest {
 
 	@Test
 	public void testDelete_ExpenditureNotFound() {
-		Expenditure expenditure = new Expenditure();
 		when(mockRepository.findById(anyInt())).thenReturn(Optional.empty());
 		assertThrows(ExpenditureNotFoundException.class, () -> mockedService.delete(1));
 	}

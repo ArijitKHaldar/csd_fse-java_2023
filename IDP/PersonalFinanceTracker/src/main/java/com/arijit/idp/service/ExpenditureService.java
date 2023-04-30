@@ -14,7 +14,8 @@ import com.arijit.idp.exception.NullValueEnteredException;
 public interface ExpenditureService {
 
 	// Create
-	public Expenditure create(Expenditure expenditure) throws ExpenditureAlreadyPresentException;
+	public Expenditure create(Expenditure expenditure)
+			throws ExpenditureAlreadyPresentException, InvalidDataFormatException;
 
 	// Retrieve
 	public List<Expenditure> findByUserId(String userId)

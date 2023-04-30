@@ -1,5 +1,5 @@
 package com.arijit.idp.usecases;
 
-public class savingsCalculation {
+public class FinancialGoal {
 
 }

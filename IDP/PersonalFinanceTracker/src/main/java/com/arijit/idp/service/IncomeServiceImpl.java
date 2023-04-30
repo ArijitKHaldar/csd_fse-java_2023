@@ -22,10 +22,13 @@ public class IncomeServiceImpl implements IncomeService {
 
 	// Create
 	@Override
-	public Income insertIncome(Income income) throws IncomeAlreadyPresentException {
+	public Income insertIncome(Income income) throws IncomeAlreadyPresentException, InvalidDataFormatException {
 
 		if (incomeRepository.existsById(income.getIncomeId())) {
 			throw new IncomeAlreadyPresentException();
+		}
+		if (income.getIncomeAmount().doubleValue() < 0) {
+			throw new InvalidDataFormatException("Income cannot be negative!");
 		}
 		return incomeRepository.save(income);
 	}
@@ -47,7 +50,7 @@ public class IncomeServiceImpl implements IncomeService {
 		}
 		return incomeByUserId;
 	}
-	
+
 	@Override
 	public List<Income> findByUserIdAndMonth(String userId, int month)
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {

@@ -50,7 +50,7 @@ public class IncomeServiceImplTest {
 
 	@Test
 	public void testInsertIncome_IncomeInserted() throws IncomeAlreadyPresentException, IncomeNotFoundException,
-			NullValueEnteredException, NotAStringException {
+			NullValueEnteredException, NotAStringException, InvalidDataFormatException {
 
 		Login mockLogin = new Login();
 		mockLogin.setEmailId("test@example.com");
@@ -80,10 +80,10 @@ public class IncomeServiceImplTest {
 		List<Income> testIncome = mockedService.findByUserId("testuser");
 		assertEquals(mockIncome, testIncome.get(0));
 	}
-	
+
 	@Test
 	public void testInsertIncome_IncomeNotInserted() {
-		
+
 		Income mockIncome = new Income("testuser", Date.valueOf("2023-01-01"), new BigDecimal(20000));
 		Field field = null;
 		try {
@@ -103,7 +103,8 @@ public class IncomeServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserId_UserIdFound() throws IncomeNotFoundException, NullValueEnteredException, NotAStringException {
+	public void testFindByUserId_UserIdFound()
+			throws IncomeNotFoundException, NullValueEnteredException, NotAStringException {
 
 		String userId = "testuser";
 		Income mockIncome = new Income(userId, Date.valueOf("2023-01-01"), new BigDecimal(20000));
@@ -128,7 +129,7 @@ public class IncomeServiceImplTest {
 
 		assertThrows(IncomeNotFoundException.class, () -> mockedService.findByUserId("newuserid"));
 	}
-	
+
 	@Test
 	public void testFindByUserId_UserIdNotFound() {
 		when(mockRepository.findByUserId("testuser")).thenReturn(Collections.emptyList());
@@ -162,7 +163,7 @@ public class IncomeServiceImplTest {
 
 		assertThrows(IncomeNotFoundException.class, () -> mockedService.findByUserIdAndMonth("newuserid", 6));
 	}
-	
+
 	@Test
 	public void testFindByUserIdAndMonth_NotFound() {
 		when(mockRepository.findByUserIdAndMonth("testuser", 4)).thenReturn(Collections.emptyList());
@@ -196,7 +197,7 @@ public class IncomeServiceImplTest {
 
 		assertThrows(IncomeNotFoundException.class, () -> mockedService.findByUserIdAndYear("newuserid", 2022));
 	}
-	
+
 	@Test
 	public void testFindByUserIdAndYear_NotFound() {
 		when(mockRepository.findByUserIdAndYear("testuser", 2023)).thenReturn(Collections.emptyList());
@@ -249,14 +250,14 @@ public class IncomeServiceImplTest {
 
 	@Test
 	public void testUpdateByIncomeId_Fail() {
-		
+
 		Income mockIncome = new Income("testuser", Date.valueOf("2023-01-01"), new BigDecimal(20000));
-		
+
 		when(mockRepository.findById(1)).thenReturn(Optional.empty());
 		assertThrows(IncomeNotFoundException.class, () -> mockedService.updateByIncomeId(1, mockIncome));
 		verify(mockRepository, never()).save(any(Income.class));
 	}
-	
+
 	@Test
 	public void testDeleteByIncomeId_IncomeIdFound()
 			throws IncomeNotFoundException, NullValueEnteredException, NotAStringException, InvalidDataFormatException {
@@ -291,7 +292,7 @@ public class IncomeServiceImplTest {
 		verify(mockRepository, times(1)).deleteById(1);
 		verify(mockRepository, times(1)).findById(1);
 	}
-	
+
 	@Test
 	public void testDeleteByIncomeId_IncomeIdNotFound() {
 		when(mockRepository.findById(1)).thenReturn(Optional.empty());

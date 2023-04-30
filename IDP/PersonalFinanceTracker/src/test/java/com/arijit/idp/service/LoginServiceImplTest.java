@@ -2,9 +2,9 @@ package com.arijit.idp.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -46,7 +46,6 @@ public class LoginServiceImplTest {
 	@Test
 	public void testSignup_signupSuccessfull() throws LoginAlreadyPresentException, LoginNotFoundException,
 			NotAStringException, InvalidDataFormatException, NullValueEnteredException {
-		// Mock the Login object
 		Login mockLogin = new Login();
 		mockLogin.setEmailId("test@example.com");
 		mockLogin.setPassword("tE$t1pass");
@@ -54,25 +53,20 @@ public class LoginServiceImplTest {
 		// Mock the UserIdGenerator
 		when(mockUserIdGenerator.generateUserId(mockLogin.getEmailId())).thenReturn("testuser");
 
-		// Call the LoginService method
 		loginServiceImpl.signup(mockLogin);
-		assertEquals(mockLogin.getUserId(), "testuser");
+		assertEquals("testuser", mockLogin.getUserId());
 
-		// Verify that the repository method was called with the correct argument
 		verify(mockLoginRepository).save(mockLogin);
 
-		// Find login data with the test user id
 		when(mockLoginRepository.findById("testuser")).thenReturn(Optional.of(mockLogin));
 		Login testLogin = loginServiceImpl.findLoginByUserId("testuser");
 
-		// Test if the Login worked with the data provided
 		assertEquals(mockLogin, testLogin);
 	}
 
 	@Test
 	public void testSignup_signupFailed() {
 
-		// Mock the Login object
 		Login mockLogin = new Login();
 		mockLogin.setUserId("testuser");
 		mockLogin.setEmailId("test@example.com");
@@ -80,8 +74,6 @@ public class LoginServiceImplTest {
 
 		// Mock the UserIdGenerator
 		when(mockUserIdGenerator.generateUserId(mockLogin.getEmailId())).thenReturn("testuser");
-
-		// Call the LoginService method
 
 		when(mockLoginRepository.existsById("testuser")).thenReturn(true);
 
@@ -91,7 +83,8 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByUserId_UserIdFound() throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
+	public void testFindLoginByUserId_UserIdFound()
+			throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
 
 		Login expectedLogin = new Login("test@example.com", "tE$t1pass");
 		expectedLogin.setUserId("testuser");
@@ -107,9 +100,10 @@ public class LoginServiceImplTest {
 		when(mockLoginRepository.findById("newuser")).thenReturn(Optional.empty());
 		assertThrows(LoginNotFoundException.class, () -> loginServiceImpl.findLoginByUserId("newuser"));
 	}
-	
+
 	@Test
-	public void testFindLoginByEmailId_EmailIdFound() throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
+	public void testFindLoginByEmailId_EmailIdFound()
+			throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
 
 		Login expectedLogin = new Login("test@example.com", "tE$t1pass");
 		expectedLogin.setUserId("testuser");
@@ -117,7 +111,7 @@ public class LoginServiceImplTest {
 		Login actualLogin = loginServiceImpl.findLoginByEmailId("test@example.com");
 		assertEquals(expectedLogin, actualLogin);
 	}
-	
+
 	@Test
 	public void testFindLoginByEmailId_EmailIdNotFound() {
 

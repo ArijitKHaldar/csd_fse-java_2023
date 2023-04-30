@@ -26,9 +26,13 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 
 	// Create
 	@Override
-	public Expenditure create(Expenditure expenditure) throws ExpenditureAlreadyPresentException {
+	public Expenditure create(Expenditure expenditure)
+			throws ExpenditureAlreadyPresentException, InvalidDataFormatException {
 		if (expenditureRepository.existsById(expenditure.getExpenditureId())) {
 			throw new ExpenditureAlreadyPresentException();
+		}
+		if (expenditure.getExpenditureAmount().doubleValue() < 0) {
+			throw new InvalidDataFormatException("Expenditure cannot be negative!");
 		}
 		Expenditure savedExpenditure = expenditureRepository.save(expenditure);
 		return savedExpenditure;

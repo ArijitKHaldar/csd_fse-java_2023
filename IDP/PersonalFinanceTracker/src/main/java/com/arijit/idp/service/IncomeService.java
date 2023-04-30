@@ -12,7 +12,7 @@ import com.arijit.idp.exception.NullValueEnteredException;
 public interface IncomeService {
 
 	// Create
-	public Income insertIncome(Income income) throws IncomeAlreadyPresentException;
+	public Income insertIncome(Income income) throws IncomeAlreadyPresentException, InvalidDataFormatException;
 
 	// Retrieve
 	public List<Income> findByUserId(String userId)

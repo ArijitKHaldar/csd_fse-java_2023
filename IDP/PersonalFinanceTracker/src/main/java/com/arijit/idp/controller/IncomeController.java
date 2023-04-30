@@ -34,7 +34,8 @@ public class IncomeController {
 
 	@ApiOperation(value = "Insert new Income credit for a user")
 	@PostMapping("/v1")
-	public ResponseEntity<Income> insertIncome(@RequestBody Income income) throws IncomeAlreadyPresentException {
+	public ResponseEntity<Income> insertIncome(@RequestBody Income income)
+			throws IncomeAlreadyPresentException, InvalidDataFormatException {
 		return new ResponseEntity<>(service.insertIncome(income), HttpStatus.CREATED);
 	}
 

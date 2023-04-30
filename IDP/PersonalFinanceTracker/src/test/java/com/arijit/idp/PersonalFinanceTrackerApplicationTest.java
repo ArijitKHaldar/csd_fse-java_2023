@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Suite
 @SuiteDisplayName("JUnit Tests For Personal Finance Tracker")
-@SelectPackages({ "com.arijit.idp.service" })
+@SelectPackages({ "com.arijit.idp.service", "com.arijit.idp.usecases" })
 @SpringBootTest
 public class PersonalFinanceTrackerApplicationTest {
 
