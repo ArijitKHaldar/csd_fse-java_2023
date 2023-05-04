@@ -357,4 +357,43 @@ public class ExpenditureServiceImplTest {
 		when(mockRepository.findById(anyInt())).thenReturn(Optional.empty());
 		assertThrows(ExpenditureNotFoundException.class, () -> mockedService.delete(1));
 	}
+
+	@Test
+	public void testDelete_Exceptions() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.delete(0));
+	}
+
+	@Test
+	public void testCreate_Exceptions() {
+		Expenditure expenditure = new Expenditure();
+		expenditure.setExpenditureAmount(new BigDecimal(-1));
+		assertThrows(InvalidDataFormatException.class, () -> mockedService.create(expenditure));
+	}
+
+	@Test
+	public void testFindByUserId_Exceptions() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserId(null));
+	}
+
+	@Test
+	public void testFindByUserIdAndExpenditureDate_Exceptions() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserIdAndExpenditureDate(null, null));
+	}
+
+	@Test
+	public void testFindByUserIdAndMonth_Exceptions() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserIdAndMonth(null, 5));
+		assertThrows(InvalidDataFormatException.class, () -> mockedService.findByUserIdAndMonth("testcode", 0));
+	}
+
+	@Test
+	public void testFindByUserIdAndYear_Exception() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserIdAndYear(null, 2023));
+		assertThrows(InvalidDataFormatException.class, () -> mockedService.findByUserIdAndYear("testcode", 0));
+	}
+
+	@Test
+	public void testUpdate_Exception() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.update(0, null));
+	}
 }

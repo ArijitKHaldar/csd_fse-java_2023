@@ -23,6 +23,8 @@ import com.arijit.idp.entity.Income;
 import com.arijit.idp.exception.ExpenditureNotFoundException;
 import com.arijit.idp.exception.IncomeNotFoundException;
 import com.arijit.idp.exception.InvalidDataFormatException;
+import com.arijit.idp.exception.NotAStringException;
+import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.ExpenditureServiceImpl;
 import com.arijit.idp.service.IncomeServiceImpl;
 
@@ -136,5 +138,29 @@ public class SavingsCalculationTest {
 		assertThrows(IncomeNotFoundException.class, () -> savingsCalculation.calculateYearlySavingsPercentage("userId", 2023));
 		
 		verify(incomeService).findByUserIdAndYear("userId", 2023);
+	}
+
+	@Test
+	public void testExceptionSituations() throws NullValueEnteredException, NotAStringException,
+			InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
+		List<Expenditure> expenditures = new ArrayList<>();
+		expenditures.add(new Expenditure("user1", 1, Date.valueOf("2023-04-02"), new BigDecimal("500")));
+		expenditures.add(new Expenditure("user1", 2, Date.valueOf("2023-04-12"), new BigDecimal("300")));
+
+		List<Income> incomes = new ArrayList<>();
+		incomes.add(new Income("user1", Date.valueOf("2023-04-02"), new BigDecimal("100")));
+		incomes.add(new Income("user1", Date.valueOf("2023-04-12"), new BigDecimal("200")));
+
+		when(expenditureService.findByUserIdAndYear(anyString(), anyInt())).thenReturn(expenditures);
+		when(incomeService.findByUserIdAndYear(anyString(), anyInt())).thenReturn(incomes);
+
+		assertThrows(InvalidDataFormatException.class,
+				() -> savingsCalculation.calculateYearlySavingsPercentage("userId", 2023));
+
+		when(expenditureService.findByUserIdAndMonth(anyString(), anyInt())).thenReturn(expenditures);
+		when(incomeService.findByUserIdAndMonth(anyString(), anyInt())).thenReturn(incomes);
+
+		assertThrows(InvalidDataFormatException.class,
+				() -> savingsCalculation.calculateMonthlySavingsPercentage("userId", 4));
 	}
 }

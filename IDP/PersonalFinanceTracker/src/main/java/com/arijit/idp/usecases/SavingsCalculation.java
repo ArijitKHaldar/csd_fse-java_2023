@@ -31,29 +31,8 @@ public class SavingsCalculation {
 		List<Expenditure> expenditures;
 		List<Income> incomes;
 
-		try {
-			expenditures = expenditureService.findByUserIdAndMonth(userId, month);
-		} catch (ExpenditureNotFoundException e) {
-			throw new ExpenditureNotFoundException("No expenditure found");
-		} catch (NullValueEnteredException | NotAStringException | InvalidDataFormatException e) {
-			if (e instanceof InvalidDataFormatException) {
-				throw new InvalidDataFormatException("Data entered has some problems");
-			} else {
-				throw e;
-			}
-		}
-
-		try {
-			incomes = incomeService.findByUserIdAndMonth(userId, month);
-		} catch (IncomeNotFoundException e) {
-			throw new IncomeNotFoundException("No income found");
-		} catch (NullValueEnteredException | NotAStringException | InvalidDataFormatException e) {
-			if (e instanceof InvalidDataFormatException) {
-				throw new InvalidDataFormatException("Data entered has some problems");
-			} else {
-				throw e;
-			}
-		}
+		expenditures = expenditureService.findByUserIdAndMonth(userId, month);
+		incomes = incomeService.findByUserIdAndMonth(userId, month);
 
 		double totalIncome = 0;
 		for (Income income : incomes) {
@@ -81,28 +60,8 @@ public class SavingsCalculation {
 		List<Expenditure> expenditures;
 		List<Income> incomes;
 
-		try {
-			expenditures = expenditureService.findByUserIdAndYear(userId, year);
-		} catch (ExpenditureNotFoundException e) {
-			throw new ExpenditureNotFoundException("No expenditure found");
-		} catch (NullValueEnteredException | NotAStringException | InvalidDataFormatException e) {
-			if (e instanceof InvalidDataFormatException) {
-				throw new InvalidDataFormatException("Data entered has some problems");
-			} else {
-				throw e;
-			}
-		}
-		try {
-			incomes = incomeService.findByUserIdAndYear(userId, year);
-		} catch (IncomeNotFoundException e) {
-			throw new IncomeNotFoundException("No income found");
-		} catch (NullValueEnteredException | NotAStringException | InvalidDataFormatException e) {
-			if (e instanceof InvalidDataFormatException) {
-				throw new InvalidDataFormatException("Data entered has some problems");
-			} else {
-				throw e;
-			}
-		}
+		expenditures = expenditureService.findByUserIdAndYear(userId, year);
+		incomes = incomeService.findByUserIdAndYear(userId, year);
 
 		double totalIncome = 0;
 		for (Income income : incomes) {

@@ -38,7 +38,7 @@ public class BudgetForecastingController {
 
 	@ExceptionHandler({ ExpenditureNotFoundException.class, IncomeNotFoundException.class,
 			InvalidDataFormatException.class, NotAStringException.class, NullValueEnteredException.class })
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String handleBadRequestException(Exception ex) {
 		return ex.getMessage();
 	}

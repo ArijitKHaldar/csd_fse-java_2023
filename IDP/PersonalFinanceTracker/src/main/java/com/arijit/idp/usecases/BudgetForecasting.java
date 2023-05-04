@@ -27,7 +27,8 @@ public class BudgetForecasting {
 	@Autowired
 	private ExpenditureServiceImpl expenditureService;
 
-	public double predictSavings(String userId, Date currentDate) throws Exception {
+	public double predictSavings(String userId, Date currentDate) throws NullValueEnteredException, NotAStringException,
+			InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
 
 		List<Expenditure> expenditures;
 		List<Income> incomes;
@@ -36,28 +37,9 @@ public class BudgetForecasting {
 		int currentMonth = localDate.getMonth().getValue();
 		int currentYear = localDate.getYear();
 
-		try {
-			expenditures = expenditureService.findByUserIdAndYear(userId, currentYear);
-		} catch (ExpenditureNotFoundException e) {
-			throw new ExpenditureNotFoundException("No expenditure found");
-		} catch (NullValueEnteredException | NotAStringException | InvalidDataFormatException e) {
-			if (e instanceof InvalidDataFormatException) {
-				throw new InvalidDataFormatException("Data entered has some problems");
-			} else {
-				throw e;
-			}
-		}
-		try {
-			incomes = incomeService.findByUserIdAndYear(userId, currentYear);
-		} catch (IncomeNotFoundException e) {
-			throw new IncomeNotFoundException("No income found");
-		} catch (NullValueEnteredException | NotAStringException | InvalidDataFormatException e) {
-			if (e instanceof InvalidDataFormatException) {
-				throw new InvalidDataFormatException("Data entered has some problems");
-			} else {
-				throw e;
-			}
-		}
+		expenditures = expenditureService.findByUserIdAndYear(userId, currentYear);
+
+		incomes = incomeService.findByUserIdAndYear(userId, currentYear);
 
 		double totalIncome = 0;
 		for (Income income : incomes) {

@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -298,5 +299,45 @@ public class IncomeServiceImplTest {
 		when(mockRepository.findById(1)).thenReturn(Optional.empty());
 		assertThrows(IncomeNotFoundException.class, () -> mockedService.deleteByIncomeId(1));
 		verify(mockRepository, never()).deleteById(1);
+	}
+
+	@Test
+	public void insertIncome_IncomeNegative() {
+		Income income = new Income();
+		income.setIncomeAmount(new BigDecimal(-1));
+		when(mockRepository.existsById(Mockito.anyInt())).thenReturn(false);
+		assertThrows(InvalidDataFormatException.class, () -> mockedService.insertIncome(income));
+	}
+
+	@Test
+	public void findByUserId_UserIdNotPresent() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserId(null));
+	}
+
+	@Test
+	public void findByUserIdAndMonth_UserIdNotPresent() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserIdAndMonth(null, 1));
+	}
+
+	@Test
+	public void findByUserIdAndMonth_ExceptionThrown() {
+		assertThrows(InvalidDataFormatException.class, () -> mockedService.findByUserIdAndMonth("testid", 0));
+	}
+
+	@Test
+	public void findByUserIdAndYear_Exceptions() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserIdAndYear(null, 1));
+		assertThrows(InvalidDataFormatException.class, () -> mockedService.findByUserIdAndYear("testid", 1));
+	}
+
+	@Test
+	public void updateByIncomeId_Exceptions() {
+		Income income = new Income();
+		assertThrows(NullValueEnteredException.class, () -> mockedService.updateByIncomeId(0, income));
+	}
+
+	@Test
+	public void deleteByIncomeId_Exceptions() {
+		assertThrows(NullValueEnteredException.class, () -> mockedService.deleteByIncomeId(0));
 	}
 }

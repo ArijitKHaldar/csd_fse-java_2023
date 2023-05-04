@@ -6,22 +6,17 @@ import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Component
 public class UserIdGenerator {
+
 	private String userId;
-
-	public UserIdGenerator() {
-		super();
-	}
-
-	public UserIdGenerator(String userId) {
-		super();
-		this.userId = userId;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
 
 	public String generateUserId(String emailId) {
 

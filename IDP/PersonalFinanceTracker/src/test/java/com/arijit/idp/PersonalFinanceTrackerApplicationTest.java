@@ -1,10 +1,14 @@
 package com.arijit.idp;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;
 import org.junit.platform.suite.api.SuiteDisplayName;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 
 @Suite
 @SuiteDisplayName("JUnit Tests For Personal Finance Tracker")
@@ -12,8 +16,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class PersonalFinanceTrackerApplicationTest {
 
+	@Autowired
+	private ApplicationContext context;
+
 	@Test
 	void contextLoads() {
-
+		assertThat(context).isNotNull();
 	}
 }

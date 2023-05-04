@@ -1,6 +1,7 @@
 package com.arijit.idp.usecases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
@@ -19,6 +20,9 @@ import com.arijit.idp.entity.Expenditure;
 import com.arijit.idp.entity.Income;
 import com.arijit.idp.exception.ExpenditureNotFoundException;
 import com.arijit.idp.exception.IncomeNotFoundException;
+import com.arijit.idp.exception.InvalidDataFormatException;
+import com.arijit.idp.exception.NotAStringException;
+import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.ExpenditureServiceImpl;
 import com.arijit.idp.service.IncomeServiceImpl;
 
@@ -85,5 +89,24 @@ public class BudgetForecastingTest {
 					mockedService.predictSavings(userId, date);
 				});
 		assertEquals("No income found", thrown.getMessage());
+	}
+
+	@Test
+	public void testExceptionCase() throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
+			IncomeNotFoundException, ExpenditureNotFoundException {
+		String userId = "user1";
+		LocalDate currentDate = LocalDate.of(2023, 1, 13);
+		Date date = Date.valueOf(currentDate);
+		List<Income> incomes = new ArrayList<>();
+		incomes.add(new Income(userId, Date.valueOf("2023-01-02"), new BigDecimal("500")));
+		incomes.add(new Income(userId, Date.valueOf("2023-01-12"), new BigDecimal("300")));
+		List<Expenditure> expenditures = new ArrayList<>();
+		expenditures.add(new Expenditure(userId, 1, Date.valueOf("2023-01-02"), new BigDecimal("1000")));
+		expenditures.add(new Expenditure(userId, 2, Date.valueOf("2023-01-12"), new BigDecimal("1500")));
+		when(incomeService.findByUserIdAndYear(userId, currentDate.getYear())).thenReturn(incomes);
+		when(expenditureService.findByUserIdAndYear(userId, currentDate.getYear())).thenReturn(expenditures);
+
+		assertThrows(InvalidDataFormatException.class, () -> mockedService.predictSavings(userId, date));
+
 	}
 }

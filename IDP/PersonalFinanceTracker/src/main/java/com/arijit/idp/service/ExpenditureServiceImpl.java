@@ -1,10 +1,8 @@
 package com.arijit.idp.service;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,9 +43,6 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
-		if (!(userId instanceof String)) {
-			throw new NotAStringException("The entered password is not a String value");
-		}
 
 		List<Expenditure> expendituresByUserId = expenditureRepository.findByUserId(userId);
 		if (expendituresByUserId.isEmpty()) {
@@ -64,15 +59,12 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
-		if (!(userId instanceof String)) {
-			throw new NotAStringException("The entered password is not a String value");
-		}
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String dateString = dateFormat.format(expenditureDate);
-		if (!Pattern.matches("\\d{4}-\\d{2}-\\d{2}", dateString)) {
-			throw new InvalidDataFormatException("Date should be in YYYY-MM-DD format");
-		}
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		String dateString = dateFormat.format(expenditureDate);
+//		if (!Pattern.matches("\\d{4}-\\d{2}-\\d{2}", dateString)) {
+//			throw new IllegalArgumentException("Date should be in YYYY-MM-DD format");
+//		}
 
 		List<Expenditure> expendituresByUserIdAndDate = expenditureRepository.findByUserIdAndExpenditureDate(userId,
 				expenditureDate);
@@ -89,10 +81,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
-		if (!(userId instanceof String)) {
-			throw new NotAStringException("The entered password is not a String value");
-		}
-		if ((!(Integer.valueOf(month) instanceof Integer)) || month < 1 || month > 12) {
+		if (month < 1 || month > 12) {
 			throw new InvalidDataFormatException("Month should be between 1 to 12");
 		}
 		List<Expenditure> expendituresByUserIdAndMonth = expenditureRepository.findByUserIdAndMonth(userId, month);
@@ -109,10 +98,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
-		if (!(userId instanceof String)) {
-			throw new NotAStringException("The entered password is not a String value");
-		}
-		if ((!(Integer.valueOf(year) instanceof Integer)) || year < 1000 || year > 9999) {
+		if (year < 1000 || year > 9999) {
 			throw new InvalidDataFormatException("Invalid year entered");
 		}
 
@@ -143,9 +129,6 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		if (expenditureId == 0) {
 			throw new NullValueEnteredException("Expenditure Id cannot be empty");
 		}
-		if (!(Integer.valueOf(expenditureId) instanceof Integer)) {
-			throw new InvalidDataFormatException();
-		}
 
 		Optional<Expenditure> existingExpenditure = expenditureRepository.findById(expenditureId);
 		if (!existingExpenditure.isPresent()) {
@@ -166,9 +149,6 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 
 		if (expenditureId == 0) {
 			throw new NullValueEnteredException("Expenditure Id cannot be empty");
-		}
-		if (!(Integer.valueOf(expenditureId) instanceof Integer)) {
-			throw new InvalidDataFormatException();
 		}
 		Expenditure expenditure = expenditureRepository.findById(expenditureId).orElseThrow(
 				() -> new ExpenditureNotFoundException("Expenditure not found with expenditure id " + expenditureId));

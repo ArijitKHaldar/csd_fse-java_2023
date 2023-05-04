@@ -14,7 +14,6 @@ import com.arijit.idp.entity.Login;
 import com.arijit.idp.exception.InvalidDataFormatException;
 import com.arijit.idp.exception.LoginAlreadyPresentException;
 import com.arijit.idp.exception.LoginNotFoundException;
-import com.arijit.idp.exception.NotAStringException;
 import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.LoginService;
 
@@ -29,22 +28,22 @@ public class LoginController {
 
 	@ApiOperation(value = "Signup with user id and password")
 	@PostMapping("/v1")
-	public ResponseEntity<Login> signup(@RequestBody Login login) throws LoginAlreadyPresentException, NotAStringException,
-			InvalidDataFormatException, NullValueEnteredException {
+	public ResponseEntity<Login> signup(@RequestBody Login login)
+			throws LoginAlreadyPresentException, InvalidDataFormatException, NullValueEnteredException {
 		return new ResponseEntity<>(service.signup(login), HttpStatus.CREATED);
 	}
 
 	@ApiOperation(value = "Retrieve data based on entered user id")
 	@GetMapping("/v1/userid/{userId}")
 	public ResponseEntity<Login> findLoginByUserId(@PathVariable String userId)
-			throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
+			throws LoginNotFoundException, NullValueEnteredException {
 		return new ResponseEntity<>(service.findLoginByUserId(userId), HttpStatus.FOUND);
 	}
 
 	@ApiOperation(value = "Retrieve data based on entered user id")
 	@GetMapping("/v1/email/{emailId}")
 	public ResponseEntity<Login> findLoginByEmailId(@PathVariable String emailId)
-			throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
+			throws LoginNotFoundException, NullValueEnteredException {
 		return new ResponseEntity<>(service.findLoginByEmailId(emailId), HttpStatus.FOUND);
 	}
 }

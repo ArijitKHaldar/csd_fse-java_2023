@@ -120,4 +120,29 @@ public class LoginServiceImplTest {
 		when(mockLoginRepository.findByEmailId("new@example.com")).thenReturn(null);
 		assertThrows(LoginNotFoundException.class, () -> loginServiceImpl.findLoginByEmailId("new@example.com"));
 	}
+
+	@Test
+	public void testSignup_NullValueEnteredException() {
+		Login login = new Login(null, "test123");
+		assertThrows(NullValueEnteredException.class, () -> loginServiceImpl.signup(login));
+
+		Login login1 = new Login("test123@mail.com", null);
+		assertThrows(NullValueEnteredException.class, () -> loginServiceImpl.signup(login1));
+
+		Login login2 = new Login("test123", "testpass");
+		assertThrows(InvalidDataFormatException.class, () -> loginServiceImpl.signup(login2));
+
+		Login login3 = new Login("test123@mail.com", "testpass");
+		assertThrows(InvalidDataFormatException.class, () -> loginServiceImpl.signup(login3));
+	}
+
+	@Test
+	public void testFindByUserId_NullValue() {
+		assertThrows(NullValueEnteredException.class, () -> loginServiceImpl.findLoginByUserId(null));
+	}
+
+	@Test
+	public void testFindByEmail_NullValue() {
+		assertThrows(NullValueEnteredException.class, () -> loginServiceImpl.findLoginByEmailId(null));
+	}
 }

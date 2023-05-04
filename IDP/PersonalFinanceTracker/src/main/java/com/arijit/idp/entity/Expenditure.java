@@ -15,14 +15,12 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @ToString
 @Entity
@@ -38,7 +36,7 @@ public class Expenditure {
 	@Column(name = "user_id", nullable = false)
 	private String userId; // Foreign key column linking Login
 
-	@Setter
+	// @Setter
 	@ManyToOne(fetch = FetchType.LAZY) // Many Expenditure for one Login or user
 	@JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
 	@JsonIgnore

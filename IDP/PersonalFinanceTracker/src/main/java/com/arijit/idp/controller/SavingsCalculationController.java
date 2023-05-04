@@ -18,51 +18,28 @@ import com.arijit.idp.usecases.SavingsCalculation;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/savings/calculation/v1")
 public class SavingsCalculationController {
 
 	@Autowired
 	private SavingsCalculation savingsCalculation;
 
 	@ApiOperation(value = "Calculate Monthly Percentage of Savings")
-	@GetMapping("/savings/calculation/user/{userId}/savings/month/{month}")
-	public ResponseEntity<?> calculateMonthlySavingsPercentage(@PathVariable String userId, @PathVariable int month) {
-		try {
-			double savingsPercentage = savingsCalculation.calculateMonthlySavingsPercentage(userId, month);
-			return ResponseEntity.ok(savingsPercentage);
-		} catch (NullValueEnteredException | NotAStringException | InvalidDataFormatException e) {
-			if (e instanceof InvalidDataFormatException) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-			} else {
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-			}
-		} catch (ExpenditureNotFoundException | IncomeNotFoundException e) {
-			if (e instanceof ExpenditureNotFoundException) {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-			}
-		}
+	@GetMapping("/user/{userId}/savings/month/{month}")
+	public ResponseEntity<Double> calculateMonthlySavingsPercentage(@PathVariable String userId,
+			@PathVariable int month) throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
+			ExpenditureNotFoundException, IncomeNotFoundException {
+		double savingsPercentage = savingsCalculation.calculateMonthlySavingsPercentage(userId, month);
+		return new ResponseEntity<>(savingsPercentage, HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Calculate Yearly Percentage of Savings")
 	@GetMapping("/user/{userId}/savings/year/{year}")
-	public ResponseEntity<?> calculateYearlySavingsPercentage(@PathVariable String userId, @PathVariable int year) {
-		try {
-			double savingsPercentage = savingsCalculation.calculateYearlySavingsPercentage(userId, year);
-			return ResponseEntity.ok(savingsPercentage);
-		} catch (NullValueEnteredException | NotAStringException | InvalidDataFormatException e) {
-			if (e instanceof InvalidDataFormatException) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-			} else {
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-			}
-		} catch (ExpenditureNotFoundException | IncomeNotFoundException e) {
-			if (e instanceof ExpenditureNotFoundException) {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-			}
-		}
+	public ResponseEntity<?> calculateYearlySavingsPercentage(@PathVariable String userId, @PathVariable int year)
+			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
+			ExpenditureNotFoundException, IncomeNotFoundException {
+
+		double savingsPercentage = savingsCalculation.calculateYearlySavingsPercentage(userId, year);
+		return new ResponseEntity<>(savingsPercentage, HttpStatus.OK);
 	}
 }

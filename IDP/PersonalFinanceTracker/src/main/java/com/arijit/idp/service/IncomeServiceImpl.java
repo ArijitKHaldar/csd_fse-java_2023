@@ -41,9 +41,6 @@ public class IncomeServiceImpl implements IncomeService {
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
-		if (!(userId instanceof String)) {
-			throw new NotAStringException("The entered password is not a String value");
-		}
 		List<Income> incomeByUserId = incomeRepository.findByUserId(userId);
 		if (incomeByUserId.isEmpty()) {
 			throw new IncomeNotFoundException();
@@ -57,9 +54,6 @@ public class IncomeServiceImpl implements IncomeService {
 
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
-		}
-		if (!(userId instanceof String)) {
-			throw new NotAStringException("The entered password is not a String value");
 		}
 		if ((!(Integer.valueOf(month) instanceof Integer)) || month < 1 || month > 12) {
 			throw new InvalidDataFormatException("Month should be between 1 to 12");
@@ -77,9 +71,6 @@ public class IncomeServiceImpl implements IncomeService {
 
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
-		}
-		if (!(userId instanceof String)) {
-			throw new NotAStringException("The entered password is not a String value");
 		}
 		if ((!(Integer.valueOf(year) instanceof Integer)) || year < 1000 || year > 9999) {
 			throw new InvalidDataFormatException("Invalid year entered");
@@ -99,9 +90,6 @@ public class IncomeServiceImpl implements IncomeService {
 
 		if (incomeId == 0) {
 			throw new NullValueEnteredException("Income Id cannot be empty");
-		}
-		if (!(Integer.valueOf(incomeId) instanceof Integer)) {
-			throw new InvalidDataFormatException();
 		}
 		Optional<Income> existingIncome = incomeRepository.findById(incomeId);
 		Income newIncome = null;
@@ -123,9 +111,6 @@ public class IncomeServiceImpl implements IncomeService {
 
 		if (incomeId == 0) {
 			throw new NullValueEnteredException("Income Id cannot be empty");
-		}
-		if (!(Integer.valueOf(incomeId) instanceof Integer)) {
-			throw new InvalidDataFormatException();
 		}
 		Optional<Income> existingIncome = incomeRepository.findById(incomeId);
 		if (existingIncome.isPresent()) {
