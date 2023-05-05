@@ -14,6 +14,9 @@ import com.arijit.idp.exception.NotAStringException;
 import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.repository.IncomeRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class IncomeServiceImpl implements IncomeService {
 
@@ -24,6 +27,7 @@ public class IncomeServiceImpl implements IncomeService {
 	@Override
 	public Income insertIncome(Income income) throws IncomeAlreadyPresentException, InvalidDataFormatException {
 
+		log.info("Inserting income {}", income);
 		if (incomeRepository.existsById(income.getIncomeId())) {
 			throw new IncomeAlreadyPresentException();
 		}
@@ -38,6 +42,7 @@ public class IncomeServiceImpl implements IncomeService {
 	public List<Income> findByUserId(String userId)
 			throws IncomeNotFoundException, NullValueEnteredException, NotAStringException {
 
+		log.info("Finding incomes for user {}", userId);
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
@@ -51,6 +56,8 @@ public class IncomeServiceImpl implements IncomeService {
 	@Override
 	public List<Income> findByUserIdAndMonth(String userId, int month)
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {
+
+		log.info("Finding incomes for user {} and month {}", userId, month);
 
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
@@ -69,6 +76,7 @@ public class IncomeServiceImpl implements IncomeService {
 	public List<Income> findByUserIdAndYear(String userId, int year)
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {
 
+		log.info("Finding incomes for user {} and year {}", userId, year);
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
@@ -88,6 +96,7 @@ public class IncomeServiceImpl implements IncomeService {
 	public Income updateByIncomeId(int incomeId, Income updatedIncome)
 			throws NullValueEnteredException, InvalidDataFormatException, IncomeNotFoundException {
 
+		log.info("Updating income with incomeId: {}", incomeId);
 		if (incomeId == 0) {
 			throw new NullValueEnteredException("Income Id cannot be empty");
 		}
@@ -109,6 +118,7 @@ public class IncomeServiceImpl implements IncomeService {
 	public void deleteByIncomeId(int incomeId)
 			throws NullValueEnteredException, InvalidDataFormatException, IncomeNotFoundException {
 
+		log.info("Deleting income with incomeId: {}", incomeId);
 		if (incomeId == 0) {
 			throw new NullValueEnteredException("Income Id cannot be empty");
 		}

@@ -18,7 +18,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.usecases.FinancialGoal;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 public class FinancialGoalController {
@@ -31,6 +33,8 @@ public class FinancialGoalController {
 	public ResponseEntity<Double> calculateSavingsCompletion(@PathVariable String userId, @PathVariable Date date,
 			@PathVariable double savingsGoalAmount) throws NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
+
+		log.info("Received request to calculate percentage completion of financial goal for user: {}", userId);
 
 		double percentageCompletion = financialGoal.calculateSavingsCompletion(userId, date, savingsGoalAmount);
 

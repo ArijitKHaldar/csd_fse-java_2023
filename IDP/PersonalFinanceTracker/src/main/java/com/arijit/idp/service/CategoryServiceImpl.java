@@ -10,6 +10,9 @@ import com.arijit.idp.exception.CategoryAlreadyPresentException;
 import com.arijit.idp.exception.CategoryNotFoundException;
 import com.arijit.idp.repository.CategoryRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -20,6 +23,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Category create(Category category) throws CategoryAlreadyPresentException {
 
+		log.info("Inserting category: {}", category);
 		List<Category> categories = categoryRepository.findAll();
 		for (Category existingCategory : categories) {
 			if (existingCategory.getExpenditureTag().equalsIgnoreCase(category.getExpenditureTag())) {
@@ -36,6 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
 	// Retrieve
 	@Override
 	public List<Category> findAllExpenditureTags() throws CategoryNotFoundException {
+		log.info("Find all categories");
 		List<Category> category = categoryRepository.findAll();
 		if (category.isEmpty()) {
 			throw new CategoryNotFoundException();
@@ -46,6 +51,8 @@ public class CategoryServiceImpl implements CategoryService {
 	// Delete
 	@Override
 	public void deleteByExpenditureTag(String expenditureTag) throws CategoryNotFoundException {
+
+		log.info("Deleting by expenditure category: {}", expenditureTag);
 		Category category = categoryRepository.findByExpenditureTagIgnoreCase(expenditureTag);
 		if (category == null) {
 			throw new CategoryNotFoundException();

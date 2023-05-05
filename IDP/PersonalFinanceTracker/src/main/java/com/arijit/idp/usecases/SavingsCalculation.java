@@ -16,6 +16,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.ExpenditureServiceImpl;
 import com.arijit.idp.service.IncomeServiceImpl;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class SavingsCalculation {
 
@@ -28,6 +31,7 @@ public class SavingsCalculation {
 	public double calculateMonthlySavingsPercentage(String userId, int month) throws NullValueEnteredException,
 			NotAStringException, InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
 
+		log.info("Calculate monthly percentage savings for user: {}", userId);
 		List<Expenditure> expenditures;
 		List<Income> incomes;
 
@@ -56,6 +60,8 @@ public class SavingsCalculation {
 
 	public Double calculateYearlySavingsPercentage(String userId, int year) throws NullValueEnteredException,
 			NotAStringException, InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
+
+		log.info("Calculate yearly percentage savings for user: {}", userId);
 
 		List<Expenditure> expenditures;
 		List<Income> incomes;

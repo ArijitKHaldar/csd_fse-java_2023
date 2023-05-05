@@ -20,6 +20,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.ExpenditureServiceImpl;
 import com.arijit.idp.service.IncomeServiceImpl;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class FinancialGoal {
 
@@ -32,6 +35,8 @@ public class FinancialGoal {
 	public double calculateSavingsCompletion(String userId, Date date, double savingsGoalAmount)
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
 			ExpenditureNotFoundException, IncomeNotFoundException {
+
+		log.info("Calculate percentage completion of financial goal for user: {}", userId);
 		LocalDate enteredDate = date.toLocalDate();
 		LocalDate currentDate = LocalDate.now();
 		int currentYear = LocalDate.now().getYear();

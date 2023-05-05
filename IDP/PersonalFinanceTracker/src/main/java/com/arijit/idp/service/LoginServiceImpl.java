@@ -12,6 +12,9 @@ import com.arijit.idp.helpermodules.InputValidator;
 import com.arijit.idp.helpermodules.UserIdGenerator;
 import com.arijit.idp.repository.LoginRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class LoginServiceImpl implements LoginService {
 
@@ -24,6 +27,9 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Login signup(Login loginWithoutUserId)
 			throws LoginAlreadyPresentException, InvalidDataFormatException, NullValueEnteredException {
+
+		log.info("Entering signup method: {}", loginWithoutUserId);
+
 		Login login = loginWithoutUserId;
 		if (loginWithoutUserId.getEmailId() == null || loginWithoutUserId.getEmailId().isEmpty()) {
 			throw new NullValueEnteredException("Email id cannot be empty");
@@ -49,6 +55,8 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Login findLoginByUserId(String userId) throws LoginNotFoundException, NullValueEnteredException {
 
+		log.info("Entering findLoginByUserId method with userId: {}", userId);
+
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
@@ -62,6 +70,8 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public Login findLoginByEmailId(String emailId) throws LoginNotFoundException, NullValueEnteredException {
+
+		log.info("Entering findLoginByEmailId method with emailId: {}", emailId);
 
 		if (emailId == null || emailId.isEmpty()) {
 			throw new NullValueEnteredException("Email Id cannot be empty");

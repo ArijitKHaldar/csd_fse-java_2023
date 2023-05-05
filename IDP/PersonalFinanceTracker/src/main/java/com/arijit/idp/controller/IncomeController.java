@@ -24,7 +24,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.IncomeService;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/income")
 public class IncomeController {
@@ -36,6 +38,8 @@ public class IncomeController {
 	@PostMapping("/v1")
 	public ResponseEntity<Income> insertIncome(@RequestBody Income income)
 			throws IncomeAlreadyPresentException, InvalidDataFormatException {
+
+		log.info("Received insert income request for userId: {}", income.getUserId());
 		return new ResponseEntity<>(service.insertIncome(income), HttpStatus.CREATED);
 	}
 
@@ -43,6 +47,8 @@ public class IncomeController {
 	@GetMapping("/v1/userid/{userId}")
 	public ResponseEntity<List<Income>> findByUserId(@PathVariable String userId)
 			throws IncomeNotFoundException, NullValueEnteredException, NotAStringException {
+
+		log.info("Received find income request for userId: {}", userId);
 		return new ResponseEntity<>(service.findByUserId(userId), HttpStatus.FOUND);
 	}
 
@@ -50,6 +56,8 @@ public class IncomeController {
 	@GetMapping("/v1/userid/{userId}/month/{month}")
 	public ResponseEntity<List<Income>> findByUserIdAndMonth(@PathVariable String userId, @PathVariable int month)
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {
+
+		log.info("Received find income request for userId: {} and month: {}", userId, month);
 		return new ResponseEntity<>(service.findByUserIdAndMonth(userId, month), HttpStatus.FOUND);
 	}
 
@@ -57,6 +65,8 @@ public class IncomeController {
 	@GetMapping("/v1/userid/{userId}/year/{year}")
 	public ResponseEntity<List<Income>> findByUserIdAndYear(@PathVariable String userId, @PathVariable int year)
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {
+
+		log.info("Received find income request for userId: {} and year: {}", userId, year);
 		return new ResponseEntity<>(service.findByUserIdAndYear(userId, year), HttpStatus.FOUND);
 	}
 
@@ -64,6 +74,8 @@ public class IncomeController {
 	@PutMapping("/v1/update")
 	public ResponseEntity<Income> updateByIncomeId(@RequestParam int incomeId, @RequestBody Income updatedIncome)
 			throws NullValueEnteredException, InvalidDataFormatException, IncomeNotFoundException {
+
+		log.info("Received update request by income id: {}", incomeId);
 		return new ResponseEntity<>(service.updateByIncomeId(incomeId, updatedIncome), HttpStatus.OK);
 	}
 
@@ -71,6 +83,8 @@ public class IncomeController {
 	@DeleteMapping("/v1/delete/id/{incomeId}")
 	public ResponseEntity<Object> deleteByIncomeId(@PathVariable int incomeId)
 			throws NullValueEnteredException, InvalidDataFormatException, IncomeNotFoundException {
+
+		log.info("Received delete request by income id: {}", incomeId);
 		service.deleteByIncomeId(incomeId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

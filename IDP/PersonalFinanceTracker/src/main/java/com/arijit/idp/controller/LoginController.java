@@ -18,7 +18,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.LoginService;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
@@ -30,6 +32,9 @@ public class LoginController {
 	@PostMapping("/v1")
 	public ResponseEntity<Login> signup(@RequestBody Login login)
 			throws LoginAlreadyPresentException, InvalidDataFormatException, NullValueEnteredException {
+
+		log.info("Received signup request for userId: {}", login.getUserId());
+
 		return new ResponseEntity<>(service.signup(login), HttpStatus.CREATED);
 	}
 
@@ -37,6 +42,9 @@ public class LoginController {
 	@GetMapping("/v1/userid/{userId}")
 	public ResponseEntity<Login> findLoginByUserId(@PathVariable String userId)
 			throws LoginNotFoundException, NullValueEnteredException {
+
+		log.info("Received findLoginByUserId request for userId: {}", userId);
+
 		return new ResponseEntity<>(service.findLoginByUserId(userId), HttpStatus.FOUND);
 	}
 
@@ -44,6 +52,9 @@ public class LoginController {
 	@GetMapping("/v1/email/{emailId}")
 	public ResponseEntity<Login> findLoginByEmailId(@PathVariable String emailId)
 			throws LoginNotFoundException, NullValueEnteredException {
+
+		log.info("Received findLoginByEmailId request for emailId: {}", emailId);
+
 		return new ResponseEntity<>(service.findLoginByEmailId(emailId), HttpStatus.FOUND);
 	}
 }

@@ -16,6 +16,9 @@ import com.arijit.idp.exception.NotAStringException;
 import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.repository.ExpenditureRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ExpenditureServiceImpl implements ExpenditureService {
 
@@ -26,6 +29,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	@Override
 	public Expenditure create(Expenditure expenditure)
 			throws ExpenditureAlreadyPresentException, InvalidDataFormatException {
+		log.info("Inserting expenditure: {}", expenditure);
 		if (expenditureRepository.existsById(expenditure.getExpenditureId())) {
 			throw new ExpenditureAlreadyPresentException();
 		}
@@ -40,6 +44,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	@Override
 	public List<Expenditure> findByUserId(String userId)
 			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException {
+		log.info("Finding expenditures by userId: {}", userId);
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
@@ -55,6 +60,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	public List<Expenditure> findByUserIdAndExpenditureDate(String userId, Date expenditureDate)
 			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException {
+		log.info("Finding expenditures by userId: {} and date: {}", userId, expenditureDate);
 
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
@@ -78,6 +84,8 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	public List<Expenditure> findByUserIdAndMonth(String userId, int month) throws NullValueEnteredException,
 			NotAStringException, InvalidDataFormatException, ExpenditureNotFoundException {
 
+		log.info("Finding expenditures by userId: {} and month: {}", userId, month);
+
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
@@ -95,6 +103,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	public List<Expenditure> findByUserIdAndYear(String userId, int year) throws NullValueEnteredException,
 			NotAStringException, InvalidDataFormatException, ExpenditureNotFoundException {
 
+		log.info("Finding expenditures by userId: {} and year: {}", userId, year);
 		if (userId == null || userId.isEmpty()) {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
@@ -112,6 +121,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	@Override
 	public List<Expenditure> findByUserIdAndExpenditureType(String userId, String expenditureTag)
 			throws ExpenditureNotFoundException, CategoryNotFoundException {
+		log.info("Finding expenditures by userId: {} and category: {}", userId, expenditureTag);
 		if (expenditureRepository.findByUserId(userId).isEmpty()) {
 			throw new ExpenditureNotFoundException();
 		}
@@ -126,6 +136,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	public Expenditure update(int expenditureId, Expenditure expenditure)
 			throws NullValueEnteredException, InvalidDataFormatException, ExpenditureNotFoundException {
 
+		log.info("Updating expenditure with expenditureId: {}", expenditureId);
 		if (expenditureId == 0) {
 			throw new NullValueEnteredException("Expenditure Id cannot be empty");
 		}
@@ -147,6 +158,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	public void delete(int expenditureId)
 			throws NullValueEnteredException, InvalidDataFormatException, ExpenditureNotFoundException {
 
+		log.info("Deleting expenditure with expenditureId: {}", expenditureId);
 		if (expenditureId == 0) {
 			throw new NullValueEnteredException("Expenditure Id cannot be empty");
 		}

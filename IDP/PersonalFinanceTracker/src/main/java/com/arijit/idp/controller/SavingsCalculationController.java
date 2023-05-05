@@ -16,7 +16,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.usecases.SavingsCalculation;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/savings/calculation/v1")
 public class SavingsCalculationController {
@@ -29,6 +31,9 @@ public class SavingsCalculationController {
 	public ResponseEntity<Double> calculateMonthlySavingsPercentage(@PathVariable String userId,
 			@PathVariable int month) throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
 			ExpenditureNotFoundException, IncomeNotFoundException {
+
+		log.info("Received request to calculate monthly savings percentage for user: {}", userId);
+
 		double savingsPercentage = savingsCalculation.calculateMonthlySavingsPercentage(userId, month);
 		return new ResponseEntity<>(savingsPercentage, HttpStatus.OK);
 	}
@@ -38,6 +43,8 @@ public class SavingsCalculationController {
 	public ResponseEntity<?> calculateYearlySavingsPercentage(@PathVariable String userId, @PathVariable int year)
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
 			ExpenditureNotFoundException, IncomeNotFoundException {
+
+		log.info("Received request to calculate yearly savings percentage for user: {}", userId);
 
 		double savingsPercentage = savingsCalculation.calculateYearlySavingsPercentage(userId, year);
 		return new ResponseEntity<>(savingsPercentage, HttpStatus.OK);

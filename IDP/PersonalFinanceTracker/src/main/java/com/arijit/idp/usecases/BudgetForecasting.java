@@ -18,6 +18,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.ExpenditureServiceImpl;
 import com.arijit.idp.service.IncomeServiceImpl;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class BudgetForecasting {
 
@@ -30,6 +33,7 @@ public class BudgetForecasting {
 	public double predictSavings(String userId, Date currentDate) throws NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
 
+		log.info("Predict savings for User: {}", userId);
 		List<Expenditure> expenditures;
 		List<Income> incomes;
 

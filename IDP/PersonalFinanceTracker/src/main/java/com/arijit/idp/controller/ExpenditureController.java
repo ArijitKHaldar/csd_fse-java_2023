@@ -26,7 +26,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.service.ExpenditureService;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/expenditure")
 public class ExpenditureController {
@@ -38,6 +40,9 @@ public class ExpenditureController {
 	@PostMapping("/v1")
 	public ResponseEntity<Expenditure> create(@RequestBody Expenditure expenditure)
 			throws ExpenditureAlreadyPresentException, InvalidDataFormatException {
+
+		log.info("Creating new expenditure for user: {}", expenditure.getUserId());
+
 		Expenditure exp = this.service.create(expenditure);
 		return new ResponseEntity<>(exp, HttpStatus.CREATED);
 	}
@@ -46,6 +51,9 @@ public class ExpenditureController {
 	@GetMapping("/v1/userid/{userId}")
 	public ResponseEntity<List<Expenditure>> findByUserId(@PathVariable String userId)
 			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException {
+
+		log.info("Finding all expenditures for user: {}", userId);
+
 		return new ResponseEntity<>(this.service.findByUserId(userId), HttpStatus.FOUND);
 	}
 
@@ -54,6 +62,9 @@ public class ExpenditureController {
 	public ResponseEntity<List<Expenditure>> findByUserIdAndExpenditureDate(@PathVariable String userId,
 			@PathVariable Date expenditureDate) throws ExpenditureNotFoundException, NullValueEnteredException,
 			NotAStringException, InvalidDataFormatException {
+
+		log.info("Finding all expenditures for user: {} on date: {}", userId, expenditureDate);
+
 		return new ResponseEntity<>(this.service.findByUserIdAndExpenditureDate(userId, expenditureDate),
 				HttpStatus.FOUND);
 	}
@@ -63,6 +74,9 @@ public class ExpenditureController {
 	public ResponseEntity<List<Expenditure>> findByUserIdAndMonth(@PathVariable String userId, @PathVariable int month)
 			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException {
+
+		log.info("Finding all expenditures for user: {} in month: {}", userId, month);
+
 		return new ResponseEntity<>(this.service.findByUserIdAndMonth(userId, month), HttpStatus.FOUND);
 	}
 
@@ -71,6 +85,9 @@ public class ExpenditureController {
 	public ResponseEntity<List<Expenditure>> findByUserIdAndYear(@PathVariable String userId, @PathVariable int year)
 			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException {
+
+		log.info("Finding all expenditures for user: {} in year: {}", userId, year);
+
 		return new ResponseEntity<>(this.service.findByUserIdAndYear(userId, year), HttpStatus.FOUND);
 	}
 
@@ -78,6 +95,9 @@ public class ExpenditureController {
 	@GetMapping("/v1/userid/{userId}/category/{expenditureTag}")
 	public ResponseEntity<List<Expenditure>> findByUserIdAndExpenditureType(@PathVariable String userId,
 			@PathVariable String expenditureTag) throws ExpenditureNotFoundException, CategoryNotFoundException {
+
+		log.info("Finding all expenditures for user: {} with category: {}", userId, expenditureTag);
+
 		return new ResponseEntity<>(this.service.findByUserIdAndExpenditureType(userId, expenditureTag),
 				HttpStatus.FOUND);
 	}
@@ -86,6 +106,9 @@ public class ExpenditureController {
 	@PutMapping("/v1/update")
 	public ResponseEntity<Expenditure> update(@RequestParam int expenditureId, @RequestBody Expenditure expenditure)
 			throws ExpenditureNotFoundException, NullValueEnteredException, InvalidDataFormatException {
+
+		log.info("Update expenditure for expenditure id: {}", expenditureId);
+
 		return new ResponseEntity<>(this.service.update(expenditureId, expenditure), HttpStatus.OK);
 	}
 
@@ -93,6 +116,9 @@ public class ExpenditureController {
 	@DeleteMapping("/v1/delete/id/{expenditureId}")
 	public ResponseEntity<Object> delete(@PathVariable int expenditureId)
 			throws ExpenditureNotFoundException, NullValueEnteredException, InvalidDataFormatException {
+
+		log.info("Delete expenditure for expenditure id: {}", expenditureId);
+
 		service.delete(expenditureId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

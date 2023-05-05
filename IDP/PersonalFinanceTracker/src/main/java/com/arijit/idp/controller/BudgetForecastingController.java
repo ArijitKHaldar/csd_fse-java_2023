@@ -20,7 +20,9 @@ import com.arijit.idp.exception.NullValueEnteredException;
 import com.arijit.idp.usecases.BudgetForecasting;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 public class BudgetForecastingController {
@@ -32,6 +34,9 @@ public class BudgetForecastingController {
 	@GetMapping("/predict/user/{userId}/date/{currentDate}")
 	public ResponseEntity<Double> predictSavings(@PathVariable String userId, @PathVariable Date currentDate)
 			throws Exception {
+
+		log.info("Received request to predict savings for user: {}", userId);
+
 		double predictedMonthlySavings = budgetForecasting.predictSavings(userId, currentDate);
 		return ResponseEntity.ok(predictedMonthlySavings);
 	}
