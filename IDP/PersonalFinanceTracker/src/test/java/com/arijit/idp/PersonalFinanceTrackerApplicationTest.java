@@ -13,7 +13,8 @@ import org.springframework.context.ApplicationContext;
 @Suite
 @SuiteDisplayName("JUnit Tests For Personal Finance Tracker")
 @SelectPackages({ "com.arijit.idp.controller", "com.arijit.idp.helpermodules", "com.arijit.idp.service",
-		"com.arijit.idp.usecases" })
+		"com.arijit.idp.usecases", "com.arijit.idp.exception" })
+
 @SpringBootTest
 public class PersonalFinanceTrackerApplicationTest {
 
