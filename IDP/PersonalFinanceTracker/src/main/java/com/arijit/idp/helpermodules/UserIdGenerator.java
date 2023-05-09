@@ -29,7 +29,7 @@ public class UserIdGenerator {
 
 		// Get the current timestamp in milliseconds
 		LocalDateTime dateTime = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYYMMddHHmmss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 		String timestamp = dateTime.format(formatter);
 
 		StringBuilder userIdBuilder = new StringBuilder();

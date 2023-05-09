@@ -28,17 +28,10 @@ public class SavingsCalculation {
 	@Autowired
 	private ExpenditureServiceImpl expenditureService;
 
-	public double calculateMonthlySavingsPercentage(String userId, int month) throws NullValueEnteredException,
-			NotAStringException, InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
-
-		log.info("Calculate monthly percentage savings for user: {}", userId);
-		List<Expenditure> expenditures;
-		List<Income> incomes;
-
-		expenditures = expenditureService.findByUserIdAndMonth(userId, month);
-		incomes = incomeService.findByUserIdAndMonth(userId, month);
-
+	private double calculateSavingsPercentage(List<Expenditure> expenditures, List<Income> incomes)
+			throws InvalidDataFormatException {
 		double totalIncome = 0;
+		double savingsPercentage = 0;
 		for (Income income : incomes) {
 			totalIncome += income.getIncomeAmount().doubleValue();
 		}
@@ -49,13 +42,32 @@ public class SavingsCalculation {
 		}
 
 		double savings = totalIncome - totalExpenditure;
-		double savingsPercentage = (savings / totalIncome) * 100;
+		if (totalIncome != 0) {
+			savingsPercentage = (savings / totalIncome) * 100;
+		}
 
 		if (savingsPercentage <= 0) {
 			throw new InvalidDataFormatException("Some error occured during calculations!");
 		}
 
 		return savingsPercentage;
+	}
+
+	public double calculateMonthlySavingsPercentage(String userId, int month) throws NullValueEnteredException,
+			NotAStringException, InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
+
+		log.info("Calculate monthly percentage savings for user: {}", userId);
+		List<Expenditure> expenditures;
+		List<Income> incomes;
+
+		expenditures = expenditureService.findByUserIdAndMonth(userId, month);
+		incomes = incomeService.findByUserIdAndMonth(userId, month);
+
+		double savingsPercentage = calculateSavingsPercentage(expenditures, incomes);
+
+		DecimalFormat df = new DecimalFormat("#.##");
+		double result = Double.parseDouble(df.format(savingsPercentage));
+		return result;
 	}
 
 	public Double calculateYearlySavingsPercentage(String userId, int year) throws NullValueEnteredException,
@@ -69,22 +81,7 @@ public class SavingsCalculation {
 		expenditures = expenditureService.findByUserIdAndYear(userId, year);
 		incomes = incomeService.findByUserIdAndYear(userId, year);
 
-		double totalIncome = 0;
-		for (Income income : incomes) {
-			totalIncome += income.getIncomeAmount().doubleValue();
-		}
-
-		double totalExpenditure = 0;
-		for (Expenditure expenditure : expenditures) {
-			totalExpenditure += expenditure.getExpenditureAmount().doubleValue();
-		}
-
-		double savings = totalIncome - totalExpenditure;
-		double savingsPercentage = (savings / totalIncome) * 100;
-
-		if (savingsPercentage <= 0) {
-			throw new InvalidDataFormatException("Some error occured during calculations!");
-		}
+		double savingsPercentage = calculateSavingsPercentage(expenditures, incomes);
 
 		DecimalFormat df = new DecimalFormat("#.##");
 		double result = Double.parseDouble(df.format(savingsPercentage));
