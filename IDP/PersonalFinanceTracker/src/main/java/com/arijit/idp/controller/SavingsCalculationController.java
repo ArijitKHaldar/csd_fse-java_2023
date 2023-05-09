@@ -40,7 +40,7 @@ public class SavingsCalculationController {
 
 	@ApiOperation(value = "Calculate Yearly Percentage of Savings")
 	@GetMapping("/user/{userId}/savings/year/{year}")
-	public ResponseEntity<?> calculateYearlySavingsPercentage(@PathVariable String userId, @PathVariable int year)
+	public ResponseEntity<Double> calculateYearlySavingsPercentage(@PathVariable String userId, @PathVariable int year)
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
 			ExpenditureNotFoundException, IncomeNotFoundException {
 

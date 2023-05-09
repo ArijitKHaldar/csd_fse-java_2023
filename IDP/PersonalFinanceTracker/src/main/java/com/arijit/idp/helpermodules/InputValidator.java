@@ -5,6 +5,10 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
 
+	private InputValidator() {
+
+	}
+
 	public static boolean isValidEmail(String email) {
 		String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
@@ -34,11 +38,17 @@ public class InputValidator {
 			char c = password.charAt(i);
 			if (Character.isLowerCase(c)) {
 				hasLowercase = true;
-			} else if (Character.isUpperCase(c)) {
+			}
+
+			if (Character.isUpperCase(c)) {
 				hasUppercase = true;
-			} else if (Character.isDigit(c)) {
+			}
+
+			if (Character.isDigit(c)) {
 				hasDigit = true;
-			} else if (isSpecialCharacter(c)) {
+			}
+
+			if (isSpecialCharacter(c)) {
 				hasSpecial = true;
 			}
 		}
