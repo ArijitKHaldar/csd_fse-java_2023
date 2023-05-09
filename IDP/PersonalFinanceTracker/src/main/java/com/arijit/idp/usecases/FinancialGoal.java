@@ -72,8 +72,14 @@ public class FinancialGoal {
 			totalExpenditure += expenditure.getExpenditureAmount().doubleValue();
 		}
 
-		double avgIncome = totalIncome / daysBetweenIncomes;
-		double avgExpenditure = totalExpenditure / daysBetweenExpenditures;
+		double avgIncome = 0;
+		double avgExpenditure = 0;
+		if (daysBetweenIncomes > 0 && daysBetweenExpenditures > 0) {
+			avgIncome = totalIncome / daysBetweenIncomes;
+			avgExpenditure = totalExpenditure / daysBetweenExpenditures;
+		} else {
+			throw new InvalidDataFormatException("Not enough data in database to run predictions");
+		}
 		double totalIncomeBetweenDates = avgIncome * daysLeft;
 		double totalExpenditureBetweenDates = avgExpenditure * daysLeft;
 		double remainingSavings = Math.max(totalIncomeBetweenDates - totalExpenditureBetweenDates, 0);
@@ -82,8 +88,7 @@ public class FinancialGoal {
 		savingsCompletionPercentage = Math.min(savingsCompletionPercentage, 100);
 
 		DecimalFormat df = new DecimalFormat("#.##");
-		double result = Double.parseDouble(df.format(savingsCompletionPercentage));
-		return result;
+		return Double.parseDouble(df.format(savingsCompletionPercentage));
 	}
 
 }

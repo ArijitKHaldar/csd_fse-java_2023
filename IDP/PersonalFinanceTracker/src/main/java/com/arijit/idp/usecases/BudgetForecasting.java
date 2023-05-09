@@ -1,6 +1,5 @@
 package com.arijit.idp.usecases;
 
-import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
@@ -30,14 +29,14 @@ public class BudgetForecasting {
 	@Autowired
 	private ExpenditureServiceImpl expenditureService;
 
-	public double predictSavings(String userId, Date currentDate) throws NullValueEnteredException, NotAStringException,
+	public double predictSavings(String userId) throws NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
 
 		log.info("Predict savings for User: {}", userId);
 		List<Expenditure> expenditures;
 		List<Income> incomes;
 
-		LocalDate localDate = currentDate.toLocalDate();
+		LocalDate localDate = LocalDate.now();
 		int currentMonth = localDate.getMonth().getValue();
 		int currentYear = localDate.getYear();
 
@@ -68,7 +67,6 @@ public class BudgetForecasting {
 		}
 
 		DecimalFormat df = new DecimalFormat("#.##");
-		double result = Double.parseDouble(df.format(predictedMonthlySavings));
-		return result;
+		return Double.parseDouble(df.format(predictedMonthlySavings));
 	}
 }

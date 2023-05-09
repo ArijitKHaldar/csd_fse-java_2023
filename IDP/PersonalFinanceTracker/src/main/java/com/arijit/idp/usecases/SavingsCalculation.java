@@ -83,8 +83,6 @@ public class SavingsCalculation {
 		double savingsPercentage = calculateSavingsPercentage(expenditures, incomes);
 
 		DecimalFormat df = new DecimalFormat("#.##");
-		double result = Double.parseDouble(df.format(savingsPercentage));
-		return result;
-
+		return Double.parseDouble(df.format(savingsPercentage));
 	}
 }

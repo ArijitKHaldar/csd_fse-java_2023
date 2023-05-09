@@ -44,7 +44,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testSignup_signupSuccessfull() throws LoginAlreadyPresentException, LoginNotFoundException,
+	void testSignup_signupSuccessfull() throws LoginAlreadyPresentException, LoginNotFoundException,
 			NotAStringException, InvalidDataFormatException, NullValueEnteredException {
 		Login mockLogin = new Login();
 		mockLogin.setEmailId("test@example.com");
@@ -65,7 +65,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testSignup_signupFailed() {
+	void testSignup_signupFailed() {
 
 		Login mockLogin = new Login();
 		mockLogin.setUserId("testuser");
@@ -83,7 +83,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByUserId_UserIdFound()
+	void testFindLoginByUserId_UserIdFound()
 			throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
 
 		Login expectedLogin = new Login("test@example.com", "tE$t1pass");
@@ -94,7 +94,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByUserId_UserIdNotFound() {
+	void testFindLoginByUserId_UserIdNotFound() {
 		Login expectedLogin = new Login("test@example.com", "tE$t1pass");
 		expectedLogin.setUserId("testuser");
 		when(mockLoginRepository.findById("newuser")).thenReturn(Optional.empty());
@@ -102,7 +102,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByEmailId_EmailIdFound()
+	void testFindLoginByEmailId_EmailIdFound()
 			throws LoginNotFoundException, NullValueEnteredException, NotAStringException {
 
 		Login expectedLogin = new Login("test@example.com", "tE$t1pass");
@@ -113,7 +113,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindLoginByEmailId_EmailIdNotFound() {
+	void testFindLoginByEmailId_EmailIdNotFound() {
 
 		Login expectedLogin = new Login("test@example.com", "tE$t1pass");
 		expectedLogin.setUserId("testuser");
@@ -122,7 +122,7 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testSignup_NullValueEnteredException() {
+	void testSignup_NullValueEnteredException() {
 		Login login = new Login(null, "test123");
 		assertThrows(NullValueEnteredException.class, () -> loginServiceImpl.signup(login));
 
@@ -137,12 +137,12 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserId_NullValue() {
+	void testFindByUserId_NullValue() {
 		assertThrows(NullValueEnteredException.class, () -> loginServiceImpl.findLoginByUserId(null));
 	}
 
 	@Test
-	public void testFindByEmail_NullValue() {
+	void testFindByEmail_NullValue() {
 		assertThrows(NullValueEnteredException.class, () -> loginServiceImpl.findLoginByEmailId(null));
 	}
 }

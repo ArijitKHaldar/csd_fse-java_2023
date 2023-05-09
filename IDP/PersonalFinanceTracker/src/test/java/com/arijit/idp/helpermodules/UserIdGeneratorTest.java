@@ -28,7 +28,7 @@ public class UserIdGeneratorTest {
 	}
 
 	@Test
-	public void testGenerateUserId() {
+	void testGenerateUserId() {
 		String emailId = "test@example.com";
 		String expectedUserId = "t2e0s2t200504205513";
 

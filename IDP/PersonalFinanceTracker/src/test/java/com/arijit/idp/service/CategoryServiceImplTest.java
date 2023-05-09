@@ -41,7 +41,7 @@ public class CategoryServiceImplTest {
 	}
 
 	@Test
-	public void testCreateCategory_Succeed() throws CategoryAlreadyPresentException {
+	void testCreateCategory_Succeed() throws CategoryAlreadyPresentException {
 
 		Category mockCategory = new Category(1, "testcategory");
 		mockCategory.setExpenditureTag(mockCategory.getExpenditureTag().toUpperCase());
@@ -54,7 +54,7 @@ public class CategoryServiceImplTest {
 	}
 
 	@Test
-	public void testCreateCategory_AlreadyPresent() {
+	void testCreateCategory_AlreadyPresent() {
 
 		Category mockCategory = new Category("food");
 		List<Category> categories = new ArrayList<>();

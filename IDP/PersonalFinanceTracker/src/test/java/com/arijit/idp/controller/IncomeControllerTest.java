@@ -58,7 +58,7 @@ public class IncomeControllerTest {
 	}
 
 	@Test
-	public void testInsertIncome() throws Exception {
+	void testInsertIncome() throws Exception {
 		Income income = new Income();
 		income.setUserId("1");
 		income.setIncomeAmount(new BigDecimal(10000.0));
@@ -76,7 +76,7 @@ public class IncomeControllerTest {
 	}
 
 	@Test
-	public void testFindByUserId() throws Exception {
+	void testFindByUserId() throws Exception {
 		Income income1 = new Income();
 		income1.setUserId("1");
 		income1.setIncomeAmount(new BigDecimal(10000.0));
@@ -93,7 +93,7 @@ public class IncomeControllerTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndMonth_Success() throws Exception {
+	void testFindByUserIdAndMonth_Success() throws Exception {
 		when(incomeService.findByUserIdAndMonth(Mockito.anyString(), Mockito.anyInt())).thenReturn(Collections.emptyList());
 
 		mockMvc.perform(get("/api/income/v1/userid/{userId}/month/{month}", "test-user", 1))
@@ -104,7 +104,7 @@ public class IncomeControllerTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndYear_Success() throws Exception {
+	void testFindByUserIdAndYear_Success() throws Exception {
 		when(incomeService.findByUserIdAndYear(Mockito.anyString(), Mockito.anyInt())).thenReturn(Collections.emptyList());
 
 		mockMvc.perform(get("/api/income/v1/userid/{userId}/year/{year}", "test-user", 2022))
@@ -115,7 +115,7 @@ public class IncomeControllerTest {
 	}
 
 	@Test
-	public void testUpdateByIncomeId() throws Exception {
+	void testUpdateByIncomeId() throws Exception {
 		Income income1 = new Income();
 		Field field = null;
 		try {
@@ -146,7 +146,7 @@ public class IncomeControllerTest {
 	}
 
 	@Test
-	public void testDeleteByIncomeId() throws Exception {
+	void testDeleteByIncomeId() throws Exception {
 		int incomeId = 1;
 
 		doNothing().when(incomeService).deleteByIncomeId(incomeId);

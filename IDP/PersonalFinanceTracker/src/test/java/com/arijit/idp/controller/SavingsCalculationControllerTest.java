@@ -26,7 +26,7 @@ public class SavingsCalculationControllerTest {
 	private SavingsCalculation savingsCalculation;
 
 	@Test
-	public void calculateMonthlySavingsPercentage_ValidData_ReturnsOk() throws Exception {
+	void calculateMonthlySavingsPercentage_ValidData_ReturnsOk() throws Exception {
 		double savingsPercentage = 25.0;
 
 		when(savingsCalculation.calculateMonthlySavingsPercentage(anyString(), anyInt())).thenReturn(savingsPercentage);
@@ -37,7 +37,7 @@ public class SavingsCalculationControllerTest {
 	}
 
 	@Test
-	public void calculateMonthlySavingsPercentage_InvalidData_ReturnsBadRequest() throws Exception {
+	void calculateMonthlySavingsPercentage_InvalidData_ReturnsBadRequest() throws Exception {
 		String errorMessage = "Invalid data format";
 
 		when(savingsCalculation.calculateMonthlySavingsPercentage(anyString(), anyInt()))
@@ -48,7 +48,7 @@ public class SavingsCalculationControllerTest {
 	}
 
 	@Test
-	public void calculateMonthlySavingsPercentage_ExpenditureNotFound_ReturnsNotFound() throws Exception {
+	void calculateMonthlySavingsPercentage_ExpenditureNotFound_ReturnsNotFound() throws Exception {
 		String errorMessage = "Expenditure not found";
 
 		when(savingsCalculation.calculateMonthlySavingsPercentage(anyString(), anyInt()))
@@ -60,7 +60,7 @@ public class SavingsCalculationControllerTest {
 	}
 
 	@Test
-	public void calculateYearlySavingsPercentage_Valid() throws Exception {
+	void calculateYearlySavingsPercentage_Valid() throws Exception {
 
 		double savingsPercentage = 30;
 		when(savingsCalculation.calculateYearlySavingsPercentage(anyString(), anyInt())).thenReturn(savingsPercentage);

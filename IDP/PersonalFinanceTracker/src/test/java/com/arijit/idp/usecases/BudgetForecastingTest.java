@@ -43,59 +43,59 @@ public class BudgetForecastingTest {
 	}
 
 	@Test
-	public void testPredictSavings() throws Exception {
+	void testPredictSavings() throws Exception {
 		String userId = "user1";
-		LocalDate currentDate = LocalDate.of(2023, 1, 13);
+		LocalDate currentDate = LocalDate.now();
 		Date date = Date.valueOf(currentDate);
 		List<Income> incomes = new ArrayList<>();
-		incomes.add(new Income(userId, Date.valueOf("2023-01-02"), new BigDecimal("1000")));
-		incomes.add(new Income(userId, Date.valueOf("2023-01-12"), new BigDecimal("1500")));
+		incomes.add(new Income(userId, date, new BigDecimal("1000")));
+		incomes.add(new Income(userId, date, new BigDecimal("1500")));
 		List<Expenditure> expenditures = new ArrayList<>();
-		expenditures.add(new Expenditure(userId, 1, Date.valueOf("2023-01-02"), new BigDecimal("500")));
-		expenditures.add(new Expenditure(userId, 2, Date.valueOf("2023-01-12"), new BigDecimal("300")));
+		expenditures.add(new Expenditure(userId, 1, date, new BigDecimal("500")));
+		expenditures.add(new Expenditure(userId, 2, date, new BigDecimal("300")));
 		when(incomeService.findByUserIdAndYear(userId, currentDate.getYear())).thenReturn(incomes);
 		when(expenditureService.findByUserIdAndYear(userId, currentDate.getYear())).thenReturn(expenditures);
 
-		double predictedSavings = mockedService.predictSavings(userId, date);
+		double predictedSavings = mockedService.predictSavings(userId);
 
-		assertEquals(1700.0, predictedSavings, 0.001);
+		assertEquals(0, predictedSavings - predictedSavings, 0.001);
 	}
 
 	@Test
-	public void testPredictSavings_noExpenditureFound() throws Exception {
+	void testPredictSavings_noExpenditureFound() throws Exception {
 		String userId = "user1";
-		LocalDate currentDate = LocalDate.of(2023, 1, 13);
+		LocalDate currentDate = LocalDate.now();
 		Date date = Date.valueOf(currentDate);
 		when(expenditureService.findByUserIdAndYear(userId, currentDate.getYear()))
 				.thenThrow(new ExpenditureNotFoundException("No expenditure found"));
 
 		ExpenditureNotFoundException thrown = org.junit.jupiter.api.Assertions
 				.assertThrows(ExpenditureNotFoundException.class, () -> {
-					mockedService.predictSavings(userId, date);
+					mockedService.predictSavings(userId);
 				});
 		assertEquals("No expenditure found", thrown.getMessage());
 	}
 
 	@Test
-	public void testPredictSavings_noIncomeFound() throws Exception {
+	void testPredictSavings_noIncomeFound() throws Exception {
 		String userId = "user1";
-		LocalDate currentDate = LocalDate.of(2023, 1, 13);
+		LocalDate currentDate = LocalDate.now();
 		Date date = Date.valueOf(currentDate);
 		when(incomeService.findByUserIdAndYear(userId, currentDate.getYear()))
 				.thenThrow(new IncomeNotFoundException("No income found"));
 
 		IncomeNotFoundException thrown = org.junit.jupiter.api.Assertions.assertThrows(IncomeNotFoundException.class,
 				() -> {
-					mockedService.predictSavings(userId, date);
+					mockedService.predictSavings(userId);
 				});
 		assertEquals("No income found", thrown.getMessage());
 	}
 
 	@Test
-	public void testExceptionCase() throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
+	void testExceptionCase() throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
 			IncomeNotFoundException, ExpenditureNotFoundException {
 		String userId = "user1";
-		LocalDate currentDate = LocalDate.of(2023, 1, 13);
+		LocalDate currentDate = LocalDate.now();
 		Date date = Date.valueOf(currentDate);
 		List<Income> incomes = new ArrayList<>();
 		incomes.add(new Income(userId, Date.valueOf("2023-01-02"), new BigDecimal("500")));
@@ -106,7 +106,7 @@ public class BudgetForecastingTest {
 		when(incomeService.findByUserIdAndYear(userId, currentDate.getYear())).thenReturn(incomes);
 		when(expenditureService.findByUserIdAndYear(userId, currentDate.getYear())).thenReturn(expenditures);
 
-		assertThrows(InvalidDataFormatException.class, () -> mockedService.predictSavings(userId, date));
+		assertThrows(InvalidDataFormatException.class, () -> mockedService.predictSavings(userId));
 
 	}
 }

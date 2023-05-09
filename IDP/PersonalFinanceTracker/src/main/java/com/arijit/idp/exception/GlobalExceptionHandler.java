@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
 			message = "User already registered with given email id";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.CONFLICT);
+		return new ResponseEntity<>(message, HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(value = LoginNotFoundException.class)
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 			message = "Login details not found";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(value = IncomeAlreadyPresentException.class)
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
 			message = "Duplicate value of Income id entered";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.CONFLICT);
+		return new ResponseEntity<>(message, HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(value = IncomeNotFoundException.class)
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
 			message = "Income details not found";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(value = ExpenditureAlreadyPresentException.class)
@@ -64,7 +64,7 @@ public class GlobalExceptionHandler {
 			message = "Duplicate value of Expenditure id entered";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.CONFLICT);
+		return new ResponseEntity<>(message, HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(value = ExpenditureNotFoundException.class)
@@ -75,7 +75,7 @@ public class GlobalExceptionHandler {
 			message = "Expenditure details not found";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(value = CategoryAlreadyPresentException.class)
@@ -86,7 +86,7 @@ public class GlobalExceptionHandler {
 			message = "Duplicate value of Category id entered";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.CONFLICT);
+		return new ResponseEntity<>(message, HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(value = CategoryNotFoundException.class)
@@ -97,7 +97,7 @@ public class GlobalExceptionHandler {
 			message = "Category details not found";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(value = NotANumberException.class)
@@ -108,7 +108,7 @@ public class GlobalExceptionHandler {
 			message = "The value entered is not a number";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = NotAStringException.class)
@@ -119,7 +119,7 @@ public class GlobalExceptionHandler {
 			message = "The value entered is not a String";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = NullValueEnteredException.class)
@@ -130,7 +130,7 @@ public class GlobalExceptionHandler {
 			message = "The value entered is empty";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.UNPROCESSABLE_ENTITY);
+		return new ResponseEntity<>(message, HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 
 	@ExceptionHandler(value = InvalidDataFormatException.class)
@@ -141,6 +141,6 @@ public class GlobalExceptionHandler {
 			message = "The entered value does not match expected input";
 		}
 
-		return new ResponseEntity<String>(message, HttpStatus.UNPROCESSABLE_ENTITY);
+		return new ResponseEntity<>(message, HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 }

@@ -45,7 +45,7 @@ public class GlobalExceptionHandlerTest {
 	private GlobalExceptionHandler globalExceptionHandler;
 
 	@Test
-	public void handleLoginAlreadyPresentExceptionTest() {
+	void handleLoginAlreadyPresentExceptionTest() {
 		String errorMessage = "User already registered with given email id";
 		when(loginAlreadyPresentException.getMessage()).thenReturn(errorMessage);
 
@@ -57,7 +57,7 @@ public class GlobalExceptionHandlerTest {
 	}
 
 	@Test
-	public void handleLoginNotFoundException() {
+	void handleLoginNotFoundException() {
 		String errorMessage = "User not found with given email id";
 		when(loginNotFoundException.getMessage()).thenReturn(errorMessage);
 
@@ -69,7 +69,7 @@ public class GlobalExceptionHandlerTest {
 	}
 
 	@Test
-	public void handleIncomeAlreadyPresentExceptionTest() {
+	void handleIncomeAlreadyPresentExceptionTest() {
 		String errorMessage = "Income already registered with given income id";
 		when(incomeAlreadyPresentException.getMessage()).thenReturn(errorMessage);
 
@@ -81,7 +81,7 @@ public class GlobalExceptionHandlerTest {
 	}
 
 	@Test
-	public void handleincomeNotFoundException() {
+	void handleincomeNotFoundException() {
 		String errorMessage = "Income not found";
 		when(incomeNotFoundException.getMessage()).thenReturn(errorMessage);
 
@@ -93,7 +93,7 @@ public class GlobalExceptionHandlerTest {
 	}
 
 	@Test
-	public void handleExpenditureAlreadyPresentExceptionTest() {
+	void handleExpenditureAlreadyPresentExceptionTest() {
 		String errorMessage = "Expenditure already registered with given expenditure id";
 		when(expenditureAlreadyPresentException.getMessage()).thenReturn(errorMessage);
 
@@ -105,7 +105,7 @@ public class GlobalExceptionHandlerTest {
 	}
 
 	@Test
-	public void handleExpenditureNotFoundException() {
+	void handleExpenditureNotFoundException() {
 		String errorMessage = "Expenditure not found";
 		when(expenditureNotFoundException.getMessage()).thenReturn(errorMessage);
 
@@ -117,7 +117,7 @@ public class GlobalExceptionHandlerTest {
 	}
 
 	@Test
-	public void handleCategoryAlreadyPresentExceptionTest() {
+	void handleCategoryAlreadyPresentExceptionTest() {
 		String errorMessage = "Duplicate value of Category id entered";
 		when(categoryAlreadyPresentException.getMessage()).thenReturn(errorMessage);
 
@@ -129,7 +129,7 @@ public class GlobalExceptionHandlerTest {
 	}
 
 	@Test
-	public void handleCategoryNotFoundException() {
+	void handleCategoryNotFoundException() {
 		String errorMessage = "Category not found";
 		when(categoryNotFoundException.getMessage()).thenReturn(errorMessage);
 
@@ -141,7 +141,7 @@ public class GlobalExceptionHandlerTest {
 	}
 
 	@Test
-	public void handleNullValueEnteredException() {
+	void handleNullValueEnteredException() {
 		String errorMessage = "Null Value entered";
 		when(nullValueEnteredException.getMessage()).thenReturn(errorMessage);
 

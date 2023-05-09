@@ -54,7 +54,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testCreateExpenditure_Success() throws ExpenditureAlreadyPresentException, InvalidDataFormatException {
+	void testCreateExpenditure_Success() throws ExpenditureAlreadyPresentException, InvalidDataFormatException {
 		Expenditure expenditure = new Expenditure("rent", 1, Date.valueOf("2023-04-03"), new BigDecimal("1000"));
 		when(mockRepository.existsById(expenditure.getExpenditureId())).thenReturn(false);
 		when(mockRepository.save(expenditure)).thenReturn(expenditure);
@@ -68,7 +68,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testCreateExpenditure_AlreadyPresent() {
+	void testCreateExpenditure_AlreadyPresent() {
 		Expenditure expenditure = new Expenditure("rent", 1, Date.valueOf("2023-04-03"), new BigDecimal("1000"));
 		when(mockRepository.existsById(expenditure.getExpenditureId())).thenReturn(true);
 
@@ -79,8 +79,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserId_Found()
-			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException {
+	void testFindByUserId_Found() throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException {
 		String userId = "testuser";
 		List<Expenditure> expenditures = new ArrayList<>();
 		expenditures.add(new Expenditure("rent", 1, Date.valueOf("2023-04-03"), new BigDecimal("1000")));
@@ -93,7 +92,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserId_NotFound() {
+	void testFindByUserId_NotFound() {
 		String userId = "testuser";
 		when(mockRepository.findByUserId(userId)).thenReturn(Collections.emptyList());
 
@@ -101,8 +100,8 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndExpenditureDate_Found() throws ExpenditureNotFoundException,
-			NullValueEnteredException, NotAStringException, InvalidDataFormatException {
+	void testFindByUserIdAndExpenditureDate_Found() throws ExpenditureNotFoundException, NullValueEnteredException,
+			NotAStringException, InvalidDataFormatException {
 		String userId = "user123";
 		Date expenditureDate = Date.valueOf("2023-04-03");
 		Expenditure expenditure1 = new Expenditure("rent", 1, Date.valueOf("2023-04-03"), new BigDecimal("1000"));
@@ -119,7 +118,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndExpenditureDate_NotFound() {
+	void testFindByUserIdAndExpenditureDate_NotFound() {
 		String userId = "user123";
 		Date expenditureDate = Date.valueOf("2023-04-03");
 		when(mockRepository.findByUserIdAndExpenditureDate(userId, expenditureDate))
@@ -131,7 +130,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndMonth_Found() throws NullValueEnteredException, NotAStringException,
+	void testFindByUserIdAndMonth_Found() throws NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException, ExpenditureNotFoundException {
 		String userId = "user1";
 		int month = 1;
@@ -146,7 +145,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndMonth_NotFound() {
+	void testFindByUserIdAndMonth_NotFound() {
 		String userId = "user1";
 		int month = 1;
 		when(mockRepository.findByUserIdAndMonth(userId, month)).thenReturn(new ArrayList<>());
@@ -156,7 +155,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndYear_Found() throws NullValueEnteredException, NotAStringException,
+	void testFindByUserIdAndYear_Found() throws NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException, ExpenditureNotFoundException {
 		String userId = "user1";
 		int year = 2023;
@@ -180,7 +179,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndYear_WithNullUserId() {
+	void testFindByUserIdAndYear_WithNullUserId() {
 		String userId = null;
 		int year = 2023;
 
@@ -189,7 +188,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndYear_WithInvalidYear() {
+	void testFindByUserIdAndYear_WithInvalidYear() {
 		String userId = "123";
 		int year = 999;
 
@@ -198,7 +197,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndYear_NotFound() {
+	void testFindByUserIdAndYear_NotFound() {
 		String userId = "123";
 		int year = 2023;
 
@@ -209,7 +208,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndExpenditureType_ExpendituresFound()
+	void testFindByUserIdAndExpenditureType_ExpendituresFound()
 			throws ExpenditureNotFoundException, CategoryNotFoundException {
 		String userId = "user1";
 		String expenditureTag = "tag1";
@@ -232,7 +231,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndExpenditureType_NoExpendituresFound() {
+	void testFindByUserIdAndExpenditureType_NoExpendituresFound() {
 		String userId = "user1";
 		String expenditureTag = "tag1";
 		List<Expenditure> expenditures = new ArrayList<>();
@@ -244,7 +243,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndExpenditureType_NoCategoryFound() {
+	void testFindByUserIdAndExpenditureType_NoCategoryFound() {
 		String userId = "user1";
 		String expenditureTag = "invalidCategory";
 		List<Expenditure> emptyList = new ArrayList<>();
@@ -266,7 +265,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testUpdateExpenditure_Success()
+	void testUpdateExpenditure_Success()
 			throws NullValueEnteredException, InvalidDataFormatException, ExpenditureNotFoundException {
 
 		Expenditure existingExpenditure = new Expenditure();
@@ -305,7 +304,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testUpdateExpenditure_NotFound() {
+	void testUpdateExpenditure_NotFound() {
 		int expenditureId = 1;
 		Expenditure expenditure = new Expenditure();
 		expenditure.setExpenditureDate(Date.valueOf("2023-04-26"));
@@ -322,7 +321,7 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testDelete_ValidExpenditureId()
+	void testDelete_ValidExpenditureId()
 			throws NullValueEnteredException, InvalidDataFormatException, ExpenditureNotFoundException {
 		Expenditure expenditure = new Expenditure();
 		expenditure.setUserId("user123");
@@ -353,47 +352,47 @@ public class ExpenditureServiceImplTest {
 	}
 
 	@Test
-	public void testDelete_ExpenditureNotFound() {
+	void testDelete_ExpenditureNotFound() {
 		when(mockRepository.findById(anyInt())).thenReturn(Optional.empty());
 		assertThrows(ExpenditureNotFoundException.class, () -> mockedService.delete(1));
 	}
 
 	@Test
-	public void testDelete_Exceptions() {
+	void testDelete_Exceptions() {
 		assertThrows(NullValueEnteredException.class, () -> mockedService.delete(0));
 	}
 
 	@Test
-	public void testCreate_Exceptions() {
+	void testCreate_Exceptions() {
 		Expenditure expenditure = new Expenditure();
 		expenditure.setExpenditureAmount(new BigDecimal(-1));
 		assertThrows(InvalidDataFormatException.class, () -> mockedService.create(expenditure));
 	}
 
 	@Test
-	public void testFindByUserId_Exceptions() {
+	void testFindByUserId_Exceptions() {
 		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserId(null));
 	}
 
 	@Test
-	public void testFindByUserIdAndExpenditureDate_Exceptions() {
+	void testFindByUserIdAndExpenditureDate_Exceptions() {
 		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserIdAndExpenditureDate(null, null));
 	}
 
 	@Test
-	public void testFindByUserIdAndMonth_Exceptions() {
+	void testFindByUserIdAndMonth_Exceptions() {
 		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserIdAndMonth(null, 5));
 		assertThrows(InvalidDataFormatException.class, () -> mockedService.findByUserIdAndMonth("testcode", 0));
 	}
 
 	@Test
-	public void testFindByUserIdAndYear_Exception() {
+	void testFindByUserIdAndYear_Exception() {
 		assertThrows(NullValueEnteredException.class, () -> mockedService.findByUserIdAndYear(null, 2023));
 		assertThrows(InvalidDataFormatException.class, () -> mockedService.findByUserIdAndYear("testcode", 0));
 	}
 
 	@Test
-	public void testUpdate_Exception() {
+	void testUpdate_Exception() {
 		assertThrows(NullValueEnteredException.class, () -> mockedService.update(0, null));
 	}
 }

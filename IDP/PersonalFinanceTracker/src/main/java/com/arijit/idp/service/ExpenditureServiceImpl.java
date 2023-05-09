@@ -25,6 +25,8 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 	@Autowired
 	private ExpenditureRepository expenditureRepository;
 
+	private static final String ERROR_MSG = "User Id cannot be empty";
+
 	// Create
 	@Override
 	public Expenditure create(Expenditure expenditure)
@@ -36,8 +38,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		if (expenditure.getExpenditureAmount().doubleValue() < 0) {
 			throw new InvalidDataFormatException("Expenditure cannot be negative!");
 		}
-		Expenditure savedExpenditure = expenditureRepository.save(expenditure);
-		return savedExpenditure;
+		return expenditureRepository.save(expenditure);
 	}
 
 	// Retrieve
@@ -46,7 +47,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 			throws ExpenditureNotFoundException, NullValueEnteredException, NotAStringException {
 		log.info("Finding expenditures by userId: {}", userId);
 		if (userId == null || userId.isEmpty()) {
-			throw new NullValueEnteredException("User Id cannot be empty");
+			throw new NullValueEnteredException(ERROR_MSG);
 		}
 
 		List<Expenditure> expendituresByUserId = expenditureRepository.findByUserId(userId);
@@ -63,7 +64,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		log.info("Finding expenditures by userId: {} and date: {}", userId, expenditureDate);
 
 		if (userId == null || userId.isEmpty()) {
-			throw new NullValueEnteredException("User Id cannot be empty");
+			throw new NullValueEnteredException(ERROR_MSG);
 		}
 
 		List<Expenditure> expendituresByUserIdAndDate = expenditureRepository.findByUserIdAndExpenditureDate(userId,
@@ -81,7 +82,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 		log.info("Finding expenditures by userId: {} and month: {}", userId, month);
 
 		if (userId == null || userId.isEmpty()) {
-			throw new NullValueEnteredException("User Id cannot be empty");
+			throw new NullValueEnteredException(ERROR_MSG);
 		}
 		if (month < 1 || month > 12) {
 			throw new InvalidDataFormatException("Month should be between 1 to 12");
@@ -99,7 +100,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 
 		log.info("Finding expenditures by userId: {} and year: {}", userId, year);
 		if (userId == null || userId.isEmpty()) {
-			throw new NullValueEnteredException("User Id cannot be empty");
+			throw new NullValueEnteredException(ERROR_MSG);
 		}
 		if (year < 1000 || year > 9999) {
 			throw new InvalidDataFormatException("Invalid year entered");

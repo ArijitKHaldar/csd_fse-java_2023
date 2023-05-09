@@ -46,7 +46,7 @@ public class CategoryControllerTest {
 	private CategoryServiceImpl categoryService;
 
 	@Test
-	public void createCategoryTest() throws Exception {
+	void createCategoryTest() throws Exception {
 		Category category = new Category();
 		category.setExpenditureTag("Food");
 
@@ -57,7 +57,7 @@ public class CategoryControllerTest {
 	}
 
 	@Test
-	public void create_WhenCategoryAlreadyPresent() throws Exception {
+	void create_WhenCategoryAlreadyPresent() throws Exception {
 
 		Category category = new Category();
 		category.setExpenditureTag("Grocery");
@@ -67,11 +67,11 @@ public class CategoryControllerTest {
 		MockHttpServletRequestBuilder request = post("/api/category/v1").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(category));
 
-		mockMvc.perform(request);
+		mockMvc.perform(request).andExpect(status().isCreated());
 	}
 
 	@Test
-	public void testFindAllExpenditureTags() throws Exception {
+	void testFindAllExpenditureTags() throws Exception {
 		Category category1 = new Category();
 		category1.setExpenditureTag("Food");
 		Field field = null;
@@ -118,7 +118,7 @@ public class CategoryControllerTest {
 	}
 
 	@Test
-	public void testDeleteByExpenditureTag() throws Exception {
+	void testDeleteByExpenditureTag() throws Exception {
 		doNothing().when(categoryService).deleteByExpenditureTag("test");
 
 		mockMvc.perform(delete("/api/category/v1/delete/{expenditureTag}", "test")).andExpect(status().isNoContent())

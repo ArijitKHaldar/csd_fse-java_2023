@@ -45,7 +45,7 @@ public class SavingsCalculationTest {
 	}
 
 	@Test
-	public void testCalculateMonthlySavingsPercentage() throws Exception {
+	void testCalculateMonthlySavingsPercentage() throws Exception {
 		List<Expenditure> expenditures = new ArrayList<>();
 		expenditures.add(new Expenditure("expenditure1", 1, Date.valueOf("2023-04-02"), new BigDecimal("100")));
 		expenditures.add(new Expenditure("expenditure2", 2, Date.valueOf("2023-04-12"), new BigDecimal("200")));
@@ -66,7 +66,7 @@ public class SavingsCalculationTest {
 	}
 
 	@Test
-    public void testCalculateMonthlySavingsPercentage_WithInvalidDataFormatException() throws Exception {
+    void testCalculateMonthlySavingsPercentage_WithInvalidDataFormatException() throws Exception {
         when(expenditureService.findByUserIdAndMonth(anyString(), anyInt())).thenThrow(new InvalidDataFormatException("Data entered has some problems"));
 
         assertThrows(InvalidDataFormatException.class, () -> savingsCalculation.calculateMonthlySavingsPercentage("userId", 1));
@@ -75,7 +75,7 @@ public class SavingsCalculationTest {
     }
 
 	@Test
-	public void testCalculateYearlySavingsPercentage() throws Exception {
+	void testCalculateYearlySavingsPercentage() throws Exception {
 		List<Expenditure> expenditures = new ArrayList<>();
 		expenditures.add(new Expenditure("user1", 1, Date.valueOf("2023-04-02"), new BigDecimal("100")));
 		expenditures.add(new Expenditure("user1", 2, Date.valueOf("2023-04-12"), new BigDecimal("200")));
@@ -96,7 +96,7 @@ public class SavingsCalculationTest {
 	}
 
 	@Test
-    public void testCalculateYearlySavingsPercentage_WithInvalidDataFormatException() throws Exception {
+    void testCalculateYearlySavingsPercentage_WithInvalidDataFormatException() throws Exception {
         when(expenditureService.findByUserIdAndYear(anyString(), anyInt())).thenThrow(new InvalidDataFormatException("Data entered has some problems"));
 
         assertThrows(InvalidDataFormatException.class, () -> savingsCalculation.calculateYearlySavingsPercentage("userId", 202));
@@ -105,7 +105,7 @@ public class SavingsCalculationTest {
     }
 
 	@Test
-	public void testCalculateMonthlySavingsPercentage_NoExpenditureFound() throws Exception {
+	void testCalculateMonthlySavingsPercentage_NoExpenditureFound() throws Exception {
 		when(expenditureService.findByUserIdAndMonth(anyString(), anyInt())).thenThrow(new ExpenditureNotFoundException("Expenditure not found"));
 		
 		assertThrows(ExpenditureNotFoundException.class, () -> savingsCalculation.calculateMonthlySavingsPercentage("userId", 2023));
@@ -114,7 +114,7 @@ public class SavingsCalculationTest {
 	}
 
 	@Test
-	public void testCalculateMonthlySavingsPercentage_NoIncomeFound() throws Exception {
+	void testCalculateMonthlySavingsPercentage_NoIncomeFound() throws Exception {
 		when(incomeService.findByUserIdAndMonth(anyString(), anyInt())).thenThrow(new IncomeNotFoundException("Income not found"));
 		
 		assertThrows(IncomeNotFoundException.class, () -> savingsCalculation.calculateMonthlySavingsPercentage("userId", 2023));
@@ -123,7 +123,7 @@ public class SavingsCalculationTest {
 	}
 
 	@Test
-	public void testCalculateYearlySavingsPercentage_NoExpenditureFound() throws Exception {
+	void testCalculateYearlySavingsPercentage_NoExpenditureFound() throws Exception {
 		when(expenditureService.findByUserIdAndYear(anyString(), anyInt())).thenThrow(new ExpenditureNotFoundException("Expenditure not found"));
 		
 		assertThrows(ExpenditureNotFoundException.class, () -> savingsCalculation.calculateYearlySavingsPercentage("userId", 2023));
@@ -132,7 +132,7 @@ public class SavingsCalculationTest {
 	}
 
 	@Test
-	public void testCalculateYearlySavingsPercentage_NoIncomeFound() throws Exception {
+	void testCalculateYearlySavingsPercentage_NoIncomeFound() throws Exception {
 		when(incomeService.findByUserIdAndYear(anyString(), anyInt())).thenThrow(new IncomeNotFoundException("Income not found"));
 		
 		assertThrows(IncomeNotFoundException.class, () -> savingsCalculation.calculateYearlySavingsPercentage("userId", 2023));
@@ -141,8 +141,8 @@ public class SavingsCalculationTest {
 	}
 
 	@Test
-	public void testExceptionSituations() throws NullValueEnteredException, NotAStringException,
-			InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
+	void testExceptionSituations() throws NullValueEnteredException, NotAStringException, InvalidDataFormatException,
+			ExpenditureNotFoundException, IncomeNotFoundException {
 		List<Expenditure> expenditures = new ArrayList<>();
 		expenditures.add(new Expenditure("user1", 1, Date.valueOf("2023-04-02"), new BigDecimal("500")));
 		expenditures.add(new Expenditure("user1", 2, Date.valueOf("2023-04-12"), new BigDecimal("300")));

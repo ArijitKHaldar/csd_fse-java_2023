@@ -23,6 +23,8 @@ public class IncomeServiceImpl implements IncomeService {
 	@Autowired
 	private IncomeRepository incomeRepository;
 
+	private static final String ERROR_MSG = "User Id cannot be empty";
+
 	// Create
 	@Override
 	public Income insertIncome(Income income) throws IncomeAlreadyPresentException, InvalidDataFormatException {
@@ -44,7 +46,7 @@ public class IncomeServiceImpl implements IncomeService {
 
 		log.info("Finding incomes for user {}", userId);
 		if (userId == null || userId.isEmpty()) {
-			throw new NullValueEnteredException("User Id cannot be empty");
+			throw new NullValueEnteredException(ERROR_MSG);
 		}
 		List<Income> incomeByUserId = incomeRepository.findByUserId(userId);
 		if (incomeByUserId.isEmpty()) {
@@ -60,7 +62,7 @@ public class IncomeServiceImpl implements IncomeService {
 		log.info("Finding incomes for user {} and month {}", userId, month);
 
 		if (userId == null || userId.isEmpty()) {
-			throw new NullValueEnteredException("User Id cannot be empty");
+			throw new NullValueEnteredException(ERROR_MSG);
 		}
 		if ((!(Integer.valueOf(month) instanceof Integer)) || month < 1 || month > 12) {
 			throw new InvalidDataFormatException("Month should be between 1 to 12");
@@ -78,7 +80,7 @@ public class IncomeServiceImpl implements IncomeService {
 
 		log.info("Finding incomes for user {} and year {}", userId, year);
 		if (userId == null || userId.isEmpty()) {
-			throw new NullValueEnteredException("User Id cannot be empty");
+			throw new NullValueEnteredException(ERROR_MSG);
 		}
 		if ((!(Integer.valueOf(year) instanceof Integer)) || year < 1000 || year > 9999) {
 			throw new InvalidDataFormatException("Invalid year entered");

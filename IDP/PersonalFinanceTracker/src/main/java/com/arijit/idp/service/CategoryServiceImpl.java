@@ -33,8 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		category.setExpenditureTag(category.getExpenditureTag().toUpperCase());
 
-		Category newCategory = categoryRepository.save(category);
-		return newCategory;
+		return categoryRepository.save(category);
 	}
 
 	// Retrieve

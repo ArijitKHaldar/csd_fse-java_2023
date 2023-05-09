@@ -47,7 +47,7 @@ public class ExpenditureControllerTest {
 	private List<Expenditure> expenditureList;
 
 	@Test
-	public void testCreateExpenditure() throws Exception {
+	void testCreateExpenditure() throws Exception {
 		Expenditure expenditure = new Expenditure();
 		expenditure.setUserId("user1");
 		expenditure.setCategoryId(1);
@@ -61,7 +61,7 @@ public class ExpenditureControllerTest {
 	}
 
 	@Test
-	public void testFindByUserId() throws Exception {
+	void testFindByUserId() throws Exception {
 		Expenditure expenditure1 = new Expenditure();
 		expenditure1.setUserId("user1");
 		expenditure1.setCategoryId(1);
@@ -86,7 +86,7 @@ public class ExpenditureControllerTest {
 	}
 
 	@Test
-	public void findByUserIdAndExpenditureDateTest() throws Exception {
+	void findByUserIdAndExpenditureDateTest() throws Exception {
 		String userId = "user1";
 		Date expenditureDate = new Date(System.currentTimeMillis());
 		Expenditure expenditure1 = new Expenditure(userId, 1, expenditureDate, new BigDecimal("100.00"));
@@ -101,7 +101,7 @@ public class ExpenditureControllerTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndMonth() throws Exception {
+	void testFindByUserIdAndMonth() throws Exception {
 		when(expenditureService.findByUserIdAndMonth("userId1", 1)).thenReturn(expenditureList);
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/expenditure/v1/userid/userId1/month/1")
@@ -110,7 +110,7 @@ public class ExpenditureControllerTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndYear() throws Exception {
+	void testFindByUserIdAndYear() throws Exception {
 		when(expenditureService.findByUserIdAndYear("userId1", 2022)).thenReturn(expenditureList);
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/expenditure/v1/userid/userId1/year/2022")
@@ -119,7 +119,7 @@ public class ExpenditureControllerTest {
 	}
 
 	@Test
-	public void testFindByUserIdAndExpenditureType() throws Exception {
+	void testFindByUserIdAndExpenditureType() throws Exception {
 		when(expenditureService.findByUserIdAndExpenditureType("userId1", "tag1")).thenReturn(expenditureList);
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/expenditure/v1/userid/userId1/category/tag1")
@@ -128,7 +128,7 @@ public class ExpenditureControllerTest {
 	}
 
 	@Test
-	public void testUpdateByIncomeId() throws Exception {
+	void testUpdateByIncomeId() throws Exception {
 		Expenditure expenditure = new Expenditure();
 		Field field = null;
 		try {
@@ -159,7 +159,7 @@ public class ExpenditureControllerTest {
 	}
 
 	@Test
-	public void testDeleteByExpenditureId() throws Exception {
+	void testDeleteByExpenditureId() throws Exception {
 		int expenditureId = 1;
 
 		doNothing().when(expenditureService).delete(expenditureId);

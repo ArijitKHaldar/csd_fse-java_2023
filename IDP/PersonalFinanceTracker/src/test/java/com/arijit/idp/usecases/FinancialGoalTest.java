@@ -44,7 +44,7 @@ public class FinancialGoalTest {
 
 	@Test
 	@DisplayName("Calculate Savings Completion Test")
-	public void testCalculateSavingsCompletion() throws NullValueEnteredException, NotAStringException,
+	void testCalculateSavingsCompletion() throws NullValueEnteredException, NotAStringException,
 			InvalidDataFormatException, ExpenditureNotFoundException, IncomeNotFoundException {
 		String userId = "testUser";
 		Date date = Date.valueOf(LocalDate.now().plusDays(30));

@@ -33,7 +33,7 @@ public class LoginControllerTest {
 	private ObjectMapper objectMapper;
 
 	@Test
-	public void signup_withValidInput_shouldReturnCreated() throws Exception {
+	void signup_withValidInput_shouldReturnCreated() throws Exception {
 		Login login = new Login();
 		login.setUserId("user1");
 		login.setPassword("password1");
@@ -46,7 +46,7 @@ public class LoginControllerTest {
 	}
 
 	@Test
-	public void findLoginByUserId_withValidInput_shouldReturnFound() throws Exception {
+	void findLoginByUserId_withValidInput_shouldReturnFound() throws Exception {
 		Login login = new Login();
 		login.setUserId("user1");
 		login.setPassword("password1");
@@ -58,7 +58,7 @@ public class LoginControllerTest {
 	}
 
 	@Test
-	public void findLoginByEmailId_withValidInput_shouldReturnFound() throws Exception {
+	void findLoginByEmailId_withValidInput_shouldReturnFound() throws Exception {
 		Login login = new Login();
 		login.setUserId("user1");
 		login.setPassword("password1");

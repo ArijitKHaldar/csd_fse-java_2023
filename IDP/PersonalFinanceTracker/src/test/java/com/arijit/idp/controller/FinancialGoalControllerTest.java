@@ -29,7 +29,7 @@ public class FinancialGoalControllerTest {
 	private FinancialGoal financialGoal;
 
 	@Test
-	public void testCalculateSavingsCompletion() throws Exception {
+	void testCalculateSavingsCompletion() throws Exception {
 		double expectedPercentageCompletion = 50.0;
 		when(financialGoal.calculateSavingsCompletion(anyString(), any(Date.class), anyDouble()))
 				.thenReturn(expectedPercentageCompletion);
