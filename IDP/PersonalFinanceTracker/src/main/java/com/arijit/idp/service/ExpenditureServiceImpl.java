@@ -66,12 +66,6 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 			throw new NullValueEnteredException("User Id cannot be empty");
 		}
 
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		String dateString = dateFormat.format(expenditureDate);
-//		if (!Pattern.matches("\\d{4}-\\d{2}-\\d{2}", dateString)) {
-//			throw new IllegalArgumentException("Date should be in YYYY-MM-DD format");
-//		}
-
 		List<Expenditure> expendituresByUserIdAndDate = expenditureRepository.findByUserIdAndExpenditureDate(userId,
 				expenditureDate);
 		if (expendituresByUserIdAndDate.isEmpty()) {
