@@ -45,22 +45,29 @@ public class BudgetForecasting {
 		incomes = incomeService.findByUserIdAndYear(userId, currentYear);
 
 		double totalIncome = 0;
+		double totalExpenditure = 0;
+
 		for (Income income : incomes) {
 			totalIncome += income.getIncomeAmount().doubleValue();
 		}
 
-		double totalExpenditure = 0;
 		for (Expenditure expenditure : expenditures) {
 			totalExpenditure += expenditure.getExpenditureAmount().doubleValue();
 		}
 
-		double avgIncome = totalIncome / currentMonth;
-		double avgExpenditure = totalExpenditure / currentMonth;
+		double remainingMonths = 12 - (double) currentMonth;
 
-		double predictedSavingsCurrent = avgIncome - avgExpenditure;
-		double predictedSavingsRemaining = predictedSavingsCurrent * (12 - currentMonth);
-		double predictedYearlySavings = predictedSavingsRemaining + predictedSavingsCurrent;
-		double predictedMonthlySavings = predictedYearlySavings / 12;
+		if (remainingMonths == 0) {
+			throw new InvalidDataFormatException("Cannot predict. Some error occurred");
+		}
+
+		double avgMonthlyIncome = totalIncome / currentMonth;
+		double avgMonthlyExpenditure = totalExpenditure / currentMonth;
+
+		double predictedMonthlyIncome = totalIncome + (avgMonthlyIncome * remainingMonths);
+		double predictedMonthlyExpenditure = totalExpenditure + (avgMonthlyExpenditure * remainingMonths);
+
+		double predictedMonthlySavings = predictedMonthlyIncome - predictedMonthlyExpenditure;
 
 		if (predictedMonthlySavings < 0) {
 			throw new InvalidDataFormatException("Cannot predict. Some error occured");
