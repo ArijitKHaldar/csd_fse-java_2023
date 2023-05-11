@@ -55,23 +55,17 @@ public class BudgetForecasting {
 			totalExpenditure += expenditure.getExpenditureAmount().doubleValue();
 		}
 
-		double remainingMonths = 12 - (double) currentMonth;
+		double avgIncome = totalIncome / currentMonth;
+		double avgExpenditure = totalExpenditure / currentMonth;
 
-		if (remainingMonths == 0) {
-			throw new InvalidDataFormatException("Cannot predict. Some error occurred");
-		}
+		double savings = totalIncome - totalExpenditure;
+		double predictedSavings = savings + avgIncome - avgExpenditure;
 
-		double avgMonthlyIncome = totalIncome / currentMonth;
-		double avgMonthlyExpenditure = totalExpenditure / currentMonth;
-
-		double predictedMonthlyIncome = totalIncome + (avgMonthlyIncome * remainingMonths);
-		double predictedMonthlyExpenditure = totalExpenditure + (avgMonthlyExpenditure * remainingMonths);
-
-		double predictedMonthlySavings = predictedMonthlyIncome - predictedMonthlyExpenditure;
-
-		if (predictedMonthlySavings < 0) {
+		if (predictedSavings < 0) {
 			throw new InvalidDataFormatException("Cannot predict. Some error occured");
 		}
+
+		double predictedMonthlySavings = predictedSavings / currentMonth;
 
 		DecimalFormat df = new DecimalFormat("#.##");
 		return Double.parseDouble(df.format(predictedMonthlySavings));
