@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import com.arijit.idp.entity.Expenditure;
 import com.arijit.idp.entity.Income;
@@ -20,7 +20,7 @@ import com.arijit.idp.service.IncomeServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Configuration
+@Component
 public class BudgetForecasting {
 
 	@Autowired
