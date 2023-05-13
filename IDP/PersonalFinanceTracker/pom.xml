@@ -73,12 +73,7 @@
 			<artifactId>junit-platform-suite-engine</artifactId>
 			<scope>test</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>com.h2database</groupId>-->
-<!--			<artifactId>h2</artifactId>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
-
+		
 	</dependencies>
 	<profiles>
 		<profile>
@@ -88,7 +83,7 @@
 			</activation>
 			<properties>
 				<sonar.host.url>http://127.0.0.1:9000</sonar.host.url>
-				<sonar.login>squ_c892252766420e92fe2aadee66b4e3d56d765955</sonar.login>
+				<sonar.login>squ_27d8b7b90c9aafdfb403dd35cf14d45749df7109</sonar.login>
 			</properties>
 		</profile>
 	</profiles>
