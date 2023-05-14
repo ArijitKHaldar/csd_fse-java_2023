@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/api/income")
+@CrossOrigin(origins = { "http://localhost:3000", "http://127.0.0.1:3000" })
 public class IncomeController {
 
 	@Autowired
@@ -49,7 +51,7 @@ public class IncomeController {
 			throws IncomeNotFoundException, NullValueEnteredException, NotAStringException {
 
 		log.info("Received find income request for userId: {}", userId);
-		return new ResponseEntity<>(service.findByUserId(userId), HttpStatus.FOUND);
+		return new ResponseEntity<>(service.findByUserId(userId), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Find list of all incomes for a particular user in a particular month")
@@ -58,7 +60,7 @@ public class IncomeController {
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {
 
 		log.info("Received find income request for userId: {} and month: {}", userId, month);
-		return new ResponseEntity<>(service.findByUserIdAndMonth(userId, month), HttpStatus.FOUND);
+		return new ResponseEntity<>(service.findByUserIdAndMonth(userId, month), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Find list of all incomes for a particular user in a particular year")
@@ -67,7 +69,7 @@ public class IncomeController {
 			throws NullValueEnteredException, NotAStringException, InvalidDataFormatException, IncomeNotFoundException {
 
 		log.info("Received find income request for userId: {} and year: {}", userId, year);
-		return new ResponseEntity<>(service.findByUserIdAndYear(userId, year), HttpStatus.FOUND);
+		return new ResponseEntity<>(service.findByUserIdAndYear(userId, year), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Update entered income for a particular income id")

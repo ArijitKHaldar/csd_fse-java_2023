@@ -53,7 +53,7 @@ public class LoginControllerTest {
 
 		when(loginService.findLoginByUserId(anyString())).thenReturn(login);
 
-		mockMvc.perform(get("/api/login/v1/userid/user1")).andExpect(status().isFound())
+		mockMvc.perform(get("/api/login/v1/userid/user1")).andExpect(status().isOk())
 				.andExpect(jsonPath("$.userId", is("user1"))).andExpect(jsonPath("$.password", is("password1")));
 	}
 
@@ -66,7 +66,7 @@ public class LoginControllerTest {
 
 		when(loginService.findLoginByEmailId(anyString())).thenReturn(login);
 
-		mockMvc.perform(get("/api/login/v1/email/user1@example.com")).andExpect(status().isFound())
+		mockMvc.perform(get("/api/login/v1/email/user1@example.com")).andExpect(status().isOk())
 				.andExpect(jsonPath("$.userId", is("user1"))).andExpect(jsonPath("$.password", is("password1")))
 				.andExpect(jsonPath("$.emailId", is("user1@example.com")));
 	}

@@ -1,0 +1,59 @@
+.homepage {
+  text-align: center;
+}
+
+header {
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.project-title {
+  font-size: 24px;
+}
+
+main {
+  padding: 20px;
+}
+
+.widget {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.widget h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.widget p {
+  margin-bottom: 20px;
+}
+
+footer {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+footer ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+footer li {
+  margin: 0 10px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+}
+
+.footer-link:hover {
+  color: #000;
+}

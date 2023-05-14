@@ -78,7 +78,7 @@ public class ExpenditureControllerTest {
 
 		when(expenditureService.findByUserId("user1")).thenReturn(expenditureList);
 
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/expenditure/v1/userid/user1")).andExpect(status().isFound())
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/expenditure/v1/userid/user1")).andExpect(status().isOk())
 				.andExpect(jsonPath("$[0].userId", is("user1"))).andExpect(jsonPath("$[0].categoryId", is(1)))
 				.andExpect(jsonPath("$[0].expenditureAmount", is(100.0)))
 				.andExpect(jsonPath("$[1].userId", is("user1"))).andExpect(jsonPath("$[1].categoryId", is(2)))
@@ -97,7 +97,7 @@ public class ExpenditureControllerTest {
 		when(expenditureService.findByUserIdAndExpenditureDate(userId, expenditureDate)).thenReturn(expenditureList);
 
 		mockMvc.perform(get("/api/expenditure/v1/userid/{userId}/date/{expenditureDate}", userId, expenditureDate))
-				.andExpect(status().isFound());
+				.andExpect(status().isOk());
 	}
 
 	@Test
@@ -106,7 +106,7 @@ public class ExpenditureControllerTest {
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/expenditure/v1/userid/userId1/month/1")
 				.contentType(MediaType.APPLICATION_JSON))
-		.andExpect(status().isFound());
+		.andExpect(status().isOk());
 	}
 
 	@Test
@@ -115,7 +115,7 @@ public class ExpenditureControllerTest {
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/expenditure/v1/userid/userId1/year/2022")
 				.contentType(MediaType.APPLICATION_JSON))
-		.andExpect(status().isFound());
+		.andExpect(status().isOk());
 	}
 
 	@Test
@@ -124,7 +124,7 @@ public class ExpenditureControllerTest {
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/expenditure/v1/userid/userId1/category/tag1")
 				.contentType(MediaType.APPLICATION_JSON))
-		.andExpect(status().isFound());
+		.andExpect(status().isOk());
 	}
 
 	@Test

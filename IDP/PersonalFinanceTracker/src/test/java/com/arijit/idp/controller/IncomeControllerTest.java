@@ -86,7 +86,7 @@ public class IncomeControllerTest {
 
 		when(incomeService.findByUserId(Mockito.anyString())).thenReturn(incomeList);
 
-		mockMvc.perform(get("/api/income/v1/userid/{userId}", "1")).andExpect(status().isFound())
+		mockMvc.perform(get("/api/income/v1/userid/{userId}", "1")).andExpect(status().isOk())
 				.andExpect(jsonPath("$").isArray());
 
 		verify(incomeService, times(1)).findByUserId(Mockito.anyString());
@@ -97,7 +97,7 @@ public class IncomeControllerTest {
 		when(incomeService.findByUserIdAndMonth(Mockito.anyString(), Mockito.anyInt())).thenReturn(Collections.emptyList());
 
 		mockMvc.perform(get("/api/income/v1/userid/{userId}/month/{month}", "test-user", 1))
-		.andExpect(status().isFound())
+		.andExpect(status().isOk())
 		.andExpect(jsonPath("$").isArray());
 
 		verify(incomeService, times(1)).findByUserIdAndMonth(Mockito.anyString(), Mockito.anyInt());
@@ -108,7 +108,7 @@ public class IncomeControllerTest {
 		when(incomeService.findByUserIdAndYear(Mockito.anyString(), Mockito.anyInt())).thenReturn(Collections.emptyList());
 
 		mockMvc.perform(get("/api/income/v1/userid/{userId}/year/{year}", "test-user", 2022))
-		.andExpect(status().isFound())
+		.andExpect(status().isOk())
 		.andExpect(jsonPath("$").isArray());
 
 		verify(incomeService, times(1)).findByUserIdAndYear(Mockito.anyString(), Mockito.anyInt());

@@ -3,6 +3,7 @@ package com.arijit.idp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/api/login")
+@CrossOrigin(origins = { "http://localhost:3000", "http://127.0.0.1:3000" })
 public class LoginController {
 
 	@Autowired
@@ -45,7 +47,7 @@ public class LoginController {
 
 		log.info("Received findLoginByUserId request for userId: {}", userId);
 
-		return new ResponseEntity<>(service.findLoginByUserId(userId), HttpStatus.FOUND);
+		return new ResponseEntity<>(service.findLoginByUserId(userId), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Retrieve data based on entered user id")
@@ -55,6 +57,6 @@ public class LoginController {
 
 		log.info("Received findLoginByEmailId request for emailId: {}", emailId);
 
-		return new ResponseEntity<>(service.findLoginByEmailId(emailId), HttpStatus.FOUND);
+		return new ResponseEntity<>(service.findLoginByEmailId(emailId), HttpStatus.OK);
 	}
 }

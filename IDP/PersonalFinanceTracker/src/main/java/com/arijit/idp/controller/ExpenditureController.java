@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/api/expenditure")
+@CrossOrigin(origins = { "http://localhost:3000", "http://127.0.0.1:3000" })
 public class ExpenditureController {
 
 	@Autowired
@@ -54,7 +56,7 @@ public class ExpenditureController {
 
 		log.info("Finding all expenditures for user: {}", userId);
 
-		return new ResponseEntity<>(this.service.findByUserId(userId), HttpStatus.FOUND);
+		return new ResponseEntity<>(this.service.findByUserId(userId), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user on a particular date")
@@ -66,7 +68,7 @@ public class ExpenditureController {
 		log.info("Finding all expenditures for user: {} on date: {}", userId, expenditureDate);
 
 		return new ResponseEntity<>(this.service.findByUserIdAndExpenditureDate(userId, expenditureDate),
-				HttpStatus.FOUND);
+				HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user on a particular month")
@@ -77,7 +79,7 @@ public class ExpenditureController {
 
 		log.info("Finding all expenditures for user: {} in month: {}", userId, month);
 
-		return new ResponseEntity<>(this.service.findByUserIdAndMonth(userId, month), HttpStatus.FOUND);
+		return new ResponseEntity<>(this.service.findByUserIdAndMonth(userId, month), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user on a particular year")
@@ -88,7 +90,7 @@ public class ExpenditureController {
 
 		log.info("Finding all expenditures for user: {} in year: {}", userId, year);
 
-		return new ResponseEntity<>(this.service.findByUserIdAndYear(userId, year), HttpStatus.FOUND);
+		return new ResponseEntity<>(this.service.findByUserIdAndYear(userId, year), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Find list of all expenditures for a particular user for a category")
@@ -98,8 +100,7 @@ public class ExpenditureController {
 
 		log.info("Finding all expenditures for user: {} with category: {}", userId, expenditureTag);
 
-		return new ResponseEntity<>(this.service.findByUserIdAndExpenditureType(userId, expenditureTag),
-				HttpStatus.FOUND);
+		return new ResponseEntity<>(this.service.findByUserIdAndExpenditureType(userId, expenditureTag), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Update Expenditure data by expenditure id")
