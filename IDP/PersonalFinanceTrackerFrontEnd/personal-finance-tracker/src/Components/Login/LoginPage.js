@@ -12,26 +12,52 @@ function LoginPage() {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('/api/login/v1', {
-        emailId: email,
-        password: password
-      });
-      setUserId(response.data.userId);
-      setErrorMessage('');
+      let checkResponse;
+      try {
+        checkResponse = await axios.get(`/api/login/v1/email/${email}`);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // Email ID not found, proceed with signup
+          const signupResponse = await axios.post('/api/login/v1', {
+            emailId: email,
+            password: password
+          });
+          setUserId(signupResponse.data.userId);
+          setErrorMessage(`Signup successful with User ID: ${signupResponse.data.userId}`);
+          return; // Exit the function to prevent reaching the catch block
+        }
+        throw error; // Re-throw the error if it's not a 404 response
+      }
+  
+      // Email ID already registered
+      if(checkResponse.data.userId) {
+        setErrorMessage('User already signed up. Please sign in.');
+      }
     } catch (error) {
       setUserId('');
       setErrorMessage(error.response.data);
     }
   };
+  
 
   const handleSignin = async () => {
     try {
       const response = await axios.get(`/api/login/v1/email/${email}`);
-      setUserId(response.data.userId);
-      setErrorMessage('');
+      if (!response.data) {
+        setUserId('');
+        setErrorMessage('User is not signed up. Please sign up first.');
+      } else {
+        if (response.data.password === password) {
+          setUserId(response.data.userId);
+          setErrorMessage('Successfully logged in');
+        } else {
+          setUserId('');
+          setErrorMessage('Password does not match.');
+        }
+      }
     } catch (error) {
       setUserId('');
-      setErrorMessage('User not found. Please sign up.');
+      setErrorMessage('User is not signed up. Please sign up first.');
     }
   };
 
@@ -51,7 +77,6 @@ function LoginPage() {
         <button onClick={handleSignin}>Sign In</button>
       </div>
       {errorMessage && <p>{errorMessage}</p>}
-      {userId && <p>Successfully signed up with User ID: {userId}</p>}
     </div>
   );
 }
