@@ -62,21 +62,21 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div className='login-page'>
       <h1>Join Now!</h1>
-      <div>
+      <div className='form-group'>
         <label>Email:</label>
         <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
-      <div>
+      <div className='form-group'>
         <label>Password:</label>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
-      <div>
-        <button onClick={handleSignup}>Sign Up</button>
-        <button onClick={handleSignin}>Sign In</button>
+      <div className='button-group'>
+        <button className='signup-button' onClick={handleSignup}>Sign Up</button>
+        <button className='signin-button' onClick={handleSignin}>Sign In</button>
       </div>
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && <p className='error-message'>{errorMessage}</p>}
     </div>
   );
 }

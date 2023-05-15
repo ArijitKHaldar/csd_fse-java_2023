@@ -1,60 +1,65 @@
 /* loginPage.css */
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-  
-  .button-container button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .button-container button:not(:last-child) {
-    margin-right: 0.5rem;
-  }
-  
-  .success-message {
-    color: green;
-    font-weight: bold;
-    margin-top: 1rem;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 1rem;
-  }
-  
+.login-page {
+  background-color: #f1f1f1;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 5px;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.signup-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.signup-button:hover {
+  background-color: #0062cb;
+}
+
+.signin-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.signin-button:hover {
+  background-color: #1e8737;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
