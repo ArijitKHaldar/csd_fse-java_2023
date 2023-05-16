@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import LoginPage from "../Login/LoginPage";
+import PopupBox from "./PopupBox";
 import "./HomePage.css";
 
 function HomePage() {
   const [showLogin, setShowLogin] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupContent, setPopupContent] = useState("");
   const loginBoxRef = useRef(null);
 
   const handleGetStarted = () => {
@@ -14,6 +17,30 @@ function HomePage() {
     if (loginBoxRef.current && !loginBoxRef.current.contains(event.target)) {
       setShowLogin(false);
     }
+  };
+
+  const handleOpenPopup = (content) => {
+    if (content === "About") {
+      setPopupContent(
+        <span className="popup-about">Created by Arijit Kumar Haldar</span>
+      );
+    } else if (content === "Contact") {
+      setPopupContent(
+        <span className="popup-contact">arijitkrhaldar@gmail.com</span>
+      );
+    } else if (content === "Terms of Service") {
+      setPopupContent(
+        <span className="popup-terms">
+          This application is made for the requirements of IDP in CSD 2023,
+          Cognizant
+        </span>
+      );
+    }
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
   };
 
   useEffect(() => {
@@ -45,16 +72,34 @@ function HomePage() {
       <footer className="footer">
         <ul>
           <li>
-            <a href="#about">About</a>
+            <button
+              className="footer-btn"
+              onClick={() => handleOpenPopup("About")}
+            >
+              About
+            </button>
           </li>
           <li>
-            <a href="#contact">Contact</a>
+            <button
+              className="footer-btn"
+              onClick={() => handleOpenPopup("Contact")}
+            >
+              Contact
+            </button>
           </li>
           <li>
-            <a href="#terms">Terms of Service</a>
+            <button
+              className="footer-btn"
+              onClick={() => handleOpenPopup("Terms of Service")}
+            >
+              Terms of Service
+            </button>
           </li>
         </ul>
       </footer>
+      {showPopup && (
+        <PopupBox content={popupContent} onClose={handleClosePopup} />
+      )}
     </div>
   );
 }
