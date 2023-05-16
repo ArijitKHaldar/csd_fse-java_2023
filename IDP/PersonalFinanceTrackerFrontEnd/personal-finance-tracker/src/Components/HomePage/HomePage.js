@@ -54,7 +54,7 @@ function HomePage() {
     <div className="homepage">
       <header className="header">
         <h1 className="project-title">Personal Finance Tracker</h1>
-        <p className="subtitle">Manage your finances with ease</p>
+        <p className="subtitle">Make managing your finances a peaceful journey</p>
       </header>
       <main>
         {showLogin ? (

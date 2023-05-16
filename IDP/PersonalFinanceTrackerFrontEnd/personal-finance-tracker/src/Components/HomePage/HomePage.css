@@ -30,7 +30,7 @@
 }
 
 .subtitle {
-  font-size: 30px;
+  font-size: 25px;
   color: #4d5472;
   margin-top: 10px;
   padding-bottom: 60px;
@@ -45,7 +45,10 @@
 }
 
 .login-box {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

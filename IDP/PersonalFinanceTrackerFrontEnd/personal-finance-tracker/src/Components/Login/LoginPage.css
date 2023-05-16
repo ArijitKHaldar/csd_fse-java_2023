@@ -1,7 +1,11 @@
 /* loginPage.css */
 
 .login-page {
-  background-color: #f1f1f1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.3));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
   max-width: 400px;
   margin: 0 auto;
@@ -35,7 +39,7 @@ input {
 }
 
 .signup-button {
-  background-color: #007bff;
+  background-color: #3a7fb8;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -44,11 +48,11 @@ input {
   cursor: pointer;
 }
 .signup-button:hover {
-  background-color: #0062cb;
+  background-color: #255276;
 }
 
 .signin-button {
-  background-color: #28a745;
+  background-color: #a578cd;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -56,7 +60,7 @@ input {
   cursor: pointer;
 }
 .signin-button:hover {
-  background-color: #1e8737;
+  background-color: #7b5999;
 }
 
 .error-message {
