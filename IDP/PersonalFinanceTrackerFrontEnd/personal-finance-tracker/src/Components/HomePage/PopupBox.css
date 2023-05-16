@@ -5,17 +5,3 @@
 .popup-content {
     position: relative;
 }
-
-.close-icon {
-    position: absolute;
-    top: -50px;
-    right: -70px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-  }
-
-  .close-icon-cross {
-    font-size: 20px;
-    color: #ffeaea;
-  }
