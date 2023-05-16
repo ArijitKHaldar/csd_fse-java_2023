@@ -65,7 +65,7 @@ function HomePage() {
           </div>
         ) : (
           <div className="get-started" onClick={handleGetStarted}>
-            <button className="get-started-button">Let's Get Started</button>
+            <button className="get-started-button">Get Started</button>
           </div>
         )}
       </main>
