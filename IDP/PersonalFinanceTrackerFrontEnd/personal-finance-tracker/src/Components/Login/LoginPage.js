@@ -142,7 +142,7 @@ function LoginPage() {
             className="password-toggle-button"
             onClick={togglePasswordVisibility}
           >
-            {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+            {showPassword ? <RiEyeFill /> : <RiEyeOffFill />}
           </button>
         </div>
       </div>

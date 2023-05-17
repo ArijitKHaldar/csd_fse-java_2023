@@ -33,6 +33,20 @@ label {
   position: relative;
 }
 
+.input-container input:focus {
+  outline: none;
+  border: 1.5px solid;
+  transition: border-color 0.3s ease;
+}
+
+.input-container.valid input:focus {
+  border-color: #12c1e8;
+}
+
+.input-container.invalid input:focus {
+  border-color: #ab4273;
+}
+
 input {
   padding: 8px;
   border-radius: 3px;
