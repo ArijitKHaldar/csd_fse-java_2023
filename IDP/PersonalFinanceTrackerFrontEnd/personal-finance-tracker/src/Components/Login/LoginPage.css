@@ -65,6 +65,10 @@ input {
   background-color: #12c1e8;
 }
 
+.status-circle.red {
+  background-color: #ab4273;
+}
+
 .button-group {
   margin-top: 20px;
 }
@@ -99,10 +103,6 @@ input {
 .error-message {
   color: red;
   margin-top: 10px;
-}
-
-.invalid .status-circle {
-  background-color: #ab4273;
 }
 
 .password-toggle-button {

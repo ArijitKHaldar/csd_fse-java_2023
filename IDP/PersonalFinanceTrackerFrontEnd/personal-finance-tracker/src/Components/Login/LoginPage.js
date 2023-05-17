@@ -8,7 +8,7 @@ axios.defaults.baseURL = "http://127.0.0.1:8080";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [, setUserId] = useState("");
+  const [userId, setUserId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
@@ -38,7 +38,7 @@ function LoginPage() {
           });
           setUserId(signupResponse.data.userId);
           setErrorMessage(
-            `Signup successful with User ID: ${signupResponse.data.userId}`
+            `Signup successful with User ID: ${signupResponse.data.userId}. Please Sign in now`
           );
           return; // Exit the function to prevent reaching the catch block
         }
@@ -75,6 +75,7 @@ function LoginPage() {
         if (response.data.password === password) {
           setUserId(response.data.userId);
           setErrorMessage("Successfully logged in");
+          // TODO Go to user dashboard from here
         } else {
           setUserId("");
           setErrorMessage("Password does not match.");
