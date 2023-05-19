@@ -1,1 +1,77 @@
 /*Dashboard.css*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  font-weight: bold;
+  background-color: #bfb1c1;
+  color: #0e1327;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #cec0d0;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a:hover {
+  color: inherit;
+  background-color: #bfb1c1;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #bfb1c1;
+  color: #0e1327;
+  padding: 10px;
+}
+
+.navbar a {
+  font-weight: bold;
+  color: #0e1327;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.navbar a:hover {
+  color: inherit;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  background-color: #8c4276;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #fff3f3;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #622d52;
+}

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LoginPage.css";
 
@@ -13,6 +14,13 @@ function LoginPage() {
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userId !== "") {
+      navigate(`/dashboard?userId=${userId}`);
+    }
+  }, [userId, navigate]);
 
   const handleSignup = async () => {
     if (!emailValid && passwordValid) {
@@ -74,8 +82,8 @@ function LoginPage() {
       } else {
         if (response.data.password === password) {
           setUserId(response.data.userId);
+          // Go to user dashboard from here using useEffect
           setErrorMessage("Successfully logged in");
-          // TODO Go to user dashboard from here
         } else {
           setUserId("");
           setErrorMessage("Password does not match.");
