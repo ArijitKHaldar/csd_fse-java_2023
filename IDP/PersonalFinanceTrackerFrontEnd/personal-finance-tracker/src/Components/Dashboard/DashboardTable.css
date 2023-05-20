@@ -1,0 +1,108 @@
+/* Table Styles */
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+/* Table Head Styles */
+thead th {
+  position: sticky;
+  font-weight: bold;
+  color: #e5e5e5;
+  background-color: rgba(28, 89, 139, 0.8);
+}
+
+/* Table Body Styles */
+tbody td {
+  color: #3d3d3d;
+  font-weight: 500;
+}
+
+/* Alternating Row Styles */
+tbody tr:nth-child(even) {
+  background-color: #0000000f;
+}
+
+/* Responsive Table Styles */
+@media screen and (max-width: 600px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  table thead,
+  table tbody,
+  table th,
+  table td,
+  table tr {
+    display: block;
+  }
+
+  table thead tr {
+    position: absolute;
+  }
+
+  table td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  table td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  table tbody td:before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}
+
+.table-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.income-section,
+.expenditure-section {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.8)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.income-list,
+.expenditure-list {
+  overflow: auto;
+  max-height: 310px;
+}
+
+@media screen and (min-width: 768px) {
+  .income-section,
+  .expenditure-section {
+    width: 50%;
+  }
+}
+
+.income-section h2,
+.expenditure-section h2 {
+  font-weight: bolder;
+  color: #414141;
+}

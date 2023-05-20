@@ -1,4 +1,16 @@
 /*Dashboard.css*/
+#dashboard-background {
+  background-image: url("../../Resources/bg1.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+#dashboard {
+  backdrop-filter: blur(10px) brightness(70%);
+  -webkit-backdrop-filter: blur(10px);
+  min-height: 100vh;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -11,6 +23,9 @@
   padding: 10px;
   border: none;
   cursor: pointer;
+}
+.dropbtn:hover {
+  background-color: #cec0d0;
 }
 
 .dropdown-content {
@@ -41,12 +56,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #bfb1c1;
+  background-color: #b9b1c1;
   color: #0e1327;
   padding: 10px;
 }
 
 .navbar a {
+  margin-left: 0.5rem;
   font-weight: bold;
   color: #0e1327;
   text-decoration: none;
@@ -66,10 +82,11 @@
   background-color: #8c4276;
   font-weight: bold;
   border-radius: 5px;
-  color: #fff3f3;
+  color: #ebe3e3;
   border: none;
   padding: 8px 16px;
   cursor: pointer;
+  margin-right: 0.5rem;
 }
 
 .logout-button:hover {

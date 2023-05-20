@@ -50,7 +50,7 @@ public class LoginController {
 		return new ResponseEntity<>(service.findLoginByUserId(userId), HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "Retrieve data based on entered user id")
+	@ApiOperation(value = "Retrieve data based on entered email")
 	@GetMapping("/v1/email/{emailId}")
 	public ResponseEntity<Login> findLoginByEmailId(@PathVariable String emailId)
 			throws LoginNotFoundException, NullValueEnteredException {

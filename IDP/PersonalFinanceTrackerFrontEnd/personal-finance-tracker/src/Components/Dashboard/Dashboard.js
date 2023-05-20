@@ -1,90 +1,214 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import React from "react";
+import React, { useState } from "react";
+import DashboardTable from "./DashboardTable";
+import AllIncomeTable from "./AllIncomeTable";
+import IncomeByMonthTable from "./IncomeByMonthTable";
+import IncomeByYearTable from "./IncomeByYearTable";
+import InsertIncomeTable from "./InsertIncomeTable";
+import UpdateIncomeTable from "./UpdateIncomeTable";
+import DeleteIncomeTable from "./DeleteIncomeTable";
+import AllExpenditureTable from "./AllExpenditureTable";
+import ExpenditureByDateTable from "./ExpenditureByDateTable";
+import ExpenditureByMonthTable from "./ExpenditureByMonthTable";
+import ExpenditureByYearTable from "./ExpenditureByYearTable";
+import InsertExpenditureTable from "./InsertExpenditureTable";
+import UpdateExpenditureTable from "./UpdateExpenditureTable";
+import DeleteExpenditureTable from "./DeleteExpenditureTable";
 
 function Dashboard() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const userId = searchParams.get("userId");
+  // const userId = searchParams.get("userId");
+  const userId = "f2r0o2n3t0518193338";
   const navigate = useNavigate();
+
+  const [incomeTable, setIncomeTable] = useState(false);
+  const [incomeByMonth, setIncomeByMonth] = useState(false);
+  const [incomeByYear, setIncomeByYear] = useState(false);
+  const [insertIncome, setInsertIncome] = useState(false);
+  const [updateIncome, setUpdateIncome] = useState(false);
+  const [deleteIncome, setDeleteIncome] = useState(false);
+  const [expenditureTable, setExpenditureTable] = useState(false);
+  const [expenditureByDate, setExpenditureByDate] = useState(false);
+  const [expenditureByMonth, setExpenditureByMonth] = useState(false);
+  const [expenditureByYear, setExpenditureByYear] = useState(false);
+  const [insertExpenditure, setInsertExpenditure] = useState(false);
+  const [updateExpenditure, setUpdateExpenditure] = useState(false);
+  const [deleteExpenditure, setDeleteExpenditure] = useState(false);
 
   const handleLogout = () => {
     navigate("/", { replace: true });
   };
 
+  const handleLinkClick = (event) => {
+    event.preventDefault();
+    const link = event.target.getAttribute("href");
+    switch (link) {
+      case "/dashboard/income":
+        setIncomeTable((prevState) => !prevState);
+        break;
+      case "/dashboard/income/month":
+        setIncomeByMonth((prevState) => !prevState);
+        break;
+      case "/dashboard/income/year":
+        setIncomeByYear((prevState) => !prevState);
+        break;
+      case "/dashboard/income/insert":
+        setInsertIncome((prevState) => !prevState);
+        break;
+      case "/dashboard/income/update":
+        setUpdateIncome((prevState) => !prevState);
+        break;
+      case "/dashboard/income/delete":
+        setDeleteIncome((prevState) => !prevState);
+        break;
+      case "/dashboard/expenditure":
+        setExpenditureTable((prevState) => !prevState);
+        break;
+      case "/dashboard/expenditure/date":
+        setExpenditureByDate((prevState) => !prevState);
+        break;
+      case "/dashboard/expenditure/month":
+        setExpenditureByMonth((prevState) => !prevState);
+        break;
+      case "/dashboard/expenditure/year":
+        setExpenditureByYear((prevState) => !prevState);
+        break;
+      case "/dashboard/expenditure/insert":
+        setInsertExpenditure((prevState) => !prevState);
+        break;
+      case "/dashboard/expenditure/update":
+        setUpdateExpenditure((prevState) => !prevState);
+        break;
+      case "/dashboard/expenditure/delete":
+        setDeleteExpenditure((prevState) => !prevState);
+        break;
+      default:
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
+        break;
+    }
+  };
+
+  const renderTable = () => {
+    if (incomeTable) {
+      return <AllIncomeTable userId={userId} />;
+    } else if (incomeByMonth) {
+      return <IncomeByMonthTable userId={userId} />;
+    } else if (incomeByYear) {
+      return <IncomeByYearTable userId={userId} />;
+    } else if (insertIncome) {
+      return <InsertIncomeTable userId={userId} />;
+    } else if (updateIncome) {
+      return <UpdateIncomeTable userId={userId} />;
+    } else if (deleteIncome) {
+      return <DeleteIncomeTable userId={userId} />;
+    } else if (expenditureTable) {
+      return <AllExpenditureTable userId={userId} />;
+    } else if (expenditureByDate) {
+      return <ExpenditureByDateTable userId={userId} />;
+    } else if (expenditureByMonth) {
+      return <ExpenditureByMonthTable userId={userId} />;
+    } else if (expenditureByYear) {
+      return <ExpenditureByYearTable userId={userId} />;
+    } else if (insertExpenditure) {
+      return <InsertExpenditureTable userId={userId} />;
+    } else if (updateExpenditure) {
+      return <UpdateExpenditureTable userId={userId} />;
+    } else if (deleteExpenditure) {
+      return <DeleteExpenditureTable userId={userId} />;
+    } else {
+      return <DashboardTable userId={userId} />;
+    }
+  };
+
   return (
-    <div id="dashboard">
-      <div className="navbar">
-        <div className="navbar-left">
-          <a href="/dashboard">Home</a>
-          <div className="dropdown">
-            <button className="dropbtn">Income</button>
-            <div className="dropdown-content">
-              <a href="/income">All Income</a>
-              <a href="/income/month">Income for Month</a>
-              <a href="/income/year">Income for Year</a>
-              <a href="/income/insert">Insert Income</a>
-              <a href="/income/update">Update Income</a>
-              <a href="/income/delete">Delete Income</a>
+    <div id="dashboard-background">
+      <div id="dashboard">
+        <div className="navbar">
+          <div className="navbar-left">
+            <a href="/dashboard">Home</a>
+            <div className="dropdown">
+              <button className="dropbtn">Income</button>
+              <div className="dropdown-content">
+                <a href="/dashboard/income" onClick={handleLinkClick}>
+                  All Income
+                </a>
+                <a href="/dashboard/income/month" onClick={handleLinkClick}>
+                  Income for Month
+                </a>
+                <a href="/dashboard/income/year" onClick={handleLinkClick}>
+                  Income for Year
+                </a>
+                <a href="/dashboard/income/insert" onClick={handleLinkClick}>
+                  Insert Income
+                </a>
+                <a href="/dashboard/income/update" onClick={handleLinkClick}>
+                  Update Income
+                </a>
+                <a href="/dashboard/income/delete" onClick={handleLinkClick}>
+                  Delete Income
+                </a>
+              </div>
+            </div>
+            <div className="dropdown">
+              <button className="dropbtn">Expenditure</button>
+              <div className="dropdown-content">
+                <a href="/dashboard/expenditure" onClick={handleLinkClick}>
+                  All Expenditure
+                </a>
+                <a href="/dashboard/expenditure/date" onClick={handleLinkClick}>
+                  Expenditure for Date
+                </a>
+                <a
+                  href="/dashboard/expenditure/month"
+                  onClick={handleLinkClick}
+                >
+                  Expenditure for Month
+                </a>
+                <a href="/dashboard/expenditure/year" onClick={handleLinkClick}>
+                  Expenditure for Year
+                </a>
+                <a
+                  href="/dashboard/expenditure/insert"
+                  onClick={handleLinkClick}
+                >
+                  Insert Expenditure
+                </a>
+                <a
+                  href="/dashboard/expenditure/update"
+                  onClick={handleLinkClick}
+                >
+                  Update Expenditure
+                </a>
+                <a
+                  href="/dashboard/expenditure/delete"
+                  onClick={handleLinkClick}
+                >
+                  Delete Expenditure
+                </a>
+              </div>
             </div>
           </div>
-          <div className="dropdown">
-            <button className="dropbtn">Expenditure</button>
-            <div className="dropdown-content">
-              <a href="/expenditure">All Expenditure</a>
-              <a href="/expenditure/date">Expenditure for Date</a>
-              <a href="/expenditure/month">Expenditure for Month</a>
-              <a href="/expenditure/year">Expenditure for Year</a>
-              <a href="/expenditure/insert">Insert Expenditure</a>
-              <a href="/expenditure/update">Update Expenditure</a>
-              <a href="/expenditure/delete">Delete Expenditure</a>
-            </div>
+          <div className="navbar-right">
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </div>
-        <div className="navbar-right">
-          <button className="logout-button" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      </div>
-
-      <div className="overview-section">
-        <h2>Overview</h2>
-        {/* Display summary of income, expenditure, and savings */}
-        {/* Show percentage of monthly and yearly savings */}
-        {/* Include a progress bar for savings completion */}
-      </div>
-
-      <div className="income-section">
-        <h2>Income</h2>
-        <div className="income-list">
-          {/* Display list of income entries */}
-          {/* Include options to filter by month or year */}
-        </div>
-        <div className="income-form">
-          {/* Create form for adding new income */}
-          {/* Include fields for date, amount, description */}
-        </div>
-      </div>
-
-      <div className="expenditure-section">
-        <h2>Expenditure</h2>
-        <div className="expenditure-list">
-          {/* Display list of expenditure entries */}
-          {/* Include options to filter by date, month or year */}
-        </div>
-        <div className="expenditure-form">
-          {/* Create form for adding new expenditure */}
-          {/* Include fields for date, amount, description, category */}
-        </div>
-      </div>
-
-      <div className="savings-prediction">
-        {/* Show predicted savings for next month */}
-      </div>
-
-      <div className="savings-completion">
-        {/* Display percentage of completion for total savings */}
+        {renderTable()}
       </div>
     </div>
   );
