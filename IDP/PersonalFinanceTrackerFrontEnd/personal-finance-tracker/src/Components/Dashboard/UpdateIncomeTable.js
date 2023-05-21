@@ -21,6 +21,8 @@ function UpdateIncomeTable({ userId }) {
           setSuccessMessage("");
           setErrorMessage("");
         } else {
+          setIncomeDate("");
+          setIncomeAmount("");
           setSuccessMessage("");
           setErrorMessage("Income not found. Please enter a valid income ID.");
         }
@@ -44,6 +46,9 @@ function UpdateIncomeTable({ userId }) {
         console.log("Income updated:", response.data);
         setSuccessMessage("Income updated successfully.");
         setErrorMessage("");
+        setIncomeId("");
+        setIncomeDate("");
+        setIncomeAmount("");
       })
       .catch((error) => {
         console.log("Error updating income:", error);
