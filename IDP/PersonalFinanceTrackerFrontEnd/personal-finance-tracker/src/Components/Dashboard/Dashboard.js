@@ -47,41 +47,197 @@ function Dashboard() {
     switch (link) {
       case "/dashboard/income":
         setIncomeTable((prevState) => !prevState);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/income/month":
+        setIncomeTable(false);
         setIncomeByMonth((prevState) => !prevState);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/income/year":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
         setIncomeByYear((prevState) => !prevState);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/income/insert":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
         setInsertIncome((prevState) => !prevState);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/income/update":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
         setUpdateIncome((prevState) => !prevState);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/income/delete":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
         setDeleteIncome((prevState) => !prevState);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/expenditure":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
         setExpenditureTable((prevState) => !prevState);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/expenditure/date":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
         setExpenditureByDate((prevState) => !prevState);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/expenditure/month":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
         setExpenditureByMonth((prevState) => !prevState);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/expenditure/year":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
         setExpenditureByYear((prevState) => !prevState);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/expenditure/insert":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
         setInsertExpenditure((prevState) => !prevState);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/expenditure/update":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
         setUpdateExpenditure((prevState) => !prevState);
+        setDeleteExpenditure(false);
         break;
       case "/dashboard/expenditure/delete":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
         setDeleteExpenditure((prevState) => !prevState);
         break;
       default:
@@ -139,7 +295,7 @@ function Dashboard() {
       <div id="dashboard">
         <div className="navbar">
           <div className="navbar-left">
-            <a href="/dashboard">Home</a>
+            <a href="/dashboard">Dashboard</a>
             <div className="dropdown">
               <button className="dropbtn">Income</button>
               <div className="dropdown-content">
