@@ -3,7 +3,7 @@ import axios from "axios";
 
 function IncomeByMonthTable({ userId }) {
   const [incomeData, setIncomeData] = useState([]);
-  const [month, setMonth] = useState(1);
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
 
   useEffect(() => {
     axios
@@ -12,7 +12,11 @@ function IncomeByMonthTable({ userId }) {
         setIncomeData(response.data);
       })
       .catch((error) => {
-        console.log("Error fetching income data:", error);
+        if (error.response && error.response.status === 404) {
+          setIncomeData([]);
+        } else {
+          console.log("Error fetching income data:", error);
+        }
       });
   }, [month, userId]);
 

@@ -1,0 +1,8 @@
+.crud {
+    background-color: #3a7fb8;
+    color: #efefef;
+}
+
+.crud:hover {
+    background-color: #185881;
+}

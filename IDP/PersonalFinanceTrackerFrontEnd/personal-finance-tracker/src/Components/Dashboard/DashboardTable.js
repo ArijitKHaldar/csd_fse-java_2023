@@ -13,7 +13,11 @@ function DashboardTable({ userId }) {
         setIncomeData(response.data);
       })
       .catch((error) => {
-        console.log("Error fetching income data:", error);
+        if (error.response && error.response.status === 404) {
+          setIncomeData([]);
+        } else {
+          console.log("Error fetching income data:", error);
+        }
       });
 
     axios
@@ -22,7 +26,11 @@ function DashboardTable({ userId }) {
         setExpenditureData(response.data);
       })
       .catch((error) => {
-        console.log("Error fetching expenditure data:", error);
+        if (error.response && error.response.status === 404) {
+          setExpenditureData([]);
+        } else {
+          console.log("Error fetching income data:", error);
+        }
       });
 
     axios
@@ -31,7 +39,11 @@ function DashboardTable({ userId }) {
         setCategoryData(response.data);
       })
       .catch((error) => {
-        console.log("Error fetching category:", error);
+        if (error.response && error.response.status === 404) {
+          setCategoryData([]);
+        } else {
+          console.log("Error fetching income data:", error);
+        }
       });
   }, [userId]);
 
@@ -39,7 +51,7 @@ function DashboardTable({ userId }) {
     const category = categoryData.find(
       (category) => category.categoryId === categoryId
     );
-    return category ? category.expenditureTag : "";
+    return category ? category.expenditureTag : "No Data";
   };
 
   return (

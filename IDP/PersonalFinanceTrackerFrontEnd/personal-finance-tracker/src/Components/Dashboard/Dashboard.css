@@ -24,8 +24,10 @@
   border: none;
   cursor: pointer;
 }
+
 .dropbtn:hover {
   background-color: #cec0d0;
+  text-shadow: 0 2px 3px rgba(255, 255, 255, 0.5);
 }
 
 .dropdown-content {
@@ -71,6 +73,7 @@
 
 .navbar a:hover {
   color: inherit;
+  text-shadow: 1px 2px 3px rgba(255, 255, 255, 0.5);
 }
 
 .navbar-right {
@@ -78,7 +81,7 @@
   align-items: center;
 }
 
-.logout-button {
+.button {
   background-color: #8c4276;
   font-weight: bold;
   border-radius: 5px;
@@ -89,6 +92,6 @@
   margin-right: 0.5rem;
 }
 
-.logout-button:hover {
+.button:hover {
   background-color: #622d52;
 }

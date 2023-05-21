@@ -1,7 +1,8 @@
 /* Table Styles */
 table {
   width: 100%;
-  margin-bottom: 20px;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 
 table th,
@@ -13,6 +14,7 @@ table td {
 /* Table Head Styles */
 thead th {
   position: sticky;
+  top: 0;
   font-weight: bold;
   color: #e5e5e5;
   background-color: rgba(28, 89, 139, 0.8);
@@ -76,16 +78,13 @@ tbody tr:nth-child(even) {
 
 .income-section,
 .expenditure-section {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.55),
-    rgba(255, 255, 255, 0.8)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.8));
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
-  margin-bottom: 20px;
 }
 
 .income-list,
@@ -95,6 +94,7 @@ tbody tr:nth-child(even) {
 }
 
 @media screen and (min-width: 768px) {
+
   .income-section,
   .expenditure-section {
     width: 50%;

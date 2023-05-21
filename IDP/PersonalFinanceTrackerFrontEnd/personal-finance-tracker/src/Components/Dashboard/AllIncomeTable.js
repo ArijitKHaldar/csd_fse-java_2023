@@ -12,7 +12,11 @@ function AllIncomeTable({ userId }) {
         setIncomeData(response.data);
       })
       .catch((error) => {
-        console.log("Error fetching income data:", error);
+        if (error.response && error.response.status === 404) {
+          setIncomeData([]);
+        } else {
+          console.log("Error fetching income data:", error);
+        }
       });
   }, [userId]);
 

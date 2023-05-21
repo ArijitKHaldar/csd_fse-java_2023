@@ -359,7 +359,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="navbar-right">
-            <button className="logout-button" onClick={handleLogout}>
+            <button className="logout button" onClick={handleLogout}>
               Logout
             </button>
           </div>
