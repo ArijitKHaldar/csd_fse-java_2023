@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Personal Finance Tracker
+
+#### Developed By Arijit Kumar Haldar
+
+This is the Front-end for the IDP project done for Cognizant CSD 2023.
+
+`Feature description pending`
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
