@@ -22,7 +22,7 @@ function IncomeByMonthTable({ userId }) {
 
   return (
     <div className="table-section">
-      <div className="all-income income-section">
+      <div className="child-component income-section">
         <h2>Income</h2>
         <div className="month-dropdown">
           <label htmlFor="month">Select Month: </label>
