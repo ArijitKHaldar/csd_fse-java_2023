@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DashboardTable from "./DashboardTable";
 import AllIncomeTable from "./AllIncomeTable";
 import IncomeByMonthTable from "./IncomeByMonthTable";
@@ -22,6 +22,13 @@ function Dashboard() {
   // const userId = searchParams.get("userId");
   const userId = "f2r0o2n3t0518193338";
   const navigate = useNavigate();
+  console.log(userId);
+
+  useEffect(() => {
+    if (!userId) {
+      navigate(`/`);
+    }
+  }, [userId, navigate]);
 
   const [incomeTable, setIncomeTable] = useState(false);
   const [incomeByMonth, setIncomeByMonth] = useState(false);
