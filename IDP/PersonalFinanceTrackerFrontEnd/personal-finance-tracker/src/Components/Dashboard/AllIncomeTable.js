@@ -51,12 +51,10 @@ function AllIncomeTable({ userId }) {
                   <th>Id</th>
                   <th>Date</th>
                   <th>Amount</th>
-                  <th>Category</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>No Data</td>
                   <td>No Data</td>
                   <td>No Data</td>
                   <td>No Data</td>
