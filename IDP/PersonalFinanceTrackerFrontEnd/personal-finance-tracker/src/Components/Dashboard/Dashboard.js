@@ -20,7 +20,6 @@ function Dashboard() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const userId = searchParams.get("userId");
-  // const userId = "f2r0o2n3t0518193338";
   const navigate = useNavigate();
 
   useEffect(() => {
