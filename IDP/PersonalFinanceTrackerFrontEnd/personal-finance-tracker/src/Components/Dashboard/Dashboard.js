@@ -19,13 +19,12 @@ import DeleteExpenditureTable from "./DeleteExpenditureTable";
 function Dashboard() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  // const userId = searchParams.get("userId");
-  const userId = "f2r0o2n3t0518193338";
+  const userId = searchParams.get("userId");
+  // const userId = "f2r0o2n3t0518193338";
   const navigate = useNavigate();
-  console.log(userId);
 
   useEffect(() => {
-    if (!userId) {
+    if (!userId || userId === "") {
       navigate(`/`);
     }
   }, [userId, navigate]);
@@ -302,7 +301,7 @@ function Dashboard() {
       <div id="dashboard">
         <div className="navbar">
           <div className="navbar-left">
-            <a href="/dashboard">Dashboard</a>
+            <a href={`/dashboard?userId=${userId}`}>Dashboard</a>
             <div className="dropdown">
               <button className="dropbtn">Income</button>
               <div className="dropdown-content">
