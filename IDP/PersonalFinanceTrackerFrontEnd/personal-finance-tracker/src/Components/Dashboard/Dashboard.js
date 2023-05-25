@@ -2,19 +2,24 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import React, { useState, useEffect } from "react";
 import DashboardTable from "./DashboardTable";
-import AllIncomeTable from "./AllIncomeTable";
-import IncomeByMonthTable from "./IncomeByMonthTable";
-import IncomeByYearTable from "./IncomeByYearTable";
-import InsertIncomeTable from "./InsertIncomeTable";
-import UpdateIncomeTable from "./UpdateIncomeTable";
-import DeleteIncomeTable from "./DeleteIncomeTable";
-import AllExpenditureTable from "./AllExpenditureTable";
-import ExpenditureByDateTable from "./ExpenditureByDateTable";
-import ExpenditureByMonthTable from "./ExpenditureByMonthTable";
-import ExpenditureByYearTable from "./ExpenditureByYearTable";
-import InsertExpenditureTable from "./InsertExpenditureTable";
-import UpdateExpenditureTable from "./UpdateExpenditureTable";
-import DeleteExpenditureTable from "./DeleteExpenditureTable";
+import AllIncomeTable from "./Income/AllIncomeTable";
+import IncomeByMonthTable from "./Income/IncomeByMonthTable";
+import IncomeByYearTable from "./Income/IncomeByYearTable";
+import InsertIncomeTable from "./Income/InsertIncomeTable";
+import UpdateIncomeTable from "./Income/UpdateIncomeTable";
+import DeleteIncomeTable from "./Income/DeleteIncomeTable";
+import AllExpenditureTable from "./Expenditure/AllExpenditureTable";
+import ExpenditureByDateTable from "./Expenditure/ExpenditureByDateTable";
+import ExpenditureByMonthTable from "./Expenditure/ExpenditureByMonthTable";
+import ExpenditureByYearTable from "./Expenditure/ExpenditureByYearTable";
+import InsertExpenditureTable from "./Expenditure/InsertExpenditureTable";
+import UpdateExpenditureTable from "./Expenditure/UpdateExpenditureTable";
+import DeleteExpenditureTable from "./Expenditure/DeleteExpenditureTable";
+import MonthlySavingsPercentage from "./Calculations/MonthlySavingsPercentage";
+import YearlySavingsPercentage from "./Calculations/YearlySavingsPercentage";
+import PredictSavings from "./Calculations/PredictSavings";
+import FinancialGoal from "./Calculations/FinancialGoal";
+import Calculator from "./Calculations/Calculator";
 
 function Dashboard() {
   const location = useLocation();
@@ -41,6 +46,11 @@ function Dashboard() {
   const [insertExpenditure, setInsertExpenditure] = useState(false);
   const [updateExpenditure, setUpdateExpenditure] = useState(false);
   const [deleteExpenditure, setDeleteExpenditure] = useState(false);
+  const [monthlySavingsPrcnt, setMonthlySavingsPrcnt] = useState(false);
+  const [yearlySavingsPrcnt, setYearlySavingsPrcnt] = useState(false);
+  const [savingsPredict, setSavingsPredict] = useState(false);
+  const [financialGoal, setFinancialGoal] = useState(false);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   const handleLogout = () => {
     navigate("/", { replace: true });
@@ -64,6 +74,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/income/month":
         setIncomeTable(false);
@@ -79,6 +94,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/income/year":
         setIncomeTable(false);
@@ -94,6 +114,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/income/insert":
         setIncomeTable(false);
@@ -109,6 +134,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/income/update":
         setIncomeTable(false);
@@ -124,6 +154,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/income/delete":
         setIncomeTable(false);
@@ -139,6 +174,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/expenditure":
         setIncomeTable(false);
@@ -154,6 +194,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/expenditure/date":
         setIncomeTable(false);
@@ -169,6 +214,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/expenditure/month":
         setIncomeTable(false);
@@ -184,6 +234,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/expenditure/year":
         setIncomeTable(false);
@@ -199,6 +254,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/expenditure/insert":
         setIncomeTable(false);
@@ -214,6 +274,11 @@ function Dashboard() {
         setInsertExpenditure((prevState) => !prevState);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/expenditure/update":
         setIncomeTable(false);
@@ -229,6 +294,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure((prevState) => !prevState);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
       case "/dashboard/expenditure/delete":
         setIncomeTable(false);
@@ -244,6 +314,111 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure((prevState) => !prevState);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
+        break;
+      case "/dashboard/calculations/monthlysavingspercentage":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt((prevState) => !prevState);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
+        break;
+      case "/dashboard/calculations/yearlysavingspercentage":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt((prevState) => !prevState);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
+        break;
+      case "/dashboard/calculations/predict":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict((prevState) => !prevState);
+        setFinancialGoal(false);
+        setShowCalculator(false);
+        break;
+      case "/dashboard/calculations/goal":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal((prevState) => !prevState);
+        setShowCalculator(false);
+        break;
+      case "/dashboard/calculations/calculator":
+        setIncomeTable(false);
+        setIncomeByMonth(false);
+        setIncomeByYear(false);
+        setInsertIncome(false);
+        setUpdateIncome(false);
+        setDeleteIncome(false);
+        setExpenditureTable(false);
+        setExpenditureByDate(false);
+        setExpenditureByMonth(false);
+        setExpenditureByYear(false);
+        setInsertExpenditure(false);
+        setUpdateExpenditure(false);
+        setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator((prevState) => !prevState);
         break;
       default:
         setIncomeTable(false);
@@ -259,6 +434,11 @@ function Dashboard() {
         setInsertExpenditure(false);
         setUpdateExpenditure(false);
         setDeleteExpenditure(false);
+        setMonthlySavingsPrcnt(false);
+        setYearlySavingsPrcnt(false);
+        setSavingsPredict(false);
+        setFinancialGoal(false);
+        setShowCalculator(false);
         break;
     }
   };
@@ -290,6 +470,16 @@ function Dashboard() {
       return <UpdateExpenditureTable userId={userId} />;
     } else if (deleteExpenditure) {
       return <DeleteExpenditureTable userId={userId} />;
+    } else if (monthlySavingsPrcnt) {
+      return <MonthlySavingsPercentage userId={userId} />;
+    } else if (yearlySavingsPrcnt) {
+      return <YearlySavingsPercentage userId={userId} />;
+    } else if (savingsPredict) {
+      return <PredictSavings userId={userId} />;
+    } else if (financialGoal) {
+      return <FinancialGoal userId={userId} />;
+    } else if (showCalculator) {
+      return <Calculator />;
     } else {
       return <DashboardTable userId={userId} />;
     }
@@ -305,22 +495,22 @@ function Dashboard() {
               <button className="dropbtn">Income</button>
               <div className="dropdown-content">
                 <a href="/dashboard/income" onClick={handleLinkClick}>
-                  All Income
+                  Show All
                 </a>
                 <a href="/dashboard/income/month" onClick={handleLinkClick}>
-                  Income for Month
+                  Show By Month
                 </a>
                 <a href="/dashboard/income/year" onClick={handleLinkClick}>
-                  Income for Year
+                  Show By Year
                 </a>
                 <a href="/dashboard/income/insert" onClick={handleLinkClick}>
-                  Insert Income
+                  Add
                 </a>
                 <a href="/dashboard/income/update" onClick={handleLinkClick}>
-                  Update Income
+                  Update
                 </a>
                 <a href="/dashboard/income/delete" onClick={handleLinkClick}>
-                  Delete Income
+                  Delete
                 </a>
               </div>
             </div>
@@ -328,37 +518,72 @@ function Dashboard() {
               <button className="dropbtn">Expenditure</button>
               <div className="dropdown-content">
                 <a href="/dashboard/expenditure" onClick={handleLinkClick}>
-                  All Expenditure
+                  Show All
                 </a>
                 <a href="/dashboard/expenditure/date" onClick={handleLinkClick}>
-                  Expenditure for Date
+                  Show By Date
                 </a>
                 <a
                   href="/dashboard/expenditure/month"
                   onClick={handleLinkClick}
                 >
-                  Expenditure for Month
+                  Show By Month
                 </a>
                 <a href="/dashboard/expenditure/year" onClick={handleLinkClick}>
-                  Expenditure for Year
+                  Show By Year
                 </a>
                 <a
                   href="/dashboard/expenditure/insert"
                   onClick={handleLinkClick}
                 >
-                  Insert Expenditure
+                  Add
                 </a>
                 <a
                   href="/dashboard/expenditure/update"
                   onClick={handleLinkClick}
                 >
-                  Update Expenditure
+                  Update
                 </a>
                 <a
                   href="/dashboard/expenditure/delete"
                   onClick={handleLinkClick}
                 >
-                  Delete Expenditure
+                  Delete
+                </a>
+              </div>
+            </div>
+            <div className="dropdown">
+              <button className="dropbtn">Calculations</button>
+              <div className="dropdown-content">
+                <a
+                  href="/dashboard/calculations/monthlysavingspercentage"
+                  onClick={handleLinkClick}
+                >
+                  Monthly Savings %
+                </a>
+                <a
+                  href="/dashboard/calculations/yearlysavingspercentage"
+                  onClick={handleLinkClick}
+                >
+                  Yearly Savings %
+                </a>
+                <a
+                  href="/dashboard/calculations/predict"
+                  onClick={handleLinkClick}
+                >
+                  Savings Predictor
+                </a>
+                <a
+                  href="/dashboard/calculations/goal"
+                  onClick={handleLinkClick}
+                >
+                  Financial Goal
+                </a>
+                <a
+                  href="/dashboard/calculations/calculator"
+                  onClick={handleLinkClick}
+                >
+                  Simple Calculator
                 </a>
               </div>
             </div>
