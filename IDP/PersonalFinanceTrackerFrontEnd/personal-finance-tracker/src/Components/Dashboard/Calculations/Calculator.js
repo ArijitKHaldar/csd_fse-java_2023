@@ -15,6 +15,7 @@ function Calculator() {
   const handleCalculate = () => {
     let result;
     try {
+      // eslint-disable-next-line no-new-func
       const calculate = new Function(`return ${display}`);
       result = calculate();
       setDisplay(result.toString());

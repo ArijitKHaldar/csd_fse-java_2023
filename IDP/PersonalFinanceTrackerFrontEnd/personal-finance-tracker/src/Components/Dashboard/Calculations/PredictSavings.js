@@ -39,15 +39,18 @@ function PredictSavings({ userId }) {
   const currentMonth = getMonthString(new Date().getMonth() + 2);
 
   return (
-    <div>
-      {predictedSavings !== null ? (
-        <p>
-          Based on the financial data you have entered, the predicted savings
-          for the month of {currentMonth} is Rs. {predictedSavings}
-        </p>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="table-section">
+      <div className="predict child-component income-section">
+        <h2>Predicted Savings of {currentMonth}</h2>
+        {predictedSavings !== null ? (
+          <p>
+            Based on the financial data you have entered, the predicted savings
+            for the month of {currentMonth} is Rs. {predictedSavings}
+          </p>
+        ) : (
+          <p>Could not predict savings</p>
+        )}
+      </div>
     </div>
   );
 }
