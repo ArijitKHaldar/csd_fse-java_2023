@@ -32,7 +32,7 @@ function YearlySavingsPercentage({ userId }) {
     setSelectedYear(Number(e.target.value));
   };
 
-  const COLORS = ["#0088FE", "#00C49F"];
+  const COLORS = ["#5EA5DB", "#7FC2A4"];
 
   const pieChartData = [
     {
