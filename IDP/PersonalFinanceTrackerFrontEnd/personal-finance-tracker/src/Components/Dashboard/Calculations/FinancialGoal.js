@@ -187,7 +187,7 @@ function FinancialGoal({ userId }) {
           )
         )}
 
-        <div className="bar-chart">
+        <div className="chart">
           <BarChart
             width={600}
             height={250}

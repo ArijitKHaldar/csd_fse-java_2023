@@ -76,7 +76,7 @@ function YearlySavingsPercentage({ userId }) {
             value={savingsPercentage}
           >{`${savingsPercentage}%`}</Progress>
         </div>
-        <div className="pie-chart">
+        <div className="chart">
           <PieChart width={400} height={400}>
             <Pie
               data={pieChartData}

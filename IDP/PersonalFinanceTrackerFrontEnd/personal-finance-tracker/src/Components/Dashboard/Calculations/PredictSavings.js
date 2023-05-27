@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-} from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
 
 function PredictSavings({ userId }) {
   const [predictedSavings, setPredictedSavings] = useState(null);
@@ -119,7 +112,7 @@ function PredictSavings({ userId }) {
           <p>Could not predict savings</p>
         )}
         {monthlyData.length > 0 && (
-          <div className="chart-container">
+          <div className="chart">
             <AreaChart
               width={1000}
               height={300}
@@ -137,7 +130,6 @@ function PredictSavings({ userId }) {
                 tickFormatter={(value) => getMonthString(parseInt(value))}
               />
               <YAxis />
-              <Tooltip />
               <Area
                 type="monotone"
                 dataKey="savings"
