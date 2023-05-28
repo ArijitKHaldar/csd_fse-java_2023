@@ -1,0 +1,18 @@
+ 
+ <!-- Implement Your Code Here -->
+ <table>
+     <thead>
+         <tr>
+             <th>Name</th>
+             <th>Register Number</th>
+             <th>Age</th>
+         </tr>
+     </thead>
+     <tbody>
+         <tr *ngFor="let students of student">
+             <td>{{ students.name | uppercase }}</td>
+             <td>{{ students.registerNumber | lowercase }}</td>
+             <td>{{ students.age }}</td>
+         </tr>
+     </tbody>
+ </table>
