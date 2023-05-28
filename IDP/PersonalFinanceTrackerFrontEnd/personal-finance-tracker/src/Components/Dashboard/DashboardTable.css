@@ -90,7 +90,7 @@ tbody tr:nth-child(even) {
 .income-list,
 .expenditure-list {
   overflow: auto;
-  max-height: 310px;
+  max-height: 410px;
 }
 
 @media screen and (min-width: 768px) {

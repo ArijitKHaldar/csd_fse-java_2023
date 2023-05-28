@@ -96,7 +96,6 @@ function PredictSavings({ userId }) {
     return monthNames[monthIndex - 1];
   };
 
-  const currentMonth = getMonthString(new Date().getMonth() + 2);
   const currentFullMonth = getFullMonthString(new Date().getMonth() + 2);
 
   return (
@@ -106,7 +105,7 @@ function PredictSavings({ userId }) {
         {predictedSavings !== null ? (
           <p>
             Based on the financial data you have entered, the predicted savings
-            for the month of {currentMonth} is Rs. {predictedSavings}
+            for the month of {currentFullMonth} is Rs. {predictedSavings}
           </p>
         ) : (
           <p>Could not predict savings</p>
