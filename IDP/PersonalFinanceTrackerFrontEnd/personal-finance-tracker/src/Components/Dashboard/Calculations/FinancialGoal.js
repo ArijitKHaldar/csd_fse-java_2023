@@ -166,6 +166,7 @@ function FinancialGoal({ userId }) {
               type="number"
               id="amount"
               value={amount}
+              placeholder="Enter the amount that you need on the above date"
               onChange={(e) => setAmount(e.target.value)}
               required
             />
