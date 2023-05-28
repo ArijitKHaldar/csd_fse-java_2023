@@ -24,6 +24,6 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Personal Finance Tracker").description(
 				"IDP project for tracking income, expenditure and savings of user. " + "\nMade by Arijit Kumar Haldar")
-				.version("1.2.8").build();
+				.version("1.4.0").build();
 	}
 }
