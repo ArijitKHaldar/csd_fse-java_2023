@@ -37,13 +37,27 @@ function LoginPage() {
     try {
       let checkResponse;
       try {
-        checkResponse = await axios.get(`/api/login/v1/email/${email}`);
+        checkResponse = await axios.get(`/api/login/v1/email/${email}`, {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
       } catch (error) {
         if (error.response && error.response.status === 404) {
-          const signupResponse = await axios.post("/api/login/v1", {
-            emailId: email,
-            password: password,
-          });
+          const signupResponse = await axios.post(
+            "/api/login/v1",
+            {
+              emailId: email,
+              password: password,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+              },
+            }
+          );
           setUserId(signupResponse.data.userId);
           setErrorMessage(
             `Signup successful with User ID: ${signupResponse.data.userId}. Please Sign in now`
@@ -75,7 +89,12 @@ function LoginPage() {
     }
 
     try {
-      const response = await axios.get(`/api/login/v1/email/${email}`);
+      const response = await axios.get(`/api/login/v1/email/${email}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
       if (!response.data) {
         setUserId("");
         setErrorMessage("User is not signed up. Please sign up first.");
