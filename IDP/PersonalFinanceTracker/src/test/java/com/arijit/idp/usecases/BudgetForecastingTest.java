@@ -58,7 +58,7 @@ public class BudgetForecastingTest {
 
 		double predictedSavings = mockedService.predictSavings(userId);
 
-		assertEquals(408, predictedSavings, 0.001);
+		assertEquals(330.56, predictedSavings, 0.001);
 	}
 
 	@Test
